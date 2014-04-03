@@ -3,11 +3,14 @@ import java.util.ArrayList;
 public class CityNode {
 	String name = "";
 	int color;
+	int[] bounds;
 	int[] infectionStatus = { 0, 0, 0, 0 };// blue,black,red,yellow
 	ArrayList<CityNode> connectedCities = new ArrayList<CityNode>();
 	boolean[] hasOutbroken = { false, false, false, false };
 
-	public CityNode(String cityName, int diseaseColor) {
+	public CityNode(String cityName, int diseaseColor, int x, int y) {
+		int[] bounds = {x,y};
+		this.bounds = bounds;
 		name = cityName;
 		color = diseaseColor;
 	}
@@ -32,26 +35,23 @@ public class CityNode {
 				return true;
 			} else {
 				++this.infectionStatus[this.color];
-				return false;
 			}
 		}
 		return false;
 	}
 
 	private boolean infectOnce(int color) {
-		if (!PandemicGame.isEradicated[color]) {
 			if (!this.hasOutbroken[color]) {
 				if (this.infectionStatus[color] == 3) {
-					for (CityNode city : connectedCities) {
+					this.hasOutbroken[color] = true;
+					for (CityNode city : this.connectedCities) {
 						city.infectOnce(color);
 					}
 					return true;
 				} else {
 					++this.infectionStatus[color];
-					return false;
 				}
 			}
-		}
 		return false;
 
 	}
@@ -68,5 +68,10 @@ public class CityNode {
 		boolean x = this.infectTwice();
 		boolean y = this.infectOnce();
 		return (x || y);
+	}
+
+	public boolean isConnectedTo(CityNode x) {
+		// Returns whether x is directly connected
+		return this.connectedCities.contains(x);
 	}
 }

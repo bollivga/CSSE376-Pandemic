@@ -2,24 +2,27 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class CityGraph {
-	ArrayList<CityNode> cities = new ArrayList<CityNode>();
+	static ArrayList<CityNode> cities = new ArrayList<CityNode>();
 	HashMap<String, CityNode> citiesSet = new HashMap<String, CityNode>();
 
 	public CityGraph() {
 		// Initialize all blues
-		CityNode atlanta = new CityNode("Atlanta", 0);
-		CityNode chicago = new CityNode("Chicago", 0);
-		CityNode montreal = new CityNode("Montreal", 0);
-		CityNode washington = new CityNode("Washington", 0);
-		CityNode new_york = new CityNode("New York", 0);
-		CityNode san_francisco = new CityNode("San Francisco", 0);
+		CityNode atlanta = new CityNode("Atlanta", 0, 219,297);
+		CityNode chicago = new CityNode("Chicago", 0, 188, 236);
+		CityNode montreal = new CityNode("Montreal", 0, 271, 232);
+		CityNode washington = new CityNode("Washington", 0, 306, 293);
+		CityNode new_york = new CityNode("New York", 0, 335, 242);
+		CityNode san_francisco = new CityNode("San Francisco", 0, 83, 266);
+		/*
 		CityNode london = new CityNode("London", 0);
 		CityNode madrid = new CityNode("Madrid", 0);
 		CityNode paris = new CityNode("Paris", 0);
 		CityNode essen = new CityNode("Essen", 0);
 		CityNode st_petersburg = new CityNode("St. Petersburg", 0);
 		CityNode milan = new CityNode("Milan", 0);
-
+		*/
+		
+/*
 		// Initialize all blacks
 		CityNode algiers = new CityNode("Algiers", 1);
 		CityNode istanbul = new CityNode("Istanbul", 1);
@@ -61,21 +64,22 @@ public class CityGraph {
 		CityNode kinshasa = new CityNode("Kinshasa", 3);
 		CityNode johannesburg = new CityNode("Johannesburg", 3);
 		CityNode khartoum = new CityNode("Khartoum", 3);
-
+*/
 		// Add all blues to storage
-		this.cities.add(atlanta);
-		this.cities.add(chicago);
-		this.cities.add(montreal);
-		this.cities.add(washington);
-		this.cities.add(new_york);
-		this.cities.add(san_francisco);
+		CityGraph.cities.add(atlanta);
+		CityGraph.cities.add(chicago);
+		CityGraph.cities.add(montreal);
+		CityGraph.cities.add(washington);
+		CityGraph.cities.add(new_york);
+		CityGraph.cities.add(san_francisco);/*
 		this.cities.add(london);
 		this.cities.add(madrid);
 		this.cities.add(paris);
 		this.cities.add(essen);
 		this.cities.add(st_petersburg);
 		this.cities.add(milan);
-
+		*/
+		/*
 		// Add all blacks to storage
 		this.cities.add(algiers);
 		this.cities.add(istanbul);
@@ -117,26 +121,26 @@ public class CityGraph {
 		this.cities.add(kinshasa);
 		this.cities.add(johannesburg);
 		this.cities.add(khartoum);
-
+*/
 		// Connect all blues
-		san_francisco.addConnection(chicago);
+		//san_francisco.addConnection(chicago);
 		chicago.addConnection(atlanta);
 		chicago.addConnection(montreal);
-		atlanta.addConnection(washington);
-		montreal.addConnection(washington);
+		//atlanta.addConnection(washington);
+		//montreal.addConnection(washington);
 		montreal.addConnection(new_york);
-		washington.addConnection(new_york);
-		new_york.addConnection(madrid);
-		new_york.addConnection(london);
-		madrid.addConnection(london);
-		madrid.addConnection(paris);
-		london.addConnection(paris);
-		london.addConnection(essen);
-		paris.addConnection(essen);
-		paris.addConnection(milan);
-		essen.addConnection(milan);
-		essen.addConnection(st_petersburg);
-
+		//washington.addConnection(new_york);
+		//new_york.addConnection(madrid);
+		//new_york.addConnection(london);
+		//madrid.addConnection(london);
+		//madrid.addConnection(paris);
+		//london.addConnection(paris);
+		//london.addConnection(essen);
+		//paris.addConnection(essen);
+		//paris.addConnection(milan);
+		//essen.addConnection(milan);
+		//essen.addConnection(st_petersburg);
+/*
 		// Connect all blacks
 		algiers.addConnection(madrid);
 		algiers.addConnection(paris);
@@ -215,10 +219,15 @@ public class CityGraph {
 		kinshasa.addConnection(johannesburg);
 		johannesburg.addConnection(khartoum);
 		khartoum.addConnection(cairo);
-
+*/
 		// Initialize the HashMap for better retrieval
 		for (CityNode city : cities) {
 			citiesSet.put(city.getName(), city);
 		}
+	}
+
+	public CityNode getCity(String string) {
+		// Returns the city with the given string as its name.
+		return this.citiesSet.get(string);
 	}
 }
