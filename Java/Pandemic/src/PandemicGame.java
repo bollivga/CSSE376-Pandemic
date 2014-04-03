@@ -7,10 +7,11 @@ public class PandemicGame{
     private CardStorage infectionDiscard = new CardDiscard();
     private CardStorage playerDiscard = new CardDiscard();
     private CardStorage playerDeck = new CardDeck();
-    Player p1 = new Player(0);
+    public static Player p1 = new Player(0);
 	private CardStorage infectDeck;
     public static CityGraph world = new CityGraph();
-    
+    public static boolean isEradicated[] = {false, false ,false, false};
+    public static boolean isCured[] = {false, false ,false, false};
     
     
     
