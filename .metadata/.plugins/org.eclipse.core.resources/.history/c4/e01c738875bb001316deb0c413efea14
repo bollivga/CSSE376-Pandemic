@@ -1,0 +1,16 @@
+import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.Test;
+
+
+public class CityGraphTest {
+
+	
+
+	@Test
+	public void test() {
+		CityGraph tempGraph = new CityGraph();
+		assertTrue(tempGraph.getCity("New York").isConnectedTo(tempGraph.getCity("Washington")));
+	}
+
+}

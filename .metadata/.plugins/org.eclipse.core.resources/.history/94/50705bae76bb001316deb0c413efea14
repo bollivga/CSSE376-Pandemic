@@ -1,0 +1,19 @@
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+
+
+public class CityButton extends JButton implements ActionListener {
+	
+	public static String cityName;
+	
+	public CityButton(String name) {
+		// TODO Auto-generated constructor stub
+		cityName = name;
+	}
+
+	public static void main(String[] args) {
+		
+		
+	}
+}

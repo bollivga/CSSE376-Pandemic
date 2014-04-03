@@ -1,0 +1,45 @@
+WARN  2014-04-03 16:52:29,526 (NullSarosSession.java:64) unexpected method call
+ERROR 2014-04-03 16:54:57,572 (SarosNet.java:385)  new connection state == ERROR
+SASL authentication PLAIN failed: not-authorized: 
+	at org.jivesoftware.smack.SASLAuthentication.authenticate(SASLAuthentication.java:342)
+	at org.jivesoftware.smack.XMPPConnection.login(XMPPConnection.java:243)
+	at de.fu_berlin.inf.dpp.net.SarosNet.connect(SarosNet.java:261)
+	at de.fu_berlin.inf.dpp.Saros.connect(Saros.java:660)
+	at de.fu_berlin.inf.dpp.Saros$2.run(Saros.java:600)
+	at de.fu_berlin.inf.dpp.util.Utils$2.run(Utils.java:175)
+	at java.lang.Thread.run(Unknown Source)
+ERROR 2014-04-03 16:55:15,502 (SarosNet.java:385)  new connection state == ERROR
+SASL authentication PLAIN failed: not-authorized: 
+	at org.jivesoftware.smack.SASLAuthentication.authenticate(SASLAuthentication.java:342)
+	at org.jivesoftware.smack.XMPPConnection.login(XMPPConnection.java:243)
+	at de.fu_berlin.inf.dpp.net.SarosNet.connect(SarosNet.java:261)
+	at de.fu_berlin.inf.dpp.Saros.connect(Saros.java:660)
+	at de.fu_berlin.inf.dpp.ui.actions.ChangeXMPPAccountAction$6.run(ChangeXMPPAccountAction.java:195)
+	at de.fu_berlin.inf.dpp.util.Utils$2.run(Utils.java:175)
+	at java.lang.Thread.run(Unknown Source)
+ERROR 2014-04-03 16:56:29,285 (RosterUtils.java:236) Server xmpp.l.google.com does not support XEP-0077 (In-Band Registration) properly:
+No response from server.: 
+	at de.fu_berlin.inf.dpp.net.util.RosterUtils.getRegistrationInfo(RosterUtils.java:412)
+	at de.fu_berlin.inf.dpp.net.util.RosterUtils.isAccountCreationPossible(RosterUtils.java:234)
+	at de.fu_berlin.inf.dpp.net.util.RosterUtils.createAccount(RosterUtils.java:204)
+	at de.fu_berlin.inf.dpp.ui.wizards.CreateXMPPAccountWizard$1.run(CreateXMPPAccountWizard.java:126)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+ERROR 2014-04-03 16:56:59,304 (CreateXMPPAccountWizard.java:139) Server does not support account creation.
+Server does not support account creation.: 
+	at org.jivesoftware.smack.AccountManager.createAccount(AccountManager.java:196)
+	at de.fu_berlin.inf.dpp.net.util.RosterUtils.createAccount(RosterUtils.java:210)
+	at de.fu_berlin.inf.dpp.ui.wizards.CreateXMPPAccountWizard$1.run(CreateXMPPAccountWizard.java:126)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+WARN  2014-04-03 16:58:25,209 (SubscriptionManager.java:97) received error presence package from saros943597315@conference.saros-con.imp.fu-berlin.de/bollivga@saros-con.imp.fu-berlin.de/Saros, condition: not-authorized, message: A password is required to enter this room
+WARN  2014-04-03 16:59:06,091 (EditorAPI.java:372) Could not get resource from IEditorInput WebBrowserEditorInput[http://www.saros-project.org/GettingStarted?template=viewprint 38 null]
+WARN  2014-04-03 17:01:18,127 (FileUtils.java:483) could not get content of file /Pandemic/bin/.gitignore
+WARN  2014-04-03 17:06:21,979 (EditorAPI.java:372) Could not get resource from IEditorInput org.eclipse.jdt.internal.ui.javaeditor.InternalClassFileEditorInput@1ffd2d9
+WARN  2014-04-03 17:06:22,026 (EditorAPI.java:372) Could not get resource from IEditorInput org.eclipse.jdt.internal.ui.javaeditor.InternalClassFileEditorInput@1ffd2d9
+WARN  2014-04-03 17:06:22,150 (EditorAPI.java:372) Could not get resource from IEditorInput org.eclipse.jdt.internal.ui.javaeditor.InternalClassFileEditorInput@1ffd2d9
+WARN  2014-04-03 17:07:50,799 (EditorAPI.java:372) Could not get resource from IEditorInput org.eclipse.jdt.internal.ui.javaeditor.InternalClassFileEditorInput@1ffd2d9
+WARN  2014-04-03 17:20:40,565 (FileUtils.java:483) could not get content of file /Pandemic/src/CityButton.java
+WARN  2014-04-03 18:00:25,697 (ContributionAnnotationManager.java:163) Annotation could not be found: de.fu_berlin.inf.dpp.editor.annotations.ContributionAnnotation@4514ad36
+WARN  2014-04-03 18:35:47,968 (FileUtils.java:483) could not get content of file /Pandemic/src/player.png
+WARN  2014-04-03 18:38:11,658 (FileUtils.java:483) could not get content of file /Pandemic/src/player.jpg
+WARN  2014-04-03 18:38:15,282 (SharedResourcesManager.java:606) could not delete file L/Pandemic/src/player.jpg because it does not exist
+WARN  2014-04-03 18:38:22,850 (SharedResourcesManager.java:606) could not delete file L/Pandemic/src/player.png because it does not exist

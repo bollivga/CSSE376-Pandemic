@@ -1,0 +1,50 @@
+import java.awt.*;
+
+import javax.swing.BorderFactory;
+import javax.swing.border.Border;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
+import javax.swing.JList;
+import javax.swing.JScrollPane;
+import javax.swing.JPanel;
+import javax.swing.JFrame;
+import javax.swing.JTextArea;
+
+public class Board {
+
+	public static void main(String[] args) {
+		JFrame frame = new JFrame();
+		frame.setSize(1200, 849);
+		frame.setLayout(new BorderLayout());
+		
+		JLabel background = new JLabel(new ImageIcon("src/board.jpg"));
+		frame.add(background, BorderLayout.CENTER);
+		frame.setVisible(true);
+		background.setLayout(null);
+		
+		
+		// Atlanta
+		CityButton atlanta = new CityButton("Atlanta");
+		atlanta.addActionListener(atlanta);
+		System.out.println(atlanta.cityName);
+		background.add(atlanta);
+		atlanta.setBounds(219, 297, 20, 20);
+		
+		// Chicago
+		CityButton chicago = new CityButton("Chicago");
+		chicago.addActionListener(chicago);
+		System.out.println(chicago.cityName);
+		background.add(chicago);
+		chicago.setBounds(188, 236, 20, 20);
+		
+		// New York
+		CityButton newYork = new CityButton("New York");
+		newYork.addActionListener(newYork);
+		System.out.println(newYork.cityName);
+		background.add(newYork);
+		newYork.setBounds(333, 242, 20, 20);		
+	
+	}
+}

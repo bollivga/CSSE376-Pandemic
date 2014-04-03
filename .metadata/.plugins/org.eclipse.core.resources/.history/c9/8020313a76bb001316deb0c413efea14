@@ -1,0 +1,8 @@
+import javax.swing.JButton;
+
+
+public class CityButton extends JButton {
+	public static void main(String name) {
+		String cityName = name;
+	}
+}

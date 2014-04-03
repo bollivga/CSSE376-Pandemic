@@ -1,0 +1,22 @@
+import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.Test;
+
+
+public class CityGraphTest {
+
+	
+
+	@Test
+	public void test() {
+		PandemicGame testGame = new PandemicGame();
+		assertTrue(PandemicGame.world.getCity("New York").isConnectedTo(PandemicGame.world.getCity("Washington")));
+		assertTrue(PandemicGame.world.getCity("Chicago").isConnectedTo(PandemicGame.world.getCity("Atlanta")));
+		PandemicGame.world.getCity("Kinshasa").infectThrice();
+		assertTrue(PandemicGame.world.getCity("Kinshasa").infectOnce());
+		assertTrue(PandemicGame.world.getCity("Kinshasa").infectThrice());
+		assertFalse(PandemicGame.p1.tryMoveToCity(PandemicGame.world.getCity("Kinshasa")));
+		assertTrue(PandemicGame.p1.tryMoveToCity(PandemicGame.world.getCity("Chicago")));
+	}
+
+}

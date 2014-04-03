@@ -1,0 +1,26 @@
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+
+
+public class CityButton extends JButton implements ActionListener {
+	
+	public String cityName;
+	
+	public CityButton(String name) {
+		// Set the city name to the city passed in
+		cityName = name;
+	}
+
+	public static void main(String[] args) {
+		
+		
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// Print the name of the city
+		System.out.println(cityName);
+	}
+}

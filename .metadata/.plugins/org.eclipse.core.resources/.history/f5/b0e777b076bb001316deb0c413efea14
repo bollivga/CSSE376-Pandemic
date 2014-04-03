@@ -1,0 +1,26 @@
+import java.util.ArrayList;
+
+
+public class PandemicGame{
+    
+    ArrayList<CardHand> playerHands = new ArrayList<CardHand>();
+    private CardStorage infectionDiscard = new CardDiscard();
+    private CardStorage playerDiscard = new CardDiscard();
+    private CardStorage playerDeck = new CardDeck();
+    public static Player p1;
+	private CardStorage infectDeck;
+    public static CityGraph world = new CityGraph();
+    public static boolean isEradicated[] = {false, false ,false, false};
+    public static boolean isCured[] = {false, false ,false, false};
+    
+    
+    
+    public PandemicGame(){
+    	
+    	p1 = new Player(0);
+    	for(CityNode x : world.cities){
+    		playerDeck.add(new PlayerCityCard(x));
+    		infectDeck.add(new InfectCityCard(x));
+    	}
+    }
+}
