@@ -24,24 +24,21 @@ public class Board {
 		frame.setVisible(true);
 		background.setLayout(null);
 		PandemicGame mainGame = new PandemicGame();
-		System.out.println(CityGraph.cities);
 		
+		// Initialize all city buttons on the map from CityGraph
 		for (CityNode i : CityGraph.cities) {
-			String name = i.getName();
-			CityButton city = new CityButton(name);
+			CityButton city = new CityButton(i);
 			city.addActionListener(city);
-			System.out.println(city.cityName);
 			background.add(city);
 			city.setBounds(i.bounds[0], i.bounds[1], 20, 20);
 		}
 		
+		System.out.println("Player is at Atlanta. Click a connected city to move.");
 
-		// Atlanta
-		CityButton atlanta = new CityButton("Atlanta");
-		atlanta.addActionListener(atlanta);
-		System.out.println(atlanta.cityName);
-		background.add(atlanta);
-		atlanta.setBounds(83, 266, 20, 20);
+		// TestButton
+		JLabel player = new JLabel(new ImageIcon("src/player.jpg"));
+		player.setBounds(280,297, 50, 50);
+		background.add(player);
 
 	}
 }

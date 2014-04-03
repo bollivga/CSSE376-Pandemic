@@ -6,11 +6,11 @@ import javax.swing.JButton;
 
 public class CityButton extends JButton implements ActionListener {
 	
-	public String cityName;
+	public CityNode cityNode;
 	
-	public CityButton(String name) {
+	public CityButton(CityNode city) {
 		// Set the city name to the city passed in
-		cityName = name;
+		cityNode = city;
 	}
 
 	public static void main(String[] args) {
@@ -21,6 +21,11 @@ public class CityButton extends JButton implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// Print the name of the city
-		System.out.println(cityName);
+		if (!PandemicGame.p1.tryMoveToCity(cityNode)){
+			System.out.println("Move failed, too far away or same city");
+		}
+		else {
+			System.out.println("Player has moved to " + cityNode.getName() + ".");
+		}
 	}
 }

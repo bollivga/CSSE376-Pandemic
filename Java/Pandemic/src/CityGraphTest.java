@@ -19,6 +19,7 @@ public class CityGraphTest {
 	public void testInfection(){
 		PandemicGame testGame = new PandemicGame();
 		assertFalse(PandemicGame.world.getCity("New York").infectThrice());
+		assertTrue(3 == PandemicGame.world.getCity("New York").infectionStatus[0]);
 		assertTrue(PandemicGame.world.getCity("New York").infectOnce());
 		assertTrue(PandemicGame.world.getCity("New York").infectThrice());
 	}
