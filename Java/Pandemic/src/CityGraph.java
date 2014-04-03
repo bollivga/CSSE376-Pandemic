@@ -6,7 +6,6 @@ public class CityGraph {
 	HashMap<String, CityNode> citiesSet = new HashMap<String, CityNode>();
 
 	public CityGraph() {
-
 		// Initialize all blues
 		CityNode atlanta = new CityNode("Atlanta", 0);
 		CityNode chicago = new CityNode("Chicago", 0);
