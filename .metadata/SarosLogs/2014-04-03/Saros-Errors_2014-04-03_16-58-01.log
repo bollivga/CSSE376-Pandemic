@@ -43,3 +43,20 @@ WARN  2014-04-03 18:35:47,968 (FileUtils.java:483) could not get content of file
 WARN  2014-04-03 18:38:11,658 (FileUtils.java:483) could not get content of file /Pandemic/src/player.jpg
 WARN  2014-04-03 18:38:15,282 (SharedResourcesManager.java:606) could not delete file L/Pandemic/src/player.jpg because it does not exist
 WARN  2014-04-03 18:38:22,850 (SharedResourcesManager.java:606) could not delete file L/Pandemic/src/player.png because it does not exist
+WARN  2014-04-03 18:42:34,114 (LeaveAndKickHandler.java:132) received leave message from user junkster775 which is not the host of the current session
+WARN  2014-04-03 18:42:34,167 (ActivitySequencer.java:419) cannot send activity to junkster775 because it is currently not registers, dropped activity: EditorActivityDO(type: ACTIVATED, path: SPathDataObject [editorType=txt, path=src/Player.java, projectID=1070168596])
+WARN  2014-04-03 18:42:34,172 (ActivitySequencer.java:419) cannot send activity to junkster775 because it is currently not registers, dropped activity: TextSelectionActivityDO(offset: 379, length:0, src: bollivga@saros-con.imp.fu-berlin.de/Saros, path: SPathDataObject [editorType=txt, path=src/Player.java, projectID=1070168596])
+WARN  2014-04-03 18:42:34,176 (ActivitySequencer.java:419) cannot send activity to junkster775 because it is currently not registers, dropped activity: ViewportActivityDO(path:SPathDataObject [editorType=txt, path=src/Player.java, projectID=1070168596], range: (0,18))
+WARN  2014-04-03 18:42:34,211 (ActivitySequencer.java:419) cannot send activity to junkster775 because it is currently not registers, dropped activity: EditorActivityDO(type: ACTIVATED, path: SPathDataObject [editorType=txt, path=src/Player.java, projectID=1070168596])
+WARN  2014-04-03 18:42:34,215 (ActivitySequencer.java:419) cannot send activity to junkster775 because it is currently not registers, dropped activity: TextSelectionActivityDO(offset: 379, length:0, src: bollivga@saros-con.imp.fu-berlin.de/Saros, path: SPathDataObject [editorType=txt, path=src/Player.java, projectID=1070168596])
+WARN  2014-04-03 18:42:34,220 (ActivitySequencer.java:419) cannot send activity to junkster775 because it is currently not registers, dropped activity: ViewportActivityDO(path:SPathDataObject [editorType=txt, path=src/Player.java, projectID=1070168596], range: (0,18))
+WARN  2014-04-03 18:42:34,250 (NullSarosSession.java:64) unexpected method call
+WARN  2014-04-03 18:42:34,312 (SarosSession.java:641) failed to notify user junkster775 about local session stop
+java.io.IOException: not connected to junkster775@saros-con.imp.fu-berlin.de/Saros [connection identifier=saros-main-session]
+	at de.fu_berlin.inf.dpp.net.internal.DataTransferManager.sendData(DataTransferManager.java:209)
+	at de.fu_berlin.inf.dpp.net.internal.XMPPTransmitter.sendToSessionUser(XMPPTransmitter.java:91)
+	at de.fu_berlin.inf.dpp.project.internal.SarosSession.stop(SarosSession.java:637)
+	at de.fu_berlin.inf.dpp.project.SarosSessionManager.stopSarosSession(SarosSessionManager.java:342)
+	at de.fu_berlin.inf.dpp.net.business.LeaveAndKickHandler$5.run(LeaveAndKickHandler.java:155)
+	at de.fu_berlin.inf.dpp.util.Utils$2.run(Utils.java:175)
+	at java.lang.Thread.run(Unknown Source)

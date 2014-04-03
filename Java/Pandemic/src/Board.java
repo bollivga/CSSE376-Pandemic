@@ -37,7 +37,7 @@ public class Board {
 
 		// TestButton
 		JLabel player = new JLabel(new ImageIcon("src/player.jpg"));
-		player.setBounds(280,297, 50, 50);
+		player.setBounds(280, 297, 50, 50);
 		background.add(player);
 
 	}
