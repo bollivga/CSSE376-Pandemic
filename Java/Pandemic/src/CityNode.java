@@ -69,4 +69,11 @@ public class CityNode {
 		boolean y = this.infectOnce();
 		return (x || y);
 	}
+
+	public boolean isConnectedTo(CityNode x) {
+		if(this.connectedCities.contains(x)){
+			return true;
+		}
+		return false;
+	}
 }

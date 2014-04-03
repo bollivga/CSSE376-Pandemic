@@ -8,7 +8,7 @@ public class Player {
         this.currentCity = PandemicGame.world.citiesSet.get("Atlanta");
     }
     public boolean tryMoveToCity(CityNode x){
-    	if(this.currentCity.connectedCities.contains(x)){
+    	if(this.currentCity.isConnectedTo(x)){
     		this.currentCity = x;
     		return true;
     	}
