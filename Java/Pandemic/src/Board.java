@@ -77,17 +77,15 @@ public class Board {
 			                    "Role Selection", JOptionPane.PLAIN_MESSAGE, null, list,
 			                    "Contingency Planner");
 			if (s == "No More Players") {
-				if (i > 1) {
+				if (i > 2) {
 					JFrame finish = new JFrame();
 					String nextPlayer = PandemicGame.playerStorage.get(PandemicGame.currentPlayer).toString();
 					JOptionPane.showMessageDialog(finish, "All players have been selected. There are " + (i - 1) + " players in the game.\n" + "It is now Player 1, the " + nextPlayer + "'s turn.");
-					//
-					PandemicGame.addPlayer(s);
 					i = 5;
 				}
 				else {
 					JFrame finish = new JFrame();
-					JOptionPane.showMessageDialog(finish, "You must have at least one player!");
+					JOptionPane.showMessageDialog(finish, "You must have at least two players!");
 				}
 			}
 			else {

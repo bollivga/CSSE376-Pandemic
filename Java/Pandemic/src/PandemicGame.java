@@ -111,6 +111,8 @@ public class PandemicGame{
 		y=5;
 	}else if(x == "Scientist"){
 		y=6;
-	}PandemicGame.playerStorage.add(new Player(y));
+	}else{System.out.println("PROBLEMS");}
+		PandemicGame.playerStorage.add(new Player(y));
+	}
     }
-}
+
