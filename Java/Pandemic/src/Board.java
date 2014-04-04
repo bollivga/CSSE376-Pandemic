@@ -2,6 +2,7 @@ import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
@@ -17,25 +18,101 @@ import javax.swing.JPanel;
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
 
+/**
+ * @author Jonathan Jungck and Greg Bollivar
+ *
+ */
+@SuppressWarnings("unused")
 public class Board {
 
+	/**
+	 * The main class for the board. Draws the frame and background and
+	 * iterates all buttons on cities based on graph information.
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		JFrame frame = new JFrame();
+//		{	
+//			public void draw( Graphics g )
+//			{
+//				super.draw(g);
+//				// draw img
+//			}
+//			
+//		};
 		frame.setSize(1200, 849);
 		frame.setLayout(new BorderLayout());
 		
+		// Draw the background board on the frame.
 		JLabel background = new JLabel(new ImageIcon("src/board.jpg"));
 		frame.add(background, BorderLayout.CENTER);
 		frame.setVisible(true);
 		background.setLayout(null);
-		PandemicGame mainGame = new PandemicGame();
 		
+		// Initialize a new game.
+		new PandemicGame();
+		
+		ArrayList<String> chooseRoles = new ArrayList<String>();
+		chooseRoles.add("Contingency Planner");
+		chooseRoles.add("Dispatcher");
+		chooseRoles.add("Medic");
+		chooseRoles.add("Operations Expert");
+		chooseRoles.add("Quarantine Specialist");
+		chooseRoles.add("Researcher");
+		chooseRoles.add("Scientist");
+		chooseRoles.add("No More Players");
+		
+		int i = 0;
+		Object[] list = new Object[8];
+		
+		for (String role : chooseRoles) {
+			list[i] = role;
+			i++;
+		}
+		
+		i = 1;
+		while (i < 5) {
+			String s = (String)JOptionPane.showInputDialog(frame, "Please select  the role for Player " + i + ".\n" + "To finish and choose less than four players, select No More Players.",
+			                    "Role Selection", JOptionPane.PLAIN_MESSAGE, null, list,
+			                    "Contingency Planner");
+			if (s == "No More Players") {
+				if (i > 1) {
+					JFrame finish = new JFrame();
+					String nextPlayer = PandemicGame.playerStorage.get(PandemicGame.currentPlayer).toString();
+					JOptionPane.showMessageDialog(finish, "All players have been selected. There are " + (i - 1) + " players in the game.\n" + "It is now Player 1, the " + nextPlayer + "'s turn.");
+					//
+					PandemicGame.addPlayer(s);
+					i = 5;
+				}
+				else {
+					JFrame finish = new JFrame();
+					JOptionPane.showMessageDialog(finish, "You must have at least one player!");
+				}
+			}
+			else {
+				int oldLength = list.length;
+				Object[] newList = new Object[oldLength - 1];
+				int k = 0;
+				for (Object obj : list) {
+					if (obj != s) {
+						newList[k] = obj;
+						k++;
+					}
+				}
+				//
+				PandemicGame.addPlayer(s);
+				i++;
+				list = newList;
+			}
+		}
+		PandemicGame.p1 = PandemicGame.playerStorage.get(0);
 		// Initialize all city buttons on the map from CityGraph
-		for (CityNode i : CityGraph.cities) {
-			CityButton city = new CityButton(i);
+		for (CityNode j : CityGraph.cities) {
+			CityButton city = new CityButton(j);
 			city.addActionListener(city);
 			background.add(city);
-			city.setBounds(i.bounds[0], i.bounds[1], 20, 20);
+			city.setBounds(j.bounds[0], j.bounds[1], 20, 20);
 		}
 		
 		System.out.println("Player is at Atlanta. Click a connected city to move.");
@@ -46,7 +123,7 @@ public class Board {
 		//player.setLayout(BorderLayout.NORTH);
 		frame.add(player);
 		
-		// Cause the program to die if the window is closed
+		// If you try to close the window, it verifies with a yes/no and then quits if yes.
 		frame.addWindowListener(new WindowAdapter() {
 
 			  @Override
@@ -63,12 +140,19 @@ public class Board {
 			    }
 			  }
 			});
-		//frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		// frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 	}
 
-	private static void addWindowListener(WindowAdapter windowAdapter) {
-		// TODO Auto-generated method stub
+	/**
+	 * When it changes to the next player, we notify the user.
+	 */
+	public static void changePlayer() {
+		// Gives a notification that it is the next player's turn.
+		JFrame frame = new JFrame();
+		String nextPlayer = PandemicGame.playerStorage.get(PandemicGame.currentPlayer).toString();
+		String lastPlayer = PandemicGame.playerStorage.get(((PandemicGame.currentPlayer - 1)+PandemicGame.playerStorage.size())% PandemicGame.playerStorage.size()).toString();
+		JOptionPane.showMessageDialog(frame, "The " + lastPlayer + "'s turn has ended. It is now the " + nextPlayer + "'s turn.");
 		
 	}
 }

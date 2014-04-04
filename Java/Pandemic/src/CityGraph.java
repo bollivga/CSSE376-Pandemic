@@ -1,10 +1,21 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * @author Jonathan Jungck and Greg Bollivar
+ * 
+ * The graph of all cities on the map. Each city is stored as a city node, with its
+ * infection color and button location. This will be used for creating buttons and
+ * moving player images.
+ *
+ */
 public class CityGraph {
 	static ArrayList<CityNode> cities = new ArrayList<CityNode>();
 	HashMap<String, CityNode> citiesSet = new HashMap<String, CityNode>();
 
+	/**
+	 * Initializes the graph of cities.
+	 */
 	public CityGraph() {
 		// Initialize all blues
 		CityNode atlanta = new CityNode("Atlanta", 0, 219,297);
@@ -72,12 +83,12 @@ public class CityGraph {
 		CityGraph.cities.add(washington);
 		CityGraph.cities.add(new_york);
 		CityGraph.cities.add(san_francisco);
-		this.cities.add(london);
-		this.cities.add(madrid);
-		this.cities.add(paris);
-		this.cities.add(essen);
-		this.cities.add(st_petersburg);
-		this.cities.add(milan);
+		CityGraph.cities.add(london);
+		CityGraph.cities.add(madrid);
+		CityGraph.cities.add(paris);
+		CityGraph.cities.add(essen);
+		CityGraph.cities.add(st_petersburg);
+		CityGraph.cities.add(milan);
 		
 		/*
 		// Add all blacks to storage
@@ -226,6 +237,10 @@ public class CityGraph {
 		}
 	}
 
+	/**
+	 * @param string
+	 * @return the city with the given string as its name.
+	 */
 	public CityNode getCity(String string) {
 		// Returns the city with the given string as its name.
 		return this.citiesSet.get(string);

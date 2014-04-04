@@ -1,12 +1,23 @@
 import static org.junit.Assert.*;
+
 import org.junit.Before;
 import org.junit.Test;
 
 
+/**
+ * @author Jonathan Jungck and Greg Bollivar
+ *
+ * Test class for the city graph to test functionality.
+ *
+ */
+@SuppressWarnings("unused")
 public class CityGraphTest {
 
 	
 
+	/**
+	 * Test whether a city is connected to another city.
+	 */
 	@Test
 	public void testConnection() {
 		PandemicGame testGame = new PandemicGame();
@@ -15,6 +26,9 @@ public class CityGraphTest {
 		
 	}
 	
+	/**
+	 * Test whether a city is infected. Tests whether outbreaks occur when a city reaches 4 infections.
+	 */
 	@Test
 	public void testInfection(){
 		PandemicGame testGame = new PandemicGame();
@@ -41,6 +55,9 @@ public class CityGraphTest {
 		}
 	}
 	
+	/**
+	 * Tests whether a player can move from city to city legitimately.
+	 */
 	@Test
 	public void testPlayerMove(){
 		PandemicGame testGame = new PandemicGame();
