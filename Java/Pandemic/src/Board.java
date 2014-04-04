@@ -1,4 +1,6 @@
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
@@ -9,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JPanel;
 import javax.swing.JFrame;
@@ -37,10 +40,35 @@ public class Board {
 		
 		System.out.println("Player is at Atlanta. Click a connected city to move.");
 
-		// TestButton
-//		BufferedImage player = ImageIO.read(File "src/player.jpg");
-//		player.setBounds(280, 297, 50, 50);
-//		background.add(player);
+		// Test Player Graphic
+		JLabel player = new JLabel(new ImageIcon("src/player.jpg"));
+		//player.setBounds(280, 297, 20, 50);
+		//player.setLayout(BorderLayout.NORTH);
+		frame.add(player);
+		
+		// Cause the program to die if the window is closed
+		frame.addWindowListener(new WindowAdapter() {
 
+			  @Override
+			  public void windowClosing(WindowEvent we)
+			  { 
+			    String ObjButtons[] = {"Yes","No"};
+			    int PromptResult = JOptionPane.showOptionDialog(null, 
+			        "Are you sure you want to exit?", "Quit?", 
+			        JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, 
+			        ObjButtons,ObjButtons[1]);
+			    if(PromptResult==0)
+			    {
+			      System.exit(0);
+			    }
+			  }
+			});
+		//frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+	}
+
+	private static void addWindowListener(WindowAdapter windowAdapter) {
+		// TODO Auto-generated method stub
+		
 	}
 }
