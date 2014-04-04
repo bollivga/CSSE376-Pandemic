@@ -1,0 +1,13 @@
+import java.util.ArrayList;
+
+
+public class PandemicGame{
+    
+    CardStorage p1Hand = new CardHand();
+    CardStorage infectionDiscard = new CardDiscard();
+    CardStorage playerDiscard = new CardDiscard();
+    Player p1 = new Player(0);
+    CityGraph world = new CityGraph();
+    public PandemicGame(){
+    }
+}

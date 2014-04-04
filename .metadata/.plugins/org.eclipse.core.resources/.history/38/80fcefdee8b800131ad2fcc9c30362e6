@@ -1,0 +1,58 @@
+import java.util.ArrayList;
+
+
+public class CityGraph {
+	ArrayList<CityNode> cities = new ArrayList<CityNode>();
+    public CityGraph()
+    {   
+
+        //Initialize all blues
+        CityNode atlanta = new CityNode("Atlanta", 0);
+        CityNode chicago = new CityNode("Chicago", 0);
+        CityNode montreal = new CityNode("Montreal", 0);
+        CityNode washington = new CityNode("Washington",0);
+        CityNode new_york = new CityNode("New York", 0);
+        CityNode san_francisco = new CityNode("San Francisco", 0);
+        CityNode london = new CityNode("London", 0);
+        CityNode madrid = new CityNode("Madrid", 0);
+        CityNode paris = new CityNode("Paris", 0);
+        CityNode essen = new CityNode("Essen", 0);
+        CityNode st_petersburg = new CityNode("St. Petersburg", 0);
+        CityNode milan = new CityNode("Milan", 0);
+
+        //Add all blues to storage
+        cities.Add(atlanta);
+        cities.Add(chicago);
+        cities.Add(montreal);
+        cities.Add(washington);
+        cities.Add(new_york);
+        cities.Add(san_francisco);
+        cities.Add(london);
+        cities.Add(madrid);
+        cities.Add(paris);
+        cities.Add(essen);
+        cities.Add(st_petersburg);
+        cities.Add(milan);
+
+
+        //Connect all blues
+        san_francisco.addConnection(chicago);
+        chicago.addConnection(atlanta);
+        chicago.addConnection(montreal);
+        atlanta.addConnection(washington);
+        montreal.addConnection(washington);
+        montreal.addConnection(new_york);
+        washington.addConnection(new_york);
+        new_york.addConnection(madrid);
+        new_york.addConnection(london);
+        madrid.addConnection(london);
+        madrid.addConnection(paris);
+        london.addConnection(paris);
+        london.addConnection(essen);
+        paris.addConnection(essen);
+        paris.addConnection(milan);
+        essen.addConnection(milan);
+        essen.addConnection(st_petersburg);
+
+    }
+}

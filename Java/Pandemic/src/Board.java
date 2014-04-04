@@ -45,10 +45,10 @@ public class Board {
 		//player.setBounds(280, 297, 20, 50);
 		//player.setLayout(BorderLayout.NORTH);
 		frame.add(player);
-		
+		player.setBounds(280, 297, 50, 50);
+		background.add(player);
 		// Cause the program to die if the window is closed
 		frame.addWindowListener(new WindowAdapter() {
-
 			  @Override
 			  public void windowClosing(WindowEvent we)
 			  { 

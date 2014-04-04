@@ -1,0 +1,400 @@
+!SESSION 2014-04-03 14:48:08.428 -----------------------------------------------
+eclipse.buildId=M20120208-0800
+java.version=1.7.0_51
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -clean -startup plugins/org.eclipse.equinox.launcher_1.2.0.v20110502.jar -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -clean -startup plugins/org.eclipse.equinox.launcher_1.2.0.v20110502.jar -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.equinox.p2.transport.ecf 2 0 2014-04-03 16:48:46.045
+!MESSAGE Connection to http://www.hibernate.org/tpl/hibernate3/img/hibernate_icon.gif failed on Circular redirect to 'http://hibernate.org:80/tpl/hibernate3/img/hibernate_icon.gif'. Retry attempt 0 started
+!STACK 0
+org.apache.commons.httpclient.CircularRedirectException: Circular redirect to 'http://hibernate.org:80/tpl/hibernate3/img/hibernate_icon.gif'
+	at org.apache.commons.httpclient.HttpMethodDirector.processRedirectResponse(HttpMethodDirector.java:638)
+	at org.apache.commons.httpclient.HttpMethodDirector.executeMethod(HttpMethodDirector.java:179)
+	at org.apache.commons.httpclient.HttpClient.executeMethod(HttpClient.java:397)
+	at org.apache.commons.httpclient.HttpClient.executeMethod(HttpClient.java:346)
+	at org.eclipse.ecf.provider.filetransfer.httpclient.HttpClientRetrieveFileTransfer.performConnect(HttpClientRetrieveFileTransfer.java:1142)
+	at org.eclipse.ecf.provider.filetransfer.httpclient.HttpClientRetrieveFileTransfer.openStreams(HttpClientRetrieveFileTransfer.java:710)
+	at org.eclipse.ecf.provider.filetransfer.retrieve.AbstractRetrieveFileTransfer.sendRetrieveRequest(AbstractRetrieveFileTransfer.java:889)
+	at org.eclipse.ecf.provider.filetransfer.retrieve.AbstractRetrieveFileTransfer.sendRetrieveRequest(AbstractRetrieveFileTransfer.java:576)
+	at org.eclipse.ecf.provider.filetransfer.retrieve.MultiProtocolRetrieveAdapter.sendRetrieveRequest(MultiProtocolRetrieveAdapter.java:106)
+	at org.eclipse.equinox.internal.p2.transport.ecf.FileReader.sendRetrieveRequest(FileReader.java:349)
+	at org.eclipse.equinox.internal.p2.transport.ecf.FileReader.read(FileReader.java:213)
+	at org.eclipse.equinox.internal.p2.transport.ecf.RepositoryTransport.stream(RepositoryTransport.java:153)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.epp.internal.mpc.core.util.AbstractP2TransportFactory.invokeStream(AbstractP2TransportFactory.java:35)
+	at org.eclipse.epp.internal.mpc.core.util.TransportFactory$1.stream(TransportFactory.java:69)
+	at org.eclipse.epp.internal.mpc.ui.catalog.AbstractResourceRunnable.run(AbstractResourceRunnable.java:64)
+	at org.eclipse.epp.internal.mpc.ui.catalog.AbstractResourceRunnable.call(AbstractResourceRunnable.java:51)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+!ENTRY org.eclipse.epp.mpc.ui 4 4 2014-04-03 16:48:46.550
+!MESSAGE Unexpected exception: Unable to read repository at http://www.hibernate.org/tpl/hibernate3/img/hibernate_icon.gif.
+!STACK 1
+org.eclipse.core.runtime.CoreException: Unable to read repository at http://www.hibernate.org/tpl/hibernate3/img/hibernate_icon.gif.
+	at org.eclipse.equinox.internal.p2.transport.ecf.RepositoryTransport.stream(RepositoryTransport.java:162)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.epp.internal.mpc.core.util.AbstractP2TransportFactory.invokeStream(AbstractP2TransportFactory.java:35)
+	at org.eclipse.epp.internal.mpc.core.util.TransportFactory$1.stream(TransportFactory.java:69)
+	at org.eclipse.epp.internal.mpc.ui.catalog.AbstractResourceRunnable.run(AbstractResourceRunnable.java:64)
+	at org.eclipse.epp.internal.mpc.ui.catalog.AbstractResourceRunnable.call(AbstractResourceRunnable.java:51)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: org.apache.commons.httpclient.CircularRedirectException: Circular redirect to 'http://hibernate.org:80/tpl/hibernate3/img/hibernate_icon.gif'
+	at org.apache.commons.httpclient.HttpMethodDirector.processRedirectResponse(HttpMethodDirector.java:638)
+	at org.apache.commons.httpclient.HttpMethodDirector.executeMethod(HttpMethodDirector.java:179)
+	at org.apache.commons.httpclient.HttpClient.executeMethod(HttpClient.java:397)
+	at org.apache.commons.httpclient.HttpClient.executeMethod(HttpClient.java:346)
+	at org.eclipse.ecf.provider.filetransfer.httpclient.HttpClientRetrieveFileTransfer.performConnect(HttpClientRetrieveFileTransfer.java:1142)
+	at org.eclipse.ecf.provider.filetransfer.httpclient.HttpClientRetrieveFileTransfer.openStreams(HttpClientRetrieveFileTransfer.java:710)
+	at org.eclipse.ecf.provider.filetransfer.retrieve.AbstractRetrieveFileTransfer.sendRetrieveRequest(AbstractRetrieveFileTransfer.java:889)
+	at org.eclipse.ecf.provider.filetransfer.retrieve.AbstractRetrieveFileTransfer.sendRetrieveRequest(AbstractRetrieveFileTransfer.java:576)
+	at org.eclipse.ecf.provider.filetransfer.retrieve.MultiProtocolRetrieveAdapter.sendRetrieveRequest(MultiProtocolRetrieveAdapter.java:106)
+	at org.eclipse.equinox.internal.p2.transport.ecf.FileReader.sendRetrieveRequest(FileReader.java:349)
+	at org.eclipse.equinox.internal.p2.transport.ecf.FileReader.read(FileReader.java:213)
+	at org.eclipse.equinox.internal.p2.transport.ecf.RepositoryTransport.stream(RepositoryTransport.java:153)
+	... 12 more
+!SUBENTRY 1 org.eclipse.equinox.p2.transport.ecf 4 1002 2014-04-03 16:48:46.551
+!MESSAGE Unable to read repository at http://www.hibernate.org/tpl/hibernate3/img/hibernate_icon.gif.
+!STACK 0
+org.apache.commons.httpclient.CircularRedirectException: Circular redirect to 'http://hibernate.org:80/tpl/hibernate3/img/hibernate_icon.gif'
+	at org.apache.commons.httpclient.HttpMethodDirector.processRedirectResponse(HttpMethodDirector.java:638)
+	at org.apache.commons.httpclient.HttpMethodDirector.executeMethod(HttpMethodDirector.java:179)
+	at org.apache.commons.httpclient.HttpClient.executeMethod(HttpClient.java:397)
+	at org.apache.commons.httpclient.HttpClient.executeMethod(HttpClient.java:346)
+	at org.eclipse.ecf.provider.filetransfer.httpclient.HttpClientRetrieveFileTransfer.performConnect(HttpClientRetrieveFileTransfer.java:1142)
+	at org.eclipse.ecf.provider.filetransfer.httpclient.HttpClientRetrieveFileTransfer.openStreams(HttpClientRetrieveFileTransfer.java:710)
+	at org.eclipse.ecf.provider.filetransfer.retrieve.AbstractRetrieveFileTransfer.sendRetrieveRequest(AbstractRetrieveFileTransfer.java:889)
+	at org.eclipse.ecf.provider.filetransfer.retrieve.AbstractRetrieveFileTransfer.sendRetrieveRequest(AbstractRetrieveFileTransfer.java:576)
+	at org.eclipse.ecf.provider.filetransfer.retrieve.MultiProtocolRetrieveAdapter.sendRetrieveRequest(MultiProtocolRetrieveAdapter.java:106)
+	at org.eclipse.equinox.internal.p2.transport.ecf.FileReader.sendRetrieveRequest(FileReader.java:349)
+	at org.eclipse.equinox.internal.p2.transport.ecf.FileReader.read(FileReader.java:213)
+	at org.eclipse.equinox.internal.p2.transport.ecf.RepositoryTransport.stream(RepositoryTransport.java:153)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.epp.internal.mpc.core.util.AbstractP2TransportFactory.invokeStream(AbstractP2TransportFactory.java:35)
+	at org.eclipse.epp.internal.mpc.core.util.TransportFactory$1.stream(TransportFactory.java:69)
+	at org.eclipse.epp.internal.mpc.ui.catalog.AbstractResourceRunnable.run(AbstractResourceRunnable.java:64)
+	at org.eclipse.epp.internal.mpc.ui.catalog.AbstractResourceRunnable.call(AbstractResourceRunnable.java:51)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+!SESSION 2014-04-03 16:49:22.930 -----------------------------------------------
+eclipse.buildId=M20120208-0800
+java.version=1.7.0_51
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -clean -startup plugins/org.eclipse.equinox.launcher_1.2.0.v20110502.jar -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -clean -startup plugins/org.eclipse.equinox.launcher_1.2.0.v20110502.jar -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.equinox.p2.transport.ecf 2 0 2014-04-03 16:51:37.915
+!MESSAGE Connection to http://www.hibernate.org/tpl/hibernate3/img/hibernate_icon.gif failed on Circular redirect to 'http://hibernate.org:80/tpl/hibernate3/img/hibernate_icon.gif'. Retry attempt 0 started
+!STACK 0
+org.apache.commons.httpclient.CircularRedirectException: Circular redirect to 'http://hibernate.org:80/tpl/hibernate3/img/hibernate_icon.gif'
+	at org.apache.commons.httpclient.HttpMethodDirector.processRedirectResponse(HttpMethodDirector.java:638)
+	at org.apache.commons.httpclient.HttpMethodDirector.executeMethod(HttpMethodDirector.java:179)
+	at org.apache.commons.httpclient.HttpClient.executeMethod(HttpClient.java:397)
+	at org.apache.commons.httpclient.HttpClient.executeMethod(HttpClient.java:346)
+	at org.eclipse.ecf.provider.filetransfer.httpclient.HttpClientRetrieveFileTransfer.performConnect(HttpClientRetrieveFileTransfer.java:1142)
+	at org.eclipse.ecf.provider.filetransfer.httpclient.HttpClientRetrieveFileTransfer.openStreams(HttpClientRetrieveFileTransfer.java:710)
+	at org.eclipse.ecf.provider.filetransfer.retrieve.AbstractRetrieveFileTransfer.sendRetrieveRequest(AbstractRetrieveFileTransfer.java:889)
+	at org.eclipse.ecf.provider.filetransfer.retrieve.AbstractRetrieveFileTransfer.sendRetrieveRequest(AbstractRetrieveFileTransfer.java:576)
+	at org.eclipse.ecf.provider.filetransfer.retrieve.MultiProtocolRetrieveAdapter.sendRetrieveRequest(MultiProtocolRetrieveAdapter.java:106)
+	at org.eclipse.equinox.internal.p2.transport.ecf.FileReader.sendRetrieveRequest(FileReader.java:349)
+	at org.eclipse.equinox.internal.p2.transport.ecf.FileReader.read(FileReader.java:213)
+	at org.eclipse.equinox.internal.p2.transport.ecf.RepositoryTransport.stream(RepositoryTransport.java:153)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.epp.internal.mpc.core.util.AbstractP2TransportFactory.invokeStream(AbstractP2TransportFactory.java:35)
+	at org.eclipse.epp.internal.mpc.core.util.TransportFactory$1.stream(TransportFactory.java:69)
+	at org.eclipse.epp.internal.mpc.ui.catalog.AbstractResourceRunnable.run(AbstractResourceRunnable.java:64)
+	at org.eclipse.epp.internal.mpc.ui.catalog.AbstractResourceRunnable.call(AbstractResourceRunnable.java:51)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+!SESSION 2014-04-03 16:52:23.145 -----------------------------------------------
+eclipse.buildId=M20120208-0800
+java.version=1.7.0_51
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -clean -startup plugins/org.eclipse.equinox.launcher_1.2.0.v20110502.jar -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -clean -startup plugins/org.eclipse.equinox.launcher_1.2.0.v20110502.jar -product org.eclipse.epp.package.java.product
+
+!ENTRY de.fu_berlin.inf.dpp 2 0 2014-04-03 16:52:29.529
+!MESSAGE unexpected method call (NullSarosSession.java:64)
+
+!ENTRY de.fu_berlin.inf.dpp 4 0 2014-04-03 16:54:57.579
+!MESSAGE  new connection state == ERROR (SarosNet.java:385)
+!STACK 0
+SASL authentication PLAIN failed: not-authorized: 
+	at org.jivesoftware.smack.SASLAuthentication.authenticate(SASLAuthentication.java:342)
+	at org.jivesoftware.smack.XMPPConnection.login(XMPPConnection.java:243)
+	at de.fu_berlin.inf.dpp.net.SarosNet.connect(SarosNet.java:261)
+	at de.fu_berlin.inf.dpp.Saros.connect(Saros.java:660)
+	at de.fu_berlin.inf.dpp.Saros$2.run(Saros.java:600)
+	at de.fu_berlin.inf.dpp.util.Utils$2.run(Utils.java:175)
+	at java.lang.Thread.run(Unknown Source)
+
+!ENTRY de.fu_berlin.inf.dpp 4 0 2014-04-03 16:55:15.503
+!MESSAGE  new connection state == ERROR (SarosNet.java:385)
+!STACK 0
+SASL authentication PLAIN failed: not-authorized: 
+	at org.jivesoftware.smack.SASLAuthentication.authenticate(SASLAuthentication.java:342)
+	at org.jivesoftware.smack.XMPPConnection.login(XMPPConnection.java:243)
+	at de.fu_berlin.inf.dpp.net.SarosNet.connect(SarosNet.java:261)
+	at de.fu_berlin.inf.dpp.Saros.connect(Saros.java:660)
+	at de.fu_berlin.inf.dpp.ui.actions.ChangeXMPPAccountAction$6.run(ChangeXMPPAccountAction.java:195)
+	at de.fu_berlin.inf.dpp.util.Utils$2.run(Utils.java:175)
+	at java.lang.Thread.run(Unknown Source)
+
+!ENTRY de.fu_berlin.inf.dpp 4 0 2014-04-03 16:56:29.285
+!MESSAGE Server xmpp.l.google.com does not support XEP-0077 (In-Band Registration) properly: (RosterUtils.java:236)
+!STACK 0
+No response from server.: 
+	at de.fu_berlin.inf.dpp.net.util.RosterUtils.getRegistrationInfo(RosterUtils.java:412)
+	at de.fu_berlin.inf.dpp.net.util.RosterUtils.isAccountCreationPossible(RosterUtils.java:234)
+	at de.fu_berlin.inf.dpp.net.util.RosterUtils.createAccount(RosterUtils.java:204)
+	at de.fu_berlin.inf.dpp.ui.wizards.CreateXMPPAccountWizard$1.run(CreateXMPPAccountWizard.java:126)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+
+!ENTRY de.fu_berlin.inf.dpp 4 0 2014-04-03 16:56:59.306
+!MESSAGE Server does not support account creation. (CreateXMPPAccountWizard.java:139)
+!STACK 0
+Server does not support account creation.: 
+	at org.jivesoftware.smack.AccountManager.createAccount(AccountManager.java:196)
+	at de.fu_berlin.inf.dpp.net.util.RosterUtils.createAccount(RosterUtils.java:210)
+	at de.fu_berlin.inf.dpp.ui.wizards.CreateXMPPAccountWizard$1.run(CreateXMPPAccountWizard.java:126)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+
+!ENTRY de.fu_berlin.inf.dpp 2 0 2014-04-03 16:58:25.210
+!MESSAGE received error presence package from saros943597315@conference.saros-con.imp.fu-berlin.de/bollivga@saros-con.imp.fu-berlin.de/Saros, condition: not-authorized, message: A password is required to enter this room (SubscriptionManager.java:97)
+
+!ENTRY de.fu_berlin.inf.dpp 2 0 2014-04-03 16:59:06.092
+!MESSAGE Could not get resource from IEditorInput WebBrowserEditorInput[http://www.saros-project.org/GettingStarted?template=viewprint 38 null] (EditorAPI.java:372)
+
+!ENTRY de.fu_berlin.inf.dpp 2 0 2014-04-03 17:01:18.127
+!MESSAGE could not get content of file /Pandemic/bin/.gitignore (FileUtils.java:483)
+
+!ENTRY de.fu_berlin.inf.dpp 2 0 2014-04-03 17:06:21.979
+!MESSAGE Could not get resource from IEditorInput org.eclipse.jdt.internal.ui.javaeditor.InternalClassFileEditorInput@1ffd2d9 (EditorAPI.java:372)
+
+!ENTRY de.fu_berlin.inf.dpp 2 0 2014-04-03 17:06:22.026
+!MESSAGE Could not get resource from IEditorInput org.eclipse.jdt.internal.ui.javaeditor.InternalClassFileEditorInput@1ffd2d9 (EditorAPI.java:372)
+
+!ENTRY de.fu_berlin.inf.dpp 2 0 2014-04-03 17:06:22.151
+!MESSAGE Could not get resource from IEditorInput org.eclipse.jdt.internal.ui.javaeditor.InternalClassFileEditorInput@1ffd2d9 (EditorAPI.java:372)
+
+!ENTRY de.fu_berlin.inf.dpp 2 0 2014-04-03 17:07:50.800
+!MESSAGE Could not get resource from IEditorInput org.eclipse.jdt.internal.ui.javaeditor.InternalClassFileEditorInput@1ffd2d9 (EditorAPI.java:372)
+
+!ENTRY de.fu_berlin.inf.dpp 2 0 2014-04-03 17:20:40.566
+!MESSAGE could not get content of file /Pandemic/src/CityButton.java (FileUtils.java:483)
+
+!ENTRY org.eclipse.ui 4 0 2014-04-03 17:26:39.089
+!MESSAGE Unhandled event loop exception
+!STACK 0
+org.eclipse.swt.SWTException: Failed to execute runnable (java.lang.IllegalArgumentException)
+	at org.eclipse.swt.SWT.error(SWT.java:4282)
+	at org.eclipse.swt.SWT.error(SWT.java:4197)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:138)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4140)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3757)
+	at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2701)
+	at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2665)
+	at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2499)
+	at org.eclipse.ui.internal.Workbench$7.run(Workbench.java:679)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:668)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:123)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:344)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:179)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:622)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:577)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1410)
+	at org.eclipse.equinox.launcher.Main.main(Main.java:1386)
+Caused by: java.lang.IllegalArgumentException
+	at org.eclipse.jdt.internal.compiler.util.Util.scanClassTypeSignature(Util.java:1402)
+	at org.eclipse.jdt.internal.compiler.util.Util.scanTypeSignature(Util.java:1207)
+	at org.eclipse.jdt.core.Signature.getReturnType(Signature.java:1769)
+	at org.eclipse.jdt.ui.text.java.CompletionProposalLabelProvider.createMethodProposalLabel(CompletionProposalLabelProvider.java:278)
+	at org.eclipse.jdt.ui.text.java.CompletionProposalLabelProvider.createStyledLabel(CompletionProposalLabelProvider.java:562)
+	at org.eclipse.jdt.internal.ui.text.java.LazyJavaCompletionProposal.computeDisplayString(LazyJavaCompletionProposal.java:262)
+	at org.eclipse.jdt.internal.ui.text.java.LazyJavaCompletionProposal.getStyledDisplayString(LazyJavaCompletionProposal.java:238)
+	at org.eclipse.jface.text.contentassist.CompletionProposalPopup.handleSetData(CompletionProposalPopup.java:831)
+	at org.eclipse.jface.text.contentassist.CompletionProposalPopup.access$24(CompletionProposalPopup.java:821)
+	at org.eclipse.jface.text.contentassist.CompletionProposalPopup$3.handleEvent(CompletionProposalPopup.java:583)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1053)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1077)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1062)
+	at org.eclipse.swt.widgets.Table.checkData(Table.java:1166)
+	at org.eclipse.swt.widgets.Table.wmNotifyChild(Table.java:6729)
+	at org.eclipse.swt.widgets.Control.wmNotify(Control.java:5534)
+	at org.eclipse.swt.widgets.Composite.wmNotify(Composite.java:1896)
+	at org.eclipse.swt.widgets.Control.WM_NOTIFY(Control.java:5086)
+	at org.eclipse.swt.widgets.Control.windowProc(Control.java:4584)
+	at org.eclipse.swt.widgets.Canvas.windowProc(Canvas.java:341)
+	at org.eclipse.swt.widgets.Decorations.windowProc(Decorations.java:1610)
+	at org.eclipse.swt.widgets.Shell.windowProc(Shell.java:2061)
+	at org.eclipse.swt.widgets.Display.windowProc(Display.java:4985)
+	at org.eclipse.swt.internal.win32.OS.CallWindowProcW(Native Method)
+	at org.eclipse.swt.internal.win32.OS.CallWindowProc(OS.java:2425)
+	at org.eclipse.swt.widgets.Table.callWindowProc(Table.java:564)
+	at org.eclipse.swt.widgets.Table.callWindowProc(Table.java:430)
+	at org.eclipse.swt.widgets.Control.windowProc(Control.java:4623)
+	at org.eclipse.swt.widgets.Table.windowProc(Table.java:5893)
+	at org.eclipse.swt.widgets.Display.windowProc(Display.java:4972)
+	at org.eclipse.swt.internal.win32.OS.CallWindowProcW(Native Method)
+	at org.eclipse.swt.internal.win32.OS.CallWindowProc(OS.java:2425)
+	at org.eclipse.swt.widgets.Table.callWindowProc(Table.java:564)
+	at org.eclipse.swt.widgets.Table.callWindowProc(Table.java:430)
+	at org.eclipse.swt.widgets.Control.windowProc(Control.java:4623)
+	at org.eclipse.swt.widgets.Table.windowProc(Table.java:5893)
+	at org.eclipse.swt.widgets.Display.windowProc(Display.java:4972)
+	at org.eclipse.swt.internal.win32.OS.CallWindowProcW(Native Method)
+	at org.eclipse.swt.internal.win32.OS.CallWindowProc(OS.java:2425)
+	at org.eclipse.swt.widgets.Table.callWindowProc(Table.java:564)
+	at org.eclipse.swt.widgets.Table.callWindowProc(Table.java:430)
+	at org.eclipse.swt.widgets.Control.windowProc(Control.java:4623)
+	at org.eclipse.swt.widgets.Table.windowProc(Table.java:5893)
+	at org.eclipse.swt.widgets.Display.windowProc(Display.java:4972)
+	at org.eclipse.swt.internal.win32.OS.SendMessageW(Native Method)
+	at org.eclipse.swt.internal.win32.OS.SendMessage(OS.java:3275)
+	at org.eclipse.swt.widgets.Table.setItemCount(Table.java:4645)
+	at org.eclipse.jface.text.contentassist.CompletionProposalPopup.setProposals(CompletionProposalPopup.java:1111)
+	at org.eclipse.jface.text.contentassist.CompletionProposalPopup.access$7(CompletionProposalPopup.java:1092)
+	at org.eclipse.jface.text.contentassist.CompletionProposalPopup$2.run(CompletionProposalPopup.java:499)
+	at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:70)
+	at org.eclipse.jface.text.contentassist.CompletionProposalPopup.showProposals(CompletionProposalPopup.java:482)
+	at org.eclipse.jface.text.contentassist.ContentAssistant$2.run(ContentAssistant.java:377)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:135)
+	... 23 more
+
+!ENTRY de.fu_berlin.inf.dpp 2 0 2014-04-03 18:00:25.697
+!MESSAGE Annotation could not be found: de.fu_berlin.inf.dpp.editor.annotations.ContributionAnnotation@4514ad36 (ContributionAnnotationManager.java:163)
+
+!ENTRY de.fu_berlin.inf.dpp 2 0 2014-04-03 18:35:47.969
+!MESSAGE could not get content of file /Pandemic/src/player.png (FileUtils.java:483)
+
+!ENTRY de.fu_berlin.inf.dpp 2 0 2014-04-03 18:38:11.660
+!MESSAGE could not get content of file /Pandemic/src/player.jpg (FileUtils.java:483)
+
+!ENTRY de.fu_berlin.inf.dpp 2 0 2014-04-03 18:38:15.283
+!MESSAGE could not delete file L/Pandemic/src/player.jpg because it does not exist (SharedResourcesManager.java:606)
+
+!ENTRY de.fu_berlin.inf.dpp 2 0 2014-04-03 18:38:22.851
+!MESSAGE could not delete file L/Pandemic/src/player.png because it does not exist (SharedResourcesManager.java:606)
+
+!ENTRY de.fu_berlin.inf.dpp 2 0 2014-04-03 18:42:34.115
+!MESSAGE received leave message from user junkster775 which is not the host of the current session (LeaveAndKickHandler.java:132)
+
+!ENTRY de.fu_berlin.inf.dpp 2 0 2014-04-03 18:42:34.168
+!MESSAGE cannot send activity to junkster775 because it is currently not registers, dropped activity: EditorActivityDO(type: ACTIVATED, path: SPathDataObject [editorType=txt, path=src/Player.java, projectID=1070168596]) (ActivitySequencer.java:419)
+
+!ENTRY de.fu_berlin.inf.dpp 2 0 2014-04-03 18:42:34.173
+!MESSAGE cannot send activity to junkster775 because it is currently not registers, dropped activity: TextSelectionActivityDO(offset: 379, length:0, src: bollivga@saros-con.imp.fu-berlin.de/Saros, path: SPathDataObject [editorType=txt, path=src/Player.java, projectID=1070168596]) (ActivitySequencer.java:419)
+
+!ENTRY de.fu_berlin.inf.dpp 2 0 2014-04-03 18:42:34.177
+!MESSAGE cannot send activity to junkster775 because it is currently not registers, dropped activity: ViewportActivityDO(path:SPathDataObject [editorType=txt, path=src/Player.java, projectID=1070168596], range: (0,18)) (ActivitySequencer.java:419)
+
+!ENTRY de.fu_berlin.inf.dpp 2 0 2014-04-03 18:42:34.212
+!MESSAGE cannot send activity to junkster775 because it is currently not registers, dropped activity: EditorActivityDO(type: ACTIVATED, path: SPathDataObject [editorType=txt, path=src/Player.java, projectID=1070168596]) (ActivitySequencer.java:419)
+
+!ENTRY de.fu_berlin.inf.dpp 2 0 2014-04-03 18:42:34.216
+!MESSAGE cannot send activity to junkster775 because it is currently not registers, dropped activity: TextSelectionActivityDO(offset: 379, length:0, src: bollivga@saros-con.imp.fu-berlin.de/Saros, path: SPathDataObject [editorType=txt, path=src/Player.java, projectID=1070168596]) (ActivitySequencer.java:419)
+
+!ENTRY de.fu_berlin.inf.dpp 2 0 2014-04-03 18:42:34.221
+!MESSAGE cannot send activity to junkster775 because it is currently not registers, dropped activity: ViewportActivityDO(path:SPathDataObject [editorType=txt, path=src/Player.java, projectID=1070168596], range: (0,18)) (ActivitySequencer.java:419)
+
+!ENTRY de.fu_berlin.inf.dpp 2 0 2014-04-03 18:42:34.250
+!MESSAGE unexpected method call (NullSarosSession.java:64)
+
+!ENTRY de.fu_berlin.inf.dpp 2 0 2014-04-03 18:42:34.313
+!MESSAGE failed to notify user junkster775 about local session stop (SarosSession.java:641)
+!STACK 0
+java.io.IOException: not connected to junkster775@saros-con.imp.fu-berlin.de/Saros [connection identifier=saros-main-session]
+	at de.fu_berlin.inf.dpp.net.internal.DataTransferManager.sendData(DataTransferManager.java:209)
+	at de.fu_berlin.inf.dpp.net.internal.XMPPTransmitter.sendToSessionUser(XMPPTransmitter.java:91)
+	at de.fu_berlin.inf.dpp.project.internal.SarosSession.stop(SarosSession.java:637)
+	at de.fu_berlin.inf.dpp.project.SarosSessionManager.stopSarosSession(SarosSessionManager.java:342)
+	at de.fu_berlin.inf.dpp.net.business.LeaveAndKickHandler$5.run(LeaveAndKickHandler.java:155)
+	at de.fu_berlin.inf.dpp.util.Utils$2.run(Utils.java:175)
+	at java.lang.Thread.run(Unknown Source)
+
+!ENTRY org.eclipse.equinox.preferences 4 2 2014-04-03 18:42:39.648
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.equinox.preferences".
+!STACK 0
+java.lang.ClassCastException: java.lang.String cannot be cast to java.lang.Integer
+	at de.fu_berlin.inf.dpp.feedback.FeedbackManager$1.preferenceChange(FeedbackManager.java:74)
+	at org.eclipse.core.internal.preferences.EclipsePreferences$3.run(EclipsePreferences.java:841)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.preferences.EclipsePreferences.firePreferenceEvent(EclipsePreferences.java:844)
+	at org.eclipse.core.internal.preferences.EclipsePreferences.putInt(EclipsePreferences.java:927)
+	at de.fu_berlin.inf.dpp.feedback.FeedbackManager.setFeedbackDisabled(FeedbackManager.java:209)
+	at de.fu_berlin.inf.dpp.ui.dialogs.FeedbackDialog.updatePreferences(FeedbackDialog.java:125)
+	at de.fu_berlin.inf.dpp.ui.dialogs.FeedbackDialog.buttonPressed(FeedbackDialog.java:112)
+	at org.eclipse.jface.dialogs.Dialog$2.widgetSelected(Dialog.java:624)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:240)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1053)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4165)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3754)
+	at org.eclipse.jface.window.Window.runEventLoop(Window.java:825)
+	at org.eclipse.jface.window.Window.open(Window.java:801)
+	at org.eclipse.jface.dialogs.MessageDialog.open(MessageDialog.java:334)
+	at de.fu_berlin.inf.dpp.feedback.FeedbackManager$3.call(FeedbackManager.java:261)
+	at de.fu_berlin.inf.dpp.feedback.FeedbackManager$3.call(FeedbackManager.java:1)
+	at de.fu_berlin.inf.dpp.ui.util.SWTUtils$1.run(SWTUtils.java:161)
+	at de.fu_berlin.inf.dpp.util.Utils$2.run(Utils.java:175)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:135)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4140)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3757)
+	at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2701)
+	at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2665)
+	at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2499)
+	at org.eclipse.ui.internal.Workbench$7.run(Workbench.java:679)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:668)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:123)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:344)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:179)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:622)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:577)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1410)
+	at org.eclipse.equinox.launcher.Main.main(Main.java:1386)
