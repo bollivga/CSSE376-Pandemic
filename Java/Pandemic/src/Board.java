@@ -1,5 +1,7 @@
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.border.Border;
 import javax.swing.ImageIcon;
@@ -36,9 +38,9 @@ public class Board {
 		System.out.println("Player is at Atlanta. Click a connected city to move.");
 
 		// TestButton
-		JLabel player = new JLabel(new ImageIcon("src/player.jpg"));
-		player.setBounds(280,297, 50, 50);
-		background.add(player);
+//		BufferedImage player = ImageIO.read(File "src/player.jpg");
+//		player.setBounds(280, 297, 50, 50);
+//		background.add(player);
 
 	}
 }
