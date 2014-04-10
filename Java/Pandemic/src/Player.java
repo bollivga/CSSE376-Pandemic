@@ -9,7 +9,7 @@
  */
 public class Player {
 	private int role;
-	private CityNode currentCity;
+	CityNode currentCity;
     /**
      * @param roleNumber contains the role number of the player.
      */

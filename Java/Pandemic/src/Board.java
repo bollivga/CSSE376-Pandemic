@@ -2,6 +2,10 @@ import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
+import java.awt.event.KeyListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
@@ -24,6 +28,8 @@ import javax.swing.JTextArea;
  */
 @SuppressWarnings("unused")
 public class Board {
+	
+	Image Dispatcher = new ImageIcon("player.jpg").getImage();
 
 	/**
 	 * The main class for the board. Draws the frame and background and
@@ -142,6 +148,35 @@ public class Board {
 
 	}
 
+	/**
+	 * Method to move a player to its current city. Called after every move.
+	 * 
+	 * @param p
+	 * @throws InterruptedException
+	 */
+	public void movePlayer(Player p) throws InterruptedException {   // Moves the player image to the new city
+		    //Graphics g = this.getGraphics();
+		    //Dispatcher.setLocation(p.currentCity.bounds[0], p.currentCity.bounds[1]);
+		    //g.drawImage(Dispatcher, p.currentCity.bounds[0], p.currentCity.bounds[1], Dispatcher.getHeight(null), Dispatcher.getWidth(null));
+		}
+		/**
+		 * Overridden paint method
+		 * 
+		 * @param g
+		 */
+		public void paint(Graphics g) {
+
+		}
+		/**
+		 * Method that draws the player initially
+		 * 
+		 * @param p
+		 */
+		public void spawnPlayer(Player p) {
+		    //Graphics g = this.getGraphics();
+			//g.drawImage(Dispatcher, p.currentCity.bounds[0], p.currentCity.bounds[1], Dispatcher.getHeight(null), Dispatcher.getWidth(null));
+		}
+		
 	/**
 	 * When it changes to the next player, we notify the user.
 	 */
