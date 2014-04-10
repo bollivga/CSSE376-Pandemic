@@ -231,6 +231,8 @@ public class CityGraph {
 		johannesburg.addConnection(khartoum);
 		khartoum.addConnection(cairo);
 */
+		
+		// Test
 		// Initialize the HashMap for better retrieval
 		for (CityNode city : cities) {
 			citiesSet.put(city.getName(), city);
