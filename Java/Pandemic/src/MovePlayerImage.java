@@ -16,7 +16,7 @@ import javax.swing.JFrame;
  * 
  * I have made personal edits to this code as well.
  * 
- * @author René Cruz - G-Cross Studio 2011
+ * @author René Cruz - G-Cross Studio 2011 and Jonathan Jungck - CSSE 376 - Spring 2014
  */
 public class MovePlayerImage extends JFrame implements KeyListener {
     //Objects for images

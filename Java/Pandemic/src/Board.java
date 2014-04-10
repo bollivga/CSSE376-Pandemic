@@ -22,6 +22,15 @@ import javax.swing.JPanel;
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
 
+import java.awt.Graphics;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.JFrame;
+
 /**
  * @author Jonathan Jungck and Greg Bollivar
  *
@@ -40,9 +49,9 @@ public class Board {
 	public static void main(String[] args) {
 		JFrame frame = new JFrame();
 //		{	
-//			public void draw( Graphics g )
+//			Graphics paint( Graphics g )
 //			{
-//				super.draw(g);
+//				draw(g);
 //				// draw img
 //			}
 //			
@@ -136,8 +145,7 @@ public class Board {
 			    String ObjButtons[] = {"Yes","No"};
 			    int PromptResult = JOptionPane.showOptionDialog(null, 
 			        "Are you sure you want to exit?", "Quit?", 
-			        JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, 
-			        ObjButtons,ObjButtons[1]);
+			        JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, ObjButtons,ObjButtons[1]);
 			    if(PromptResult==0)
 			    {
 			      System.exit(0);
