@@ -76,7 +76,6 @@ public class PandemicGame {
 			PandemicGame.playerDeck.add(new PlayerCityCard(x));
 			this.infectDeck.add(new InfectCityCard(x));
 		}
-		System.out.println(PandemicGame.playerDeck.toString());
 		PandemicGame.outbreakCount = 0;
 		PandemicGame.playerDeck.shuffle();
 		this.infectDeck.shuffle();
@@ -104,8 +103,7 @@ public class PandemicGame {
 			for (Player i : PandemicGame.playerStorage) {
 				i.hand = playerDeck.getHand(2);
 			}
-		}
-		if (PandemicGame.playerStorage.size() == 3) {
+		}else if (PandemicGame.playerStorage.size() == 3) {
 			for (Player i : PandemicGame.playerStorage) {
 				i.hand = PandemicGame.playerDeck.getHand(3);
 			}

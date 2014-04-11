@@ -68,6 +68,13 @@ public class Player {
     		else {
     			Board.cityFlight(city);
     			if(this.tryFlyToCity(city)) {
+    				System.out.println(PandemicGame.p1.toString()
+    						+ " has moved to " + city.getName() + ". "
+    						+ (4 - PandemicGame.currentMoves) + " moves left.");
+    				++PandemicGame.currentMoves;
+    				if (PandemicGame.currentMoves == 4) {
+    					Board.changePlayer();
+    				}
         	    	this.hand.remove(cardToUse);
     			}
     		}
