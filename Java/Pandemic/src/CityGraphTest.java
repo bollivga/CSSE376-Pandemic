@@ -142,6 +142,8 @@ public class CityGraphTest {
 		PandemicGame testGame = new PandemicGame();
 		PandemicGame.playerDeck.toString();
 		assertEquals(PandemicGame.playerDeck.getBottom().getClass(),PlayerCityCard.class);
-		assertEquals(PandemicGame.playerDeck.getHand(5).stored.size(),5);
+		CardHand x = PandemicGame.playerDeck.getHand(5);
+		assertEquals(x.stored.size(),5);
+		PandemicGame.playerDeck.addAll(x);
 	}
 }

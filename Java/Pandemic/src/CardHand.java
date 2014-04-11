@@ -8,7 +8,6 @@ import java.util.ArrayList;
  *
  */
 public class CardHand extends CardStorage {
-	private ArrayList<Card> stored;
     /**
      * Hand of cards as an ArrayList
      */
@@ -22,5 +21,12 @@ public class CardHand extends CardStorage {
 	public void add(Card x) {
 		stored.add(x);
 		
+	}
+	/**
+	 * Removes the given card from the hand and returns it.
+	 * @param CardToBeRemoved
+	 */
+	public Card remove(Card removal){
+		return this.stored.remove(this.stored.indexOf(removal));
 	}
 }

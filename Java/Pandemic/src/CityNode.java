@@ -77,6 +77,7 @@ public class CityNode {
 				for (CityNode city : this.connectedCities) {
 					city.infectOnce(color);
 				}
+				++PandemicGame.outbreakCount;
 				return true;
 			} else {
 				++this.infectionStatus[color];
@@ -124,5 +125,12 @@ public class CityNode {
 		for (int i = 0; i < this.hasOutbroken.length; ++i) {
 			this.hasOutbroken[i] = false;
 		}
+	}
+	
+	
+	
+	@Override
+	public String toString(){
+		return this.name;
 	}
 }

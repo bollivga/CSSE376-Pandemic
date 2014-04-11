@@ -27,7 +27,7 @@ public class CardButton extends JButton implements ActionListener {
 	/**
 	 * Sets the city based on the node passed in on initialization.
 	 * 
-	 * @param city
+	 * @param card 
 	 */
 	public CardButton(Card card) {
 		// Set the city name to the city passed in
@@ -46,23 +46,7 @@ public class CardButton extends JButton implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// Print the name of the city
+		// use the card
 		PandemicGame.p1.useCard(this.card);
-//		if (PandemicGame.p1.isFlying) {
-//			if (!PandemicGame.p1.tryFlyToCity(cityNode)) {
-//				System.out.println("Move succeeded, " + PandemicGame.p1.toString() + " has moved to " + cityNode.name + ".");
-//			}
-//		}
-//		if (!PandemicGame.p1.tryMoveToCity(cityNode)) {
-//			System.out.println("Move failed, too far away or same city");
-//		} else {
-//			++PandemicGame.currentMoves;
-//			System.out.println(PandemicGame.p1.toString() + " has moved to "
-//					+ cityNode.getName() + ". "
-//					+ (4 - PandemicGame.currentMoves) + " moves left.");
-//			if (PandemicGame.currentMoves == 4) {
-//				Board.changePlayer();
-//			}
-//		}
 	}
 }

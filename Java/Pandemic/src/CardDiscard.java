@@ -8,9 +8,8 @@ import java.util.ArrayList;
  *
  */
 public class CardDiscard extends CardStorage {
-	 private ArrayList<Card> stored;
      /**
-     * 
+     * Creates a CardDiscard, functions as a public stack.
      */
     public CardDiscard()
      {
@@ -18,7 +17,14 @@ public class CardDiscard extends CardStorage {
      }
 	@Override
 	public void add(Card x) {
-		stored.add(x);
+		this.stored.add(x);
 	}
-     
+	
+	/**
+	 * Removes the passed card from play. Permanently.
+	 * @param CardToBeRemoved
+	 */
+    public void removeCardFromGame(Card x){
+    	this.stored.remove(this.stored.indexOf(x));
+    }
 }

@@ -9,23 +9,27 @@ import java.util.Collections;
  *
  */
 public class CardDeck extends CardStorage {
-	private ArrayList<Card> storedDeck = new ArrayList<Card>();
 	
-	
+	public CardDeck(){
+		this.stored = new ArrayList<Card>();
+	}
 	
 	@Override
 	public void add(Card x) {
-		storedDeck.add(x);
+		this.stored.add(x);
 		
 	}
 	
 	
 	/**
-	 * Takes the front card off of the deck. Does not handle epidemics, currently
+	 * Takes the front card off of the deck. Does not handle epidemics, currently.
 	 * @return Card
 	 */
 	public Card draw(){
-		return this.storedDeck.remove(0);
+		if(this.stored.size() > 0){
+		return this.stored.remove(0);
+		}
+		return null;
 	}
 	
 	
@@ -34,9 +38,47 @@ public class CardDeck extends CardStorage {
 	 * Shuffles the deck.
 	 */
 	public void shuffle(){
-		Collections.shuffle(this.storedDeck);
+		Collections.shuffle(this.stored);
 	}
 	
+	/**
+	 * Adds all cards in the given storage to the deck, removing them from the original in the process.
+	 * @param deckTop
+	 */
+	public void addAll(CardStorage deckTop){
+		this.stored.addAll(deckTop.stored);
+		deckTop.stored.clear();
+	}
 	
+	/**
+	 * Returns the bottom card from the deck. Also removes it from the deck.
+	 * @return Card bottomCard
+	 */
+	public Card getBottom(){
+		return this.stored.remove(this.stored.size() - 1);
+	}
+
+	/**
+	 * Gives a CardHand from the top n cards
+	 * @param int
+	 * @return hand of size int
+	 */
+	public CardHand getHand(int i) {
+		CardHand toBeReturned = new CardHand();
+		int j = 0;
+		while(j<i){
+		toBeReturned.add(this.draw());
+		++j;
+		}
+		return toBeReturned;
+		
+	}
 	
+	public String toString(){
+		String built = "";
+		for(Card x : this.stored){
+			built = built+this.stored;
+		}
+		return built;
+	}
 }
