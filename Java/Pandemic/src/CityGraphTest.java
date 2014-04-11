@@ -34,25 +34,37 @@ public class CityGraphTest {
 		PandemicGame testGame = new PandemicGame();
 		CityNode ny = PandemicGame.world.getCity("New York");
 		assertFalse(ny.infectThrice());
-		assertTrue(3 == PandemicGame.world.getCity("New York").infectionStatus[0]);
+		assertEquals(3,PandemicGame.world.getCity("New York").infectionStatus[0]);
 		for(CityNode x : ny.connectedCities){
-			assertTrue(0 == x.infectionStatus[0]);
+			assertEquals(0,x.infectionStatus[0]);
 		}
 		assertTrue(ny.infectOnce());
 		for(CityNode x : ny.connectedCities){
 			System.out.println(x.infectionStatus[0]); //I LIKE TRAINS
-			assertTrue(1 == x.infectionStatus[0]);
+			assertEquals(1,x.infectionStatus[0]);
 		}
 		ny.resetOutbreaks();
 		assertTrue(ny.infectThrice());
 		for(CityNode x : ny.connectedCities){
-			assertTrue(2 == x.infectionStatus[0]);
+			assertEquals(2,x.infectionStatus[0]);
 		}
 		ny.resetOutbreaks();
 		assertTrue(ny.infectThrice());
 		for(CityNode x : ny.connectedCities){
-			assertTrue(3 == x.infectionStatus[0]);
+			assertEquals(3,x.infectionStatus[0]);
 		}
+		ny.resetOutbreaks();
+		assertTrue(ny.infectThrice());
+		for(CityNode x : ny.connectedCities){
+			assertEquals(3,x.infectionStatus[0]);
+			assertTrue(x.hasOutbroken[0]);
+		}
+		PandemicGame.isEradicated[0] = true;
+		ny.infectionStatus[0] = 0;
+		for(CityNode x : ny.connectedCities){
+			x.infectionStatus[0] = 0;
+		}
+		assertFalse(ny.infectOnce());
 	}
 	
 	/**
@@ -61,6 +73,7 @@ public class CityGraphTest {
 	@Test
 	public void testPlayerMove(){
 		PandemicGame testGame = new PandemicGame();
+		PandemicGame.p1 = new Player(0);
 		assertFalse(PandemicGame.p1.tryMoveToCity(PandemicGame.world.getCity("New York")));
 		assertTrue(PandemicGame.p1.tryMoveToCity(PandemicGame.world.getCity("Chicago")));
 		assertFalse(PandemicGame.p1.tryMoveToCity(PandemicGame.world.getCity("New York"))); //I LIKE TRAINS
@@ -68,4 +81,56 @@ public class CityGraphTest {
 		assertTrue(PandemicGame.p1.tryMoveToCity(PandemicGame.world.getCity("New York")));
 		
 	}
+	
+	
+	
+	/**
+	 * Tests the player toString function.
+	 */
+	@Test
+	public void testPlayerToString(){
+		PandemicGame testGame = new PandemicGame();
+		assertEquals(new Player(0).toString(),"Contingency Planner");
+		assertEquals(new Player(1).toString(),"Dispatcher");
+		assertEquals(new Player(2).toString(),"Medic");
+		assertEquals(new Player(3).toString(),"Operations Expert");
+		assertEquals(new Player(4).toString(),"Quarantine Specialist");
+		assertEquals(new Player(5).toString(),"Researcher");
+		assertEquals(new Player(6).toString(),"Scientist");
+		assertEquals(new Player(7).toString(),"Player");
+		
+	}
+	
+	
+	@Test
+	public void testPandemicGamePlayerAddingAndRotation(){
+		PandemicGame testGame = new PandemicGame();
+		PandemicGame.addPlayer("Contingency Planner");
+		PandemicGame.p1 = PandemicGame.playerStorage.get(0);
+		PandemicGame.addPlayer("Dispatcher");
+		PandemicGame.addPlayer("Medic");
+		PandemicGame.addPlayer("Operations Expert");
+		PandemicGame.addPlayer("Quarantine Specialist");
+		PandemicGame.addPlayer("Researcher");
+		PandemicGame.addPlayer("Scientist");
+		PandemicGame.addPlayer("This does nothing unless we make the function throw something, because it's a useless input.");
+		assertEquals(PandemicGame.p1.toString(),"Contingency Planner");
+		PandemicGame.nextPlayer();
+		assertEquals(PandemicGame.p1.toString(),"Dispatcher");
+		PandemicGame.nextPlayer();
+		assertEquals(PandemicGame.p1.toString(),"Medic");
+		PandemicGame.nextPlayer();
+		assertEquals(PandemicGame.p1.toString(),"Operations Expert");
+		PandemicGame.nextPlayer();
+		assertEquals(PandemicGame.p1.toString(),"Quarantine Specialist");
+		PandemicGame.nextPlayer();
+		assertEquals(PandemicGame.p1.toString(),"Researcher");
+		PandemicGame.nextPlayer();
+		assertEquals(PandemicGame.p1.toString(),"Scientist");
+		PandemicGame.nextPlayer();
+		assertEquals(PandemicGame.p1.toString(),"Contingency Planner");
+	}
+	
+	
+	
 }

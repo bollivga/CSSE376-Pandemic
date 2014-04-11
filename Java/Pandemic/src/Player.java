@@ -42,7 +42,7 @@ public class Player {
 		}else if(this.role == 3){
 			return "Operations Expert";
 		}else if(this.role == 4){
-			return "Quarentine Specialist";
+			return "Quarantine Specialist";
 		}else if(this.role == 5){
 			return "Researcher";
 		}else if(this.role == 6){
