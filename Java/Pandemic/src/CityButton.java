@@ -46,16 +46,30 @@ public class CityButton extends JButton implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// Print the name of the city
-
-		if (!PandemicGame.p1.tryMoveToCity(cityNode)) {
-			System.out.println("Move failed, too far away or same city");
+		if (PandemicGame.p1.isFlying) {
+			if (PandemicGame.p1.tryFlyToCity(cityNode)) {
+				PandemicGame.p1.isFlying = false;
+				++PandemicGame.currentMoves;
+				System.out.println(PandemicGame.p1.toString()
+						+ " has moved to " + cityNode.getName() + ". "
+						+ (4 - PandemicGame.currentMoves) + " moves left.");
+				if (PandemicGame.currentMoves == 4) {
+					Board.changePlayer();
+				}
+			} else {
+				System.out.println("You are already at this city!");
+			}
 		} else {
-			++PandemicGame.currentMoves;
-			System.out.println(PandemicGame.p1.toString() + " has moved to "
-					+ cityNode.getName() + ". "
-					+ (4 - PandemicGame.currentMoves) + " moves left.");
-			if (PandemicGame.currentMoves == 4) {
-				Board.changePlayer();
+			if (!PandemicGame.p1.tryMoveToCity(cityNode)) {
+				System.out.println("Move failed, too far away or same city");
+			} else {
+				++PandemicGame.currentMoves;
+				System.out.println(PandemicGame.p1.toString()
+						+ " has moved to " + cityNode.getName() + ". "
+						+ (4 - PandemicGame.currentMoves) + " moves left.");
+				if (PandemicGame.currentMoves == 4) {
+					Board.changePlayer();
+				}
 			}
 		}
 	}

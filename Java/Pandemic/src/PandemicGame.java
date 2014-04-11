@@ -22,11 +22,11 @@ public class PandemicGame {
 	/**
 	 * The deck of player cards available to draw.
 	 */
-	public CardStorage playerDeck;
+	public static CardDeck playerDeck;
 	/**
 	 * The deck of city infection cards available to draw.
 	 */
-	public CardStorage infectDeck;
+	public CardDeck infectDeck;
 
 	/**
 	 * The first player.
@@ -68,14 +68,19 @@ public class PandemicGame {
 		PandemicGame.playerStorage = new ArrayList<Player>();
 		PandemicGame.currentMoves = 0;
 		this.infectionDiscard = new CardDiscard();
-		this.playerDeck = new CardDeck();
+		PandemicGame.playerDeck = new CardDeck();
 		this.playerDiscard = new CardDiscard();
 		this.infectDeck = new CardDeck();
 		PandemicGame.currentPlayer = 0;
 		for (CityNode x : CityGraph.cities) {
-			this.playerDeck.add(new PlayerCityCard(x));
+			PandemicGame.playerDeck.add(new PlayerCityCard(x));
 			this.infectDeck.add(new InfectCityCard(x));
 		}
+		System.out.println(PandemicGame.playerDeck.toString());
+		PandemicGame.outbreakCount = 0;
+		PandemicGame.playerDeck.shuffle();
+		this.infectDeck.shuffle();
+		
 	}
 
 	/**
@@ -89,6 +94,27 @@ public class PandemicGame {
 		PandemicGame.p1 = PandemicGame.playerStorage
 				.get(PandemicGame.currentPlayer);
 		PandemicGame.currentMoves = 0;
+	}
+	
+	/**
+	 * 
+	 */
+	public static void handOutCards() {
+		if (PandemicGame.playerStorage.size() == 4) {
+			for (Player i : PandemicGame.playerStorage) {
+				i.hand = playerDeck.getHand(2);
+			}
+		}
+		if (PandemicGame.playerStorage.size() == 3) {
+			for (Player i : PandemicGame.playerStorage) {
+				i.hand = PandemicGame.playerDeck.getHand(3);
+			}
+		}
+		else {
+			for (Player i : PandemicGame.playerStorage) {
+				i.hand = PandemicGame.playerDeck.getHand(4);
+			}
+		}
 	}
 
 	/**

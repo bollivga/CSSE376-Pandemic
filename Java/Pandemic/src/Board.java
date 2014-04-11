@@ -119,6 +119,7 @@ public class Board {
 				list = newList;
 			}
 		}
+		PandemicGame.handOutCards();
 		PandemicGame.p1 = PandemicGame.playerStorage.get(0);
 		// Initialize all city buttons on the map from CityGraph
 		for (CityNode j : CityGraph.cities) {
@@ -126,6 +127,14 @@ public class Board {
 			city.addActionListener(city);
 			background.add(city);
 			city.setBounds(j.bounds[0], j.bounds[1], 20, 20);
+		}
+		int k = 0;
+		for (Card j : PandemicGame.p1.hand.stored) {
+			k++;
+			CardButton card = new CardButton(j);
+			card.addActionListener(card);
+			background.add(card);
+			card.setBounds(300 + 140*k, 650, 140, 300);
 		}
 		
 		System.out.println("Player is at Atlanta. Click a connected city to move.");

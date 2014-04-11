@@ -15,5 +15,11 @@ public class PlayerCityCard extends Card {
 	public PlayerCityCard(CityNode x) {
 		this.city = x;
 	}
+	
+	
+	@Override
+	public String toString(){
+		return this.city.toString();
+	}
 
 }

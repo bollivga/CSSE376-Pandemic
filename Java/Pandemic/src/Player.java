@@ -13,6 +13,7 @@ public class Player {
 	private int role;
 	CityNode currentCity;
 	CardHand hand;
+	boolean isFlying;
 	
     /**
      * @param roleNumber contains the role number of the player.
@@ -61,15 +62,20 @@ public class Player {
     		CityNode city = ((PlayerCityCard) cardToUse).city;
     		if (this.currentCity == city) {
     			Board.charterFlight(city);
+    			this.isFlying = true;
+    	    	this.hand.remove(cardToUse);
     		}
     		else {
     			Board.cityFlight(city);
+    			if(this.tryFlyToCity(city)) {
+        	    	this.hand.remove(cardToUse);
+    			}
     		}
     	}
     	else if (cardToUse.getClass() == EventCard.class) {
     		Board.useEventCard();
+        	this.hand.remove(cardToUse);
     	}
-    	this.hand.remove(cardToUse);
     }
     
     
@@ -78,10 +84,16 @@ public class Player {
      * @param x
      * @return true; all flights work.
      */
-    public boolean flyToCity(CityNode x){
+    public boolean tryFlyToCity(CityNode x){
+    	if(!(this.currentCity.equals(x))){
     	this.currentCity = x;
     	return true;
+    	}
+    	return false;
     }
+    
+    
+    
     @Override
     public String toString(){
 		if(this.role == 0)
