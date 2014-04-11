@@ -55,7 +55,7 @@ public class CityButton extends JButton implements ActionListener {
 					+ cityNode.getName() + ". "
 					+ (4 - PandemicGame.currentMoves) + " moves left.");
 			if (PandemicGame.currentMoves == 4) {
-				PandemicGame.nextPlayer();
+				Board.changePlayer();
 			}
 		}
 	}
