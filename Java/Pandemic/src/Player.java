@@ -10,6 +10,7 @@
 public class Player {
 	private int role;
 	CityNode currentCity;
+	CardHand hand;
     /**
      * @param roleNumber contains the role number of the player.
      */
@@ -17,6 +18,7 @@ public class Player {
     {
         this.role = roleNumber;
         this.currentCity = PandemicGame.world.citiesSet.get("Atlanta");
+        this.hand = new CardHand();
     }
     /**
      * @param x
@@ -28,6 +30,18 @@ public class Player {
     		return true;
     	}
     	return false;
+    }
+    
+    
+    
+    
+    /**
+     * @param x
+     * @return true; all flights work.
+     */
+    public boolean flyToCity(CityNode x){
+    	this.currentCity = x;
+    	return true;
     }
     @Override
     public String toString(){

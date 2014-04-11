@@ -74,7 +74,7 @@ public class PandemicGame {
 		PandemicGame.currentPlayer = 0;
 		for (CityNode x : CityGraph.cities) {
 			this.playerDeck.add(new PlayerCityCard(x));
-			infectDeck.add(new InfectCityCard(x));
+			this.infectDeck.add(new InfectCityCard(x));
 		}
 	}
 
@@ -89,7 +89,6 @@ public class PandemicGame {
 		PandemicGame.p1 = PandemicGame.playerStorage
 				.get(PandemicGame.currentPlayer);
 		PandemicGame.currentMoves = 0;
-		Board.changePlayer();
 	}
 
 	/**
