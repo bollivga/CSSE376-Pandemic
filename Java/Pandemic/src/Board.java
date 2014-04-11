@@ -191,6 +191,7 @@ public class Board {
 	public static void changePlayer() {
 		// Gives a notification that it is the next player's turn.
 		JFrame frame = new JFrame();
+		PandemicGame.nextPlayer();
 		String nextPlayer = PandemicGame.playerStorage.get(PandemicGame.currentPlayer).toString();
 		String lastPlayer = PandemicGame.playerStorage.get(((PandemicGame.currentPlayer - 1)+PandemicGame.playerStorage.size())% PandemicGame.playerStorage.size()).toString();
 		JOptionPane.showMessageDialog(frame, "The " + lastPlayer + "'s turn has ended. It is now the " + nextPlayer + "'s turn.");
