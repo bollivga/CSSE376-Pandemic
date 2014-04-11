@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * @author Jonathan Jungck and Greg Bollivar
  * 
@@ -11,6 +13,7 @@ public class Player {
 	private int role;
 	CityNode currentCity;
 	CardHand hand;
+	
     /**
      * @param roleNumber contains the role number of the player.
      */
@@ -32,6 +35,42 @@ public class Player {
     	return false;
     }
     
+    /**
+     * @return the player's hand of cards
+     */
+    public CardHand getHand() {
+    	return this.hand;
+    }
+    
+    /**
+     * Adds a new card to a hand
+     * 
+     * @param newCard 
+     */
+    public void addToHand(Card newCard) {
+    	this.hand.add(newCard);
+    }
+    
+    /**
+     * Removes the card from the hand, and plays the card's ability.
+     * 
+     * @param cardToUse
+     */
+    public void useCard(Card cardToUse) {
+    	if (cardToUse.getClass() == PlayerCityCard.class) {
+    		CityNode city = ((PlayerCityCard) cardToUse).city;
+    		if (this.currentCity == city) {
+    			Board.charterFlight(city);
+    		}
+    		else {
+    			Board.cityFlight(city);
+    		}
+    	}
+    	else if (cardToUse.getClass() == EventCard.class) {
+    		Board.useEventCard();
+    	}
+    	this.hand.remove(cardToUse);
+    }
     
     
     

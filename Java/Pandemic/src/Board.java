@@ -197,4 +197,24 @@ public class Board {
 		JOptionPane.showMessageDialog(frame, "The " + lastPlayer + "'s turn has ended. It is now the " + nextPlayer + "'s turn.");
 		
 	}
+
+	/**
+	 * Charter flight code for flight from a city.
+	 */
+	public static void charterFlight(CityNode city) {
+		JFrame frame = new JFrame();
+		JOptionPane.showMessageDialog(frame, "You can use this city card to fly from " + city.name + " to any other city. \n Please select another city to which you wish to fly.");
+		
+	}
+
+	public static void cityFlight(CityNode city) {
+		JFrame frame = new JFrame();
+		JOptionPane.showMessageDialog(frame, "Flying to " + city.name + ".");
+		
+	}
+
+	public static void useEventCard() {
+		// TODO Auto-generated method stub
+		
+	}
 }
