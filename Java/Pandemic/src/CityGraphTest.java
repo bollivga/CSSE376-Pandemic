@@ -40,7 +40,6 @@ public class CityGraphTest {
 		}
 		assertTrue(ny.infectOnce());
 		for(CityNode x : ny.connectedCities){
-			System.out.println(x.infectionStatus[0]); //I LIKE TRAINS
 			assertEquals(1,x.infectionStatus[0]);
 		}
 		ny.resetOutbreaks();
@@ -79,7 +78,10 @@ public class CityGraphTest {
 		assertFalse(PandemicGame.p1.tryMoveToCity(PandemicGame.world.getCity("New York"))); //I LIKE TRAINS
 		assertTrue(PandemicGame.p1.tryMoveToCity(PandemicGame.world.getCity("Montreal")));
 		assertTrue(PandemicGame.p1.tryMoveToCity(PandemicGame.world.getCity("New York")));
-		
+		assertFalse(PandemicGame.p1.tryFlyToCity(PandemicGame.world.getCity("New York")));
+		assertTrue(PandemicGame.p1.tryFlyToCity(PandemicGame.world.getCity("San Francisco")));
+		PandemicGame.p1.useCard(new PlayerCityCard(PandemicGame.world.getCity("New York")));
+		assertTrue(PandemicGame.p1.tryMoveToCity(PandemicGame.world.getCity("London")));
 	}
 	
 	
@@ -132,5 +134,14 @@ public class CityGraphTest {
 	}
 	
 	
-	
+	/**
+	 * 
+	 */
+	@Test
+	public void testDeck(){
+		PandemicGame testGame = new PandemicGame();
+		PandemicGame.playerDeck.toString();
+		assertEquals(PandemicGame.playerDeck.getBottom().getClass(),PlayerCityCard.class);
+		assertEquals(PandemicGame.playerDeck.getHand(5).stored.size(),5);
+	}
 }
