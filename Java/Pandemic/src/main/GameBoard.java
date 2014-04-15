@@ -10,6 +10,7 @@ import javax.swing.JFrame;
  */
 public class GameBoard extends JFrame {
 
+	public Graphics g = this.getGraphics();
 	/**
 	 * Serial ID
 	 */
@@ -46,10 +47,12 @@ public class GameBoard extends JFrame {
 		 * 
 		 * @param p
 		 */
-		public void spawnPlayer(Player p) {
-		    Graphics g = this.getGraphics();
-			g.drawImage(Board.Dispatcher, p.currentCity.bounds[0], p.currentCity.bounds[1], Board.Dispatcher.getHeight(null), Board.Dispatcher.getWidth(null), null);
+		public static void spawnPlayer(Player p) {
+		    Graphics g = Board.background.getGraphics();
+			g.drawImage(Board.Dispatcher, p.currentCity.bounds[0], p.currentCity.bounds[1], null);
+			//Board.frame.add(Board.Dispatcher, p.currentCity.bounds[0], p.currentCity.bounds[1]);
 			Board.background.repaint();
+			System.out.println("Debug Draw");
 		}
 		
 		/**
@@ -58,9 +61,9 @@ public class GameBoard extends JFrame {
 		public static void redrawCards() {
 			for (CardButton l : PandemicGame.handList) {
 				Board.background.remove(l);
-				Board.background.validate();
-				Board.background.repaint();
 			}
+			Board.background.validate();
+			Board.background.repaint();
 			int k = 0;
 			for (Card j : PandemicGame.p1.hand.stored) {
 				k++;
@@ -69,6 +72,7 @@ public class GameBoard extends JFrame {
 				Board.background.add(card);
 				card.setBounds(300 + 140*k, 650, 140, 300);
 			}
+			GameBoard.spawnPlayer(PandemicGame.p1);
 		}
 
 }

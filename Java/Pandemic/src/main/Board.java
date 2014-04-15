@@ -14,6 +14,7 @@ import javax.swing.BorderFactory;
 import javax.swing.border.Border;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JList;
@@ -29,6 +30,7 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
@@ -44,6 +46,7 @@ public class Board {
 	 * Background is static to allow access from drawing components.
 	 */
 	public static JLabel background;
+	public static GameBoard frame;
 
 	/**
 	 * The main class for the board. Draws the frame and background and
@@ -53,7 +56,7 @@ public class Board {
 	 */
 	public static void main(String[] args) {
 		//JFrame frame = new JFrame();
-		GameBoard frame = new GameBoard();
+		frame = new GameBoard();
 //		{	
 //			Graphics paint( Graphics g )
 //			{
@@ -187,6 +190,8 @@ public class Board {
 
 	/**
 	 * Charter flight code for flight from a city.
+	 * 
+	 * @param city 
 	 */
 	public static void charterFlight(CityNode city) {
 		JFrame frame = new JFrame();

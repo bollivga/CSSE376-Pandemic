@@ -13,9 +13,9 @@ public class CityNode {
 	String name = "";
 	int color;
 	int[] bounds;
-	int[] infectionStatus = { 0, 0, 0, 0 };// blue,black,red,yellow
-	ArrayList<CityNode> connectedCities = new ArrayList<CityNode>();
-	boolean[] hasOutbroken = { false, false, false, false };
+	public int[] infectionStatus = { 0, 0, 0, 0 };// blue,black,red,yellow
+	public ArrayList<CityNode> connectedCities = new ArrayList<CityNode>();
+	public boolean[] hasOutbroken = { false, false, false, false };
 
 	/**
 	 * Initializes a city based on passed in variables.

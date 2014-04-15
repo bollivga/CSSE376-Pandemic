@@ -6,7 +6,7 @@ import java.util.ArrayList;
  *
  */
 public abstract class CardStorage {
-	protected ArrayList<Card> stored;
+	public ArrayList<Card> stored;
 	
 	/**
 	 * Class for card storage.

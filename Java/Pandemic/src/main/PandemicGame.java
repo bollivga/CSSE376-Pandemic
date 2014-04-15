@@ -61,6 +61,9 @@ public class PandemicGame {
 	 * The current player's id.
 	 */
 	public static int currentPlayer;
+	/**
+	 * The list of card buttons for the current player. Changes with each player.
+	 */
 	public static ArrayList<CardButton> handList = new ArrayList<CardButton>();
 
 	/**
