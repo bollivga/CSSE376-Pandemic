@@ -169,6 +169,9 @@ public class Board {
 			    {
 			      System.exit(0);
 			    }
+			    else {
+			    	
+			    }
 			  }
 			});
 		// frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
