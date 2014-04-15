@@ -91,6 +91,8 @@ public class PandemicGame {
 	 * Switches control to the next player.
 	 */
 	public static void nextPlayer() {
+		PandemicGame.p1.addToHand(PandemicGame.playerDeck.draw());
+		PandemicGame.p1.addToHand(PandemicGame.playerDeck.draw());
 		++PandemicGame.currentPlayer;
 		if (PandemicGame.currentPlayer == PandemicGame.playerStorage.size()) {
 			PandemicGame.currentPlayer = 0;
