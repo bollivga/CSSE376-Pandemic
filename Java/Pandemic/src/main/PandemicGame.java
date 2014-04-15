@@ -1,3 +1,4 @@
+package main;
 import java.util.ArrayList;
 
 /**
@@ -60,6 +61,7 @@ public class PandemicGame {
 	 * The current player's id.
 	 */
 	public static int currentPlayer;
+	public static ArrayList<CardButton> handList = new ArrayList<CardButton>();
 
 	/**
 	 * The main game class initializes the game.

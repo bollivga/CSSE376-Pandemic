@@ -1,3 +1,5 @@
+package main;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -33,7 +35,10 @@ public class CardButton extends JButton implements ActionListener {
 		// Set the city name to the city passed in
 		this.card = card;
 		this.setText(card.toString());
+		PandemicGame.handList.add(this);
 	}
+	
+	
 
 	/**
 	 * Main function for citybutton, currently useless.
@@ -48,5 +53,8 @@ public class CardButton extends JButton implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// use the card
 		PandemicGame.p1.useCard(this.card);
+		Board.background.remove((Component) e.getSource());
+        Board.background.validate();
+        Board.background.repaint();    
 	}
 }

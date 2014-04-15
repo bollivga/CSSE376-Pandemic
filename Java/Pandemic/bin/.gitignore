@@ -1,2 +1,15 @@
-/Board$1.class
+/GameBoard.class
+/Board.class
+/Card.class
 /CardButton.class
+/CardDeck.class
+/CardDiscard.class
+/CardHand.class
+/CardStorage.class
+/CityButton.class
+/CityGraph.class
+/CityGraphTest.class
+/CityNode.class
+/Board$1.class
+/tests
+/main

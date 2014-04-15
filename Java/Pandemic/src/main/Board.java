@@ -1,3 +1,4 @@
+package main;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -38,7 +39,11 @@ import javax.swing.JFrame;
 @SuppressWarnings("unused")
 public class Board {
 	
-	Image Dispatcher = new ImageIcon("player.jpg").getImage();
+	static Image Dispatcher = new ImageIcon("player.jpg").getImage();
+	/**
+	 * Background is static to allow access from drawing components.
+	 */
+	public static JLabel background;
 
 	/**
 	 * The main class for the board. Draws the frame and background and
@@ -47,7 +52,8 @@ public class Board {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		JFrame frame = new JFrame();
+		//JFrame frame = new JFrame();
+		GameBoard frame = new GameBoard();
 //		{	
 //			Graphics paint( Graphics g )
 //			{
@@ -60,7 +66,7 @@ public class Board {
 		frame.setLayout(new BorderLayout());
 		
 		// Draw the background board on the frame.
-		JLabel background = new JLabel(new ImageIcon("src/board.jpg"));
+		background = new JLabel(new ImageIcon("src/board.jpg"));
 		frame.add(background, BorderLayout.CENTER);
 		frame.setVisible(true);
 		background.setLayout(null);
@@ -128,14 +134,15 @@ public class Board {
 			background.add(city);
 			city.setBounds(j.bounds[0], j.bounds[1], 20, 20);
 		}
-		int k = 0;
-		for (Card j : PandemicGame.p1.hand.stored) {
-			k++;
-			CardButton card = new CardButton(j);
-			card.addActionListener(card);
-			background.add(card);
-			card.setBounds(300 + 140*k, 650, 140, 300);
-		}
+		GameBoard.redrawCards();
+//		int k = 0;
+//		for (Card j : PandemicGame.p1.hand.stored) {
+//			k++;
+//			CardButton card = new CardButton(j);
+//			card.addActionListener(card);
+//			background.add(card);
+//			card.setBounds(300 + 140*k, 650, 140, 300);
+//		}
 		
 		System.out.println("Player is at Atlanta. Click a connected city to move.");
 
@@ -164,36 +171,6 @@ public class Board {
 		// frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 	}
-
-
-	/**
-	 * Method to move a player to its current city. Called after every move.
-	 * 
-	 * @param p
-	 * @throws InterruptedException
-	 */
-	public void movePlayer(Player p) throws InterruptedException {   // Moves the player image to the new city
-		    //Graphics g = this.getGraphics();
-		    //Dispatcher.setLocation(p.currentCity.bounds[0], p.currentCity.bounds[1]);
-		    //g.drawImage(Dispatcher, p.currentCity.bounds[0], p.currentCity.bounds[1], Dispatcher.getHeight(null), Dispatcher.getWidth(null));
-		}
-		/**
-		 * Overridden paint method
-		 * 
-		 * @param g
-		 */
-		public void paint(Graphics g) {
-
-		}
-		/**
-		 * Method that draws the player initially
-		 * 
-		 * @param p
-		 */
-		public void spawnPlayer(Player p) {
-		    //Graphics g = this.getGraphics();
-			//g.drawImage(Dispatcher, p.currentCity.bounds[0], p.currentCity.bounds[1], Dispatcher.getHeight(null), Dispatcher.getWidth(null));
-		}
 		
 	/**
 	 * When it changes to the next player, we notify the user.
@@ -205,7 +182,7 @@ public class Board {
 		String nextPlayer = PandemicGame.playerStorage.get(PandemicGame.currentPlayer).toString();
 		String lastPlayer = PandemicGame.playerStorage.get(((PandemicGame.currentPlayer - 1)+PandemicGame.playerStorage.size())% PandemicGame.playerStorage.size()).toString();
 		JOptionPane.showMessageDialog(frame, "The " + lastPlayer + "'s turn has ended. It is now the " + nextPlayer + "'s turn.");
-		
+		GameBoard.redrawCards();
 	}
 
 	/**

@@ -1,4 +1,11 @@
+package tests;
 import static org.junit.Assert.*;
+
+import main.CardHand;
+import main.CityNode;
+import main.PandemicGame;
+import main.Player;
+import main.PlayerCityCard;
 
 import org.junit.Before;
 import org.junit.Test;
