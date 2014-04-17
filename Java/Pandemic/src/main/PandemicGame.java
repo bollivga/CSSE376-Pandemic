@@ -15,11 +15,11 @@ public class PandemicGame {
 	/**
 	 * The list infection cards that have been discarded.
 	 */
-	public CardStorage infectionDiscard;
+	public static CardDiscard infectionDiscard;
 	/**
 	 * The list of player cards that have been discarded.
 	 */
-	public CardStorage playerDiscard;
+	public CardDiscard playerDiscard;
 	/**
 	 * The deck of player cards available to draw.
 	 */
@@ -27,7 +27,7 @@ public class PandemicGame {
 	/**
 	 * The deck of city infection cards available to draw.
 	 */
-	public CardDeck infectDeck;
+	public static CardDeck infectDeck;
 
 	/**
 	 * The first player.
@@ -93,6 +93,12 @@ public class PandemicGame {
 	public static void nextPlayer() {
 		PandemicGame.p1.addToHand(PandemicGame.playerDeck.draw());
 		PandemicGame.p1.addToHand(PandemicGame.playerDeck.draw());
+		PandemicGame.infectionDiscard.add(PandemicGame.infectDeck.draw());
+		((InfectCityCard) PandemicGame.infectionDiscard.top()).infect();
+		System.out.println(""+PandemicGame.infectionDiscard.top().toString()+" infected");
+		PandemicGame.infectionDiscard.add(PandemicGame.infectDeck.draw());
+		((InfectCityCard) PandemicGame.infectionDiscard.top()).infect();
+		System.out.println(""+PandemicGame.infectionDiscard.top().toString()+" infected");
 		++PandemicGame.currentPlayer;
 		if (PandemicGame.currentPlayer == PandemicGame.playerStorage.size()) {
 			PandemicGame.currentPlayer = 0;

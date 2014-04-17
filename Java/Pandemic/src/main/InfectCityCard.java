@@ -41,4 +41,10 @@ public class InfectCityCard extends Card {
 	public boolean infectThrice(){
 		return this.city.infectThrice();
 	}
+	
+	@Override
+	public String toString()
+	{
+		return this.city.toString();
+	}
 }

@@ -28,4 +28,8 @@ public class CardDiscard extends CardStorage {
     public void removeCardFromGame(Card x){
     	this.stored.remove(this.stored.indexOf(x));
     }
+	public Card top() {
+		// TODO Auto-generated method stub
+		return this.stored.get(this.stored.size() - 1);
+	}
 }
