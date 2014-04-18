@@ -130,6 +130,13 @@ public class Board {
 		}
 		PandemicGame.handOutCards();
 		PandemicGame.p1 = PandemicGame.playerStorage.get(0);
+		GameBoard.spawnPlayer(PandemicGame.p1);
+		try {
+			GameBoard.movePlayer(PandemicGame.p1);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		// Initialize all city buttons on the map from CityGraph
 		for (CityNode j : CityGraph.cities) {
 			CityButton city = new CityButton(j);
@@ -181,6 +188,12 @@ public class Board {
 	public static void changePlayer() {
 		// Gives a notification that it is the next player's turn.
 		JFrame frame = new JFrame();
+		try {
+			GameBoard.movePlayer(PandemicGame.p1);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		PandemicGame.nextPlayer();
 		String nextPlayer = PandemicGame.playerStorage.get(PandemicGame.currentPlayer).toString();
 		String lastPlayer = PandemicGame.playerStorage.get(((PandemicGame.currentPlayer - 1)+PandemicGame.playerStorage.size())% PandemicGame.playerStorage.size()).toString();

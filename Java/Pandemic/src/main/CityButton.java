@@ -73,5 +73,11 @@ public class CityButton extends JButton implements ActionListener {
 				}
 			}
 		}
+		try {
+			GameBoard.movePlayer(PandemicGame.p1);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 	}
 }
