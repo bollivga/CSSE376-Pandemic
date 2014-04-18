@@ -1,5 +1,4 @@
 package main;
-import java.util.ArrayList;
 
 /**
  * @author Jonathan Jungck and Greg Bollivar
@@ -58,32 +57,39 @@ public class Player {
      * 
      * @param cardToUse
      */
-    public void useCard(Card cardToUse) {
+    public boolean useCard(Card cardToUse) {
     	if (cardToUse.getClass() == PlayerCityCard.class) {
     		CityNode city = ((PlayerCityCard) cardToUse).city;
     		if (this.currentCity == city) {
-    			Board.charterFlight(city);
     			this.isFlying = true;
     	    	this.hand.remove(cardToUse);
+    	    	return false;
     		}
     		else {
-    			Board.cityFlight(city);
     			if(this.tryFlyToCity(city)) {
-    				System.out.println(PandemicGame.p1.toString()
-    						+ " has moved to " + city.getName() + ". "
-    						+ (4 - PandemicGame.currentMoves) + " moves left.");
     				++PandemicGame.currentMoves;
     				if (PandemicGame.currentMoves == 4) {
     					Board.changePlayer();
     				}
+    				try{
         	    	this.hand.remove(cardToUse);
+    				}catch (ArrayIndexOutOfBoundsException e){
+    					//should be a test if this happens
+    				}
+    				finally{
+    					
+    				}
+    				return true;
     			}
+    		return false;
     		}
     	}
     	else if (cardToUse.getClass() == EventCard.class) {
     		Board.useEventCard();
         	this.hand.remove(cardToUse);
+        	return false;
     	}
+		return false;
     }
     
     

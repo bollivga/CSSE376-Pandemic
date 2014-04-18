@@ -76,10 +76,6 @@ public class CardDeck extends CardStorage {
 	}
 	
 	public String toString(){
-		String built = "";
-		for(Card x : this.stored){
-			built = built+this.stored;
-		}
-		return built;
+		return this.stored.toString();
 	}
 }

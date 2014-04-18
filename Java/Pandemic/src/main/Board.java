@@ -56,27 +56,66 @@ public class Board {
 	 */
 	public static void main(String[] args) {
 		//JFrame frame = new JFrame();
-		frame = new GameBoard();
-//		{	
-//			Graphics paint( Graphics g )
-//			{
-//				draw(g);
-//				// draw img
-//			}
-//			
-//		};
-		frame.setSize(1200, 849);
-		frame.setLayout(new BorderLayout());
+		Board.init();
+		Board.chooseRoles();
+		PandemicGame.handOutCards();
+		Board.runGame();
 		
-		// Draw the background board on the frame.
-		background = new JLabel(new ImageIcon("src/board.jpg"));
-		frame.add(background, BorderLayout.CENTER);
-		frame.setVisible(true);
-		background.setLayout(null);
+		// frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+	}
 		
-		// Initialize a new game.
-		new PandemicGame();
+	public static void runGame() {
+		GameBoard.spawnPlayer(PandemicGame.p1);
+		try {
+			GameBoard.movePlayer(PandemicGame.p1);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		// Initialize all city buttons on the map from CityGraph
+		for (CityNode j : CityGraph.cities) {
+			CityButton city = new CityButton(j);
+			city.addActionListener(city);
+			background.add(city);
+			city.setBounds(j.bounds[0], j.bounds[1], 20, 20);
+		}
+		GameBoard.redrawCards();
+//		int k = 0;
+//		for (Card j : PandemicGame.p1.hand.stored) {
+//			k++;
+//			CardButton card = new CardButton(j);
+//			card.addActionListener(card);
+//			background.add(card);
+//			card.setBounds(300 + 140*k, 650, 140, 300);
+//		}
+
+		// Test Player Graphic
+		JLabel player = new JLabel(new ImageIcon("src/player.jpg"));
+		//player.setBounds(280, 297, 20, 50);
+		//player.setLayout(BorderLayout.NORTH);
+		frame.add(player);
 		
+		// If you try to close the window, it verifies with a yes/no and then quits if yes.
+		frame.addWindowListener(new WindowAdapter() {
+
+			  @Override
+			  public void windowClosing(WindowEvent we)
+			  { 
+			    String ObjButtons[] = {"Yes","No"};
+			    int PromptResult = JOptionPane.showOptionDialog(null, 
+			        "Are you sure you want to exit?", "Quit?", 
+			        JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, ObjButtons,ObjButtons[1]);
+			    if(PromptResult==0)
+			    {
+			      System.exit(0);
+			    }
+			  }
+			});
+		
+	}
+
+	public static void chooseRoles() {
 		ArrayList<String> chooseRoles = new ArrayList<String>();
 		chooseRoles.add("Contingency Planner");
 		chooseRoles.add("Dispatcher");
@@ -128,60 +167,25 @@ public class Board {
 				list = newList;
 			}
 		}
-		PandemicGame.handOutCards();
-		PandemicGame.p1 = PandemicGame.playerStorage.get(0);
-		GameBoard.spawnPlayer(PandemicGame.p1);
-		try {
-			GameBoard.movePlayer(PandemicGame.p1);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		// Initialize all city buttons on the map from CityGraph
-		for (CityNode j : CityGraph.cities) {
-			CityButton city = new CityButton(j);
-			city.addActionListener(city);
-			background.add(city);
-			city.setBounds(j.bounds[0], j.bounds[1], 20, 20);
-		}
-		GameBoard.redrawCards();
-//		int k = 0;
-//		for (Card j : PandemicGame.p1.hand.stored) {
-//			k++;
-//			CardButton card = new CardButton(j);
-//			card.addActionListener(card);
-//			background.add(card);
-//			card.setBounds(300 + 140*k, 650, 140, 300);
-//		}
 		
-		System.out.println("Player is at Atlanta. Click a connected city to move.");
-
-		// Test Player Graphic
-		JLabel player = new JLabel(new ImageIcon("src/player.jpg"));
-		//player.setBounds(280, 297, 20, 50);
-		//player.setLayout(BorderLayout.NORTH);
-		frame.add(player);
-		
-		// If you try to close the window, it verifies with a yes/no and then quits if yes.
-		frame.addWindowListener(new WindowAdapter() {
-
-			  @Override
-			  public void windowClosing(WindowEvent we)
-			  { 
-			    String ObjButtons[] = {"Yes","No"};
-			    int PromptResult = JOptionPane.showOptionDialog(null, 
-			        "Are you sure you want to exit?", "Quit?", 
-			        JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, ObjButtons,ObjButtons[1]);
-			    if(PromptResult==0)
-			    {
-			      System.exit(0);
-			    }
-			  }
-			});
-		// frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
 	}
+
+	public static void init() {
+		Board.frame = new GameBoard();
+		Board.frame.setSize(1200, 849);
+		Board.frame.setLayout(new BorderLayout());
 		
+		// Draw the background board on the frame.
+		Board.background = new JLabel(new ImageIcon("src/board.jpg"));
+		Board.frame.add(background, BorderLayout.CENTER);
+		Board.frame.setVisible(true);
+		Board.background.setLayout(null);
+		
+		// Initialize a new game.
+		new PandemicGame();
+		
+	}
+
 	/**
 	 * When it changes to the next player, we notify the user.
 	 */

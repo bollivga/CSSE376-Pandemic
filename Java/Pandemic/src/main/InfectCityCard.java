@@ -7,8 +7,7 @@ package main;
  */
 public class InfectCityCard extends Card {
 	
-	@SuppressWarnings("unused")
-	private CityNode city;
+	public CityNode city;
 	
 	/**
 	 * Infects the city on the card.

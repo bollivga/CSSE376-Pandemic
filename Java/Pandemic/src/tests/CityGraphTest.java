@@ -1,8 +1,10 @@
 package tests;
 import static org.junit.Assert.*;
 
+import main.Board;
 import main.CardHand;
 import main.CityNode;
+import main.InfectCityCard;
 import main.PandemicGame;
 import main.Player;
 import main.PlayerCityCard;
@@ -39,38 +41,43 @@ public class CityGraphTest {
 	@Test
 	public void testInfection(){
 		PandemicGame testGame = new PandemicGame();
-		CityNode ny = PandemicGame.world.getCity("New York");
+		
+		InfectCityCard ny = new InfectCityCard(PandemicGame.world.getCity("New York"));
 		assertFalse(ny.infectThrice());
 		assertEquals(3,PandemicGame.world.getCity("New York").infectionStatus[0]);
-		for(CityNode x : ny.connectedCities){
+		for(CityNode x : ny.city.connectedCities){
 			assertEquals(0,x.infectionStatus[0]);
 		}
-		assertTrue(ny.infectOnce());
-		for(CityNode x : ny.connectedCities){
+		assertEquals(0, PandemicGame.outbreakCount);
+		assertTrue(ny.infect());
+		for(CityNode x : ny.city.connectedCities){
 			assertEquals(1,x.infectionStatus[0]);
 		}
-		ny.resetOutbreaks();
+		assertEquals(1, PandemicGame.outbreakCount);
+		ny.city.resetOutbreaks();
 		assertTrue(ny.infectThrice());
-		for(CityNode x : ny.connectedCities){
+		for(CityNode x : ny.city.connectedCities){
 			assertEquals(2,x.infectionStatus[0]);
 		}
-		ny.resetOutbreaks();
+		assertEquals(2, PandemicGame.outbreakCount);
+		ny.city.resetOutbreaks();
 		assertTrue(ny.infectThrice());
-		for(CityNode x : ny.connectedCities){
+		for(CityNode x : ny.city.connectedCities){
 			assertEquals(3,x.infectionStatus[0]);
 		}
-		ny.resetOutbreaks();
+		assertEquals(3, PandemicGame.outbreakCount);
+		ny.city.resetOutbreaks();
 		assertTrue(ny.infectThrice());
-		for(CityNode x : ny.connectedCities){
+		for(CityNode x : ny.city.connectedCities){
 			assertEquals(3,x.infectionStatus[0]);
 			assertTrue(x.hasOutbroken[0]);
 		}
 		PandemicGame.isEradicated[0] = true;
-		ny.infectionStatus[0] = 0;
-		for(CityNode x : ny.connectedCities){
+		ny.city.infectionStatus[0] = 0;
+		for(CityNode x : ny.city.connectedCities){
 			x.infectionStatus[0] = 0;
 		}
-		assertFalse(ny.infectOnce());
+		assertFalse(ny.city.infectOnce());
 	}
 	
 	/**
@@ -79,7 +86,20 @@ public class CityGraphTest {
 	@Test
 	public void testPlayerMove(){
 		PandemicGame testGame = new PandemicGame();
-		PandemicGame.p1 = new Player(0);
+		PandemicGame.addPlayer("Dispatcher");
+		PandemicGame.addPlayer("Medic");
+		PandemicGame.handOutCards();
+		testGame = new PandemicGame();
+		PandemicGame.addPlayer("Dispatcher");
+		PandemicGame.addPlayer("Medic");
+		PandemicGame.addPlayer("Researcher");
+		PandemicGame.handOutCards();
+		testGame = new PandemicGame();
+		PandemicGame.addPlayer("Dispatcher");
+		PandemicGame.addPlayer("Medic");
+		PandemicGame.addPlayer("Researcher");
+		PandemicGame.addPlayer("Scientist");
+		PandemicGame.handOutCards();
 		assertFalse(PandemicGame.p1.tryMoveToCity(PandemicGame.world.getCity("New York")));
 		assertTrue(PandemicGame.p1.tryMoveToCity(PandemicGame.world.getCity("Chicago")));
 		assertFalse(PandemicGame.p1.tryMoveToCity(PandemicGame.world.getCity("New York"))); //I LIKE TRAINS
@@ -89,6 +109,9 @@ public class CityGraphTest {
 		assertTrue(PandemicGame.p1.tryFlyToCity(PandemicGame.world.getCity("San Francisco")));
 		PandemicGame.p1.useCard(new PlayerCityCard(PandemicGame.world.getCity("New York")));
 		assertTrue(PandemicGame.p1.tryMoveToCity(PandemicGame.world.getCity("London")));
+		PandemicGame.p1.useCard(new PlayerCityCard(PandemicGame.world.getCity("New York")));
+		assertTrue(PandemicGame.p1.tryFlyToCity(PandemicGame.world.getCity("Chicago")));
+
 	}
 	
 	
@@ -153,4 +176,10 @@ public class CityGraphTest {
 		assertEquals(x.stored.size(),5);
 		PandemicGame.playerDeck.addAll(x);
 	}
+	
+	
+	
+	
+	
+	
 }

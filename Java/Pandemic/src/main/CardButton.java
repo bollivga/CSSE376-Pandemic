@@ -52,7 +52,12 @@ public class CardButton extends JButton implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// use the card
-		PandemicGame.p1.useCard(this.card);
+		
+		if(PandemicGame.p1.useCard(this.card)){
+			Board.cityFlight(((PlayerCityCard) this.card).city);
+		}else if(PandemicGame.p1.isFlying){
+			Board.charterFlight(((PlayerCityCard) this.card).city);
+		}
 		Board.background.remove((Component) e.getSource());
         Board.background.validate();
         Board.background.repaint();    

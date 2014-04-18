@@ -63,13 +63,12 @@ public class GameBoard extends JFrame {
 		 * @param p
 		 */
 		public static void spawnPlayer(Player p) {
-		    Graphics g = Board.background.getGraphics();
+		    Board.background.getGraphics();
 		    //Graphics2D g2 = (Graphics2D) Board.background.getGraphics();
 		    //g2.draw(new Ellipse2D.Double(p.currentCity.bounds[0], p.currentCity.bounds[1]-40, 20, 40));
 			//g.drawImage(Board.Dispatcher, p.currentCity.bounds[0], p.currentCity.bounds[1], null);
 			//Board.frame.add(Board.Dispatcher, p.currentCity.bounds[0], p.currentCity.bounds[1]);
 			//Board.background.repaint();
-			System.out.println("Debug Draw");
 		}
 		
 		/**

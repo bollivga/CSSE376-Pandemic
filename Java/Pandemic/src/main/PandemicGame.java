@@ -72,18 +72,18 @@ public class PandemicGame {
 	public PandemicGame() {
 		PandemicGame.playerStorage = new ArrayList<Player>();
 		PandemicGame.currentMoves = 0;
-		this.infectionDiscard = new CardDiscard();
+		PandemicGame.infectionDiscard = new CardDiscard();
 		PandemicGame.playerDeck = new CardDeck();
 		this.playerDiscard = new CardDiscard();
-		this.infectDeck = new CardDeck();
+		PandemicGame.infectDeck = new CardDeck();
 		PandemicGame.currentPlayer = 0;
 		for (CityNode x : CityGraph.cities) {
 			PandemicGame.playerDeck.add(new PlayerCityCard(x));
-			this.infectDeck.add(new InfectCityCard(x));
+			PandemicGame.infectDeck.add(new InfectCityCard(x));
 		}
 		PandemicGame.outbreakCount = 0;
 		PandemicGame.playerDeck.shuffle();
-		this.infectDeck.shuffle();
+		PandemicGame.infectDeck.shuffle();
 		
 	}
 
@@ -120,6 +120,8 @@ public class PandemicGame {
 				i.hand = PandemicGame.playerDeck.getHand(4);
 			}
 		}
+		
+		PandemicGame.p1 = PandemicGame.playerStorage.get(0);
 	}
 
 	/**

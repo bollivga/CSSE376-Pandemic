@@ -62,6 +62,7 @@ public class CityNode {
 					for (CityNode city : connectedCities) {
 						city.infectOnce(this.color);
 					}
+					++PandemicGame.outbreakCount;
 					return true;
 				} else {
 					++this.infectionStatus[this.color];
