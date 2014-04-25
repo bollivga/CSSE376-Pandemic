@@ -58,6 +58,12 @@ public class CardButton extends JButton implements ActionListener {
 		}else if(PandemicGame.p1.isFlying){
 			Board.charterFlight(((PlayerCityCard) this.card).city);
 		}
+		try {
+			GameBoard.movePlayer(PandemicGame.p1);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		Board.background.remove((Component) e.getSource());
         Board.background.validate();
         Board.background.repaint();    

@@ -24,8 +24,9 @@ public class GameBoard extends JFrame {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		 Graphics2D g2 = (Graphics2D) Board.background.getGraphics();
-		 g2.draw(new Ellipse2D.Double(PandemicGame.p1.currentCity.bounds[0], PandemicGame.p1.currentCity.bounds[1], 500, 500));
-		// Board.background.repaint();
+			g2.setColor(Color.GREEN);
+		 g2.fill(new Ellipse2D.Double(PandemicGame.p1.currentCity.bounds[0], PandemicGame.p1.currentCity.bounds[1], 500, 500));
+		 // Board.background.repaint();
 	}
 	
 	/**
