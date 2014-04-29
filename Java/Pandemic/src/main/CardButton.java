@@ -59,7 +59,7 @@ public class CardButton extends JButton implements ActionListener {
 			Board.charterFlight(((PlayerCityCard) this.card).city);
 		}
 		try {
-			GameBoard.movePlayer(PandemicGame.p1);
+			GameBoard.movePlayer();
 		} catch (InterruptedException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

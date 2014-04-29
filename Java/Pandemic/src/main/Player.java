@@ -1,5 +1,7 @@
 package main;
 
+import java.awt.Color;
+
 /**
  * @author Jonathan Jungck and Greg Bollivar
  * 
@@ -14,6 +16,7 @@ public class Player {
 	CityNode currentCity;
 	CardHand hand;
 	boolean isFlying;
+	public Color color;
 	
     /**
      * @param roleNumber contains the role number of the player.
@@ -23,6 +26,30 @@ public class Player {
         this.role = roleNumber;
         this.currentCity = PandemicGame.world.citiesSet.get("Atlanta");
         this.hand = new CardHand();
+        if (this.role == 1) {
+        	color = color.GREEN;
+        }
+        else if (this.role == 2) {
+        	color = color.BLUE;
+        }
+        else if (this.role == 3) {
+        	color = color.PINK;
+        }
+        else if (this.role == 4) {
+        	color = color.ORANGE;
+        }
+        else if (this.role == 5) {
+        	color = color.CYAN;
+        }
+        else if (this.role == 6) {
+        	color = color.MAGENTA;
+        }
+        else if (this.role == 7) {
+        	color = color.YELLOW;
+        }
+        else if (this.role == 8) {
+        	color = color.WHITE;
+        }
     }
     /**
      * @param x

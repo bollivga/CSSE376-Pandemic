@@ -24,6 +24,7 @@ public class CityButton extends JButton implements ActionListener {
 	 * This is the node for the city that can be accessed by the board.
 	 */
 	public CityNode cityNode;
+	
 
 	/**
 	 * Sets the city based on the node passed in on initialization.
@@ -59,10 +60,12 @@ public class CityButton extends JButton implements ActionListener {
 				}
 			} else {
 				System.out.println("You are already at this city!");
+				sameCity();
 			}
 		} else {
 			if (!PandemicGame.p1.tryMoveToCity(cityNode)) {
 				System.out.println("Move failed, too far away or same city");
+				sameCity();
 			} else {
 				++PandemicGame.currentMoves;
 				System.out.println(PandemicGame.p1.toString()
@@ -70,14 +73,26 @@ public class CityButton extends JButton implements ActionListener {
 						+ (4 - PandemicGame.currentMoves) + " moves left.");
 				if (PandemicGame.currentMoves == 4) {
 					Board.changePlayer();
+					try {
+						GameBoard.movePlayer();
+					} catch (InterruptedException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				}
 			}
 		}
 		try {
-			GameBoard.movePlayer(PandemicGame.p1);
+			GameBoard.movePlayer();
 		} catch (InterruptedException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+	}
+
+	private String sameCity() {
+		// TODO Auto-generated method stub
+		System.out.println("Same City");
+		return "Same City";
 	}
 }

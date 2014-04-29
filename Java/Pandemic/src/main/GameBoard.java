@@ -23,9 +23,9 @@ public class GameBoard extends JFrame {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		 Graphics2D g2 = (Graphics2D) Board.background.getGraphics();
-			g2.setColor(Color.GREEN);
-		 g2.fill(new Ellipse2D.Double(PandemicGame.p1.currentCity.bounds[0], PandemicGame.p1.currentCity.bounds[1], 500, 500));
+		 //Graphics2D g2 = (Graphics2D) Board.background.getGraphics();
+		 //g2.setColor(Color.GREEN);
+		 //g2.fill(new Ellipse2D.Double(PandemicGame.p1.currentCity.bounds[0], PandemicGame.p1.currentCity.bounds[1], 500, 500));
 		 // Board.background.repaint();
 	}
 	
@@ -35,19 +35,13 @@ public class GameBoard extends JFrame {
 	 * @param p
 	 * @throws InterruptedException
 	 */
-	public static void movePlayer(Player p) throws InterruptedException {   // Moves the player image to the new city
-		    //Graphics g = this.getGraphics();
-		    //Board.Dispatcher.setLocation(p.currentCity.bounds[0], p.currentCity.bounds[1]);
-		    //g.drawImage(Board.Dispatcher, p.currentCity.bounds[0], p.currentCity.bounds[1], Board.Dispatcher.getHeight(null), Board.Dispatcher.getWidth(null), null);
-		    //Graphics2D g2 = (Graphics2D) g;
-		    //g2.draw(new Ellipse2D.Double(p.currentCity.bounds[0], p.currentCity.bounds[1], 20, 40));
+	public static void movePlayer() throws InterruptedException {   // Moves the player image to the new city
 		Graphics2D g2 = (Graphics2D) Board.background.getGraphics();
-		//g2.clearRect(PandemicGame.p1.currentCity.bounds[0], PandemicGame.p1.currentCity.bounds[1] - 30, 20, 40);
-	    //g2.draw(new Ellipse2D.Double(PandemicGame.p1.currentCity.bounds[0], PandemicGame.p1.currentCity.bounds[1] - 30, 20, 40));
-		g2.setColor(Color.GREEN);
-	    Ellipse2D.Double player = new Ellipse2D.Double(PandemicGame.p1.currentCity.bounds[0], PandemicGame.p1.currentCity.bounds[1] - 30, 20, 40);
+		for(Player x :PandemicGame.playerStorage){
+		g2.setColor(x.color);
+	    Ellipse2D.Double player = new Ellipse2D.Double(x.currentCity.bounds[0], x.currentCity.bounds[1] - 30, 20, 40);
 	    g2.fill(player);
-	 
+		}
 	}
 		/**
 		 * Overridden paint method
@@ -56,6 +50,7 @@ public class GameBoard extends JFrame {
 		 */
 		public void paint(Graphics g) {
 			super.paint(g);
+			
 			    //Board.background.repaint();
 		}
 		/**
@@ -65,11 +60,6 @@ public class GameBoard extends JFrame {
 		 */
 		public static void spawnPlayer(Player p) {
 		    Board.background.getGraphics();
-		    //Graphics2D g2 = (Graphics2D) Board.background.getGraphics();
-		    //g2.draw(new Ellipse2D.Double(p.currentCity.bounds[0], p.currentCity.bounds[1]-40, 20, 40));
-			//g.drawImage(Board.Dispatcher, p.currentCity.bounds[0], p.currentCity.bounds[1], null);
-			//Board.frame.add(Board.Dispatcher, p.currentCity.bounds[0], p.currentCity.bounds[1]);
-			//Board.background.repaint();
 		}
 		
 		/**
@@ -89,7 +79,18 @@ public class GameBoard extends JFrame {
 				Board.background.add(card);
 				card.setBounds(300 + 140*k, 650, 140, 300);
 			}
-			GameBoard.spawnPlayer(PandemicGame.p1);
 		}
+		
+//		/**
+//		 * Draws the cards for each player.
+//		 */
+//		public static void redrawPlayers() {
+//			for (Ellipse2D.Double l : Board.playerList) {
+//				Board.background.remove(9);
+//			}
+//			Board.background.validate();
+//			Board.background.repaint();
+//			GameBoard.spawnPlayer(PandemicGame.p1);
+//		}
 
 }

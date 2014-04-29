@@ -27,6 +27,7 @@ import javax.swing.JTextArea;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -47,7 +48,10 @@ public class Board {
 	 */
 	public static JLabel background;
 	public static GameBoard frame;
-
+	public static Player[] playerLoc = new Player[4];
+	public static int i = 0;
+	public static ArrayList<CityButton> cityList = new ArrayList<CityButton>();
+	public static ArrayList<Ellipse2D.Double> player;
 	/**
 	 * The main class for the board. Draws the frame and background and
 	 * iterates all buttons on cities based on graph information.
@@ -67,18 +71,19 @@ public class Board {
 		
 	public static void runGame() {
 		GameBoard.spawnPlayer(PandemicGame.p1);
-		try {
-			GameBoard.movePlayer(PandemicGame.p1);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		playerLoc[i] = PandemicGame.p1;
+		//GameBoard.redrawPlayers();
+
 		// Initialize all city buttons on the map from CityGraph
 		for (CityNode j : CityGraph.cities) {
 			CityButton city = new CityButton(j);
 			city.addActionListener(city);
 			background.add(city);
 			city.setBounds(j.bounds[0], j.bounds[1], 20, 20);
+			cityList.add(city);
+		}
+		for(int i = 0; i < PandemicGame.playerStorage.size();++i){
+			
 		}
 		GameBoard.redrawCards();
 //		int k = 0;
@@ -112,7 +117,12 @@ public class Board {
 			    }
 			  }
 			});
-		
+		try {
+			GameBoard.movePlayer();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public static void chooseRoles() {
@@ -180,7 +190,6 @@ public class Board {
 		Board.frame.add(background, BorderLayout.CENTER);
 		Board.frame.setVisible(true);
 		Board.background.setLayout(null);
-		
 		// Initialize a new game.
 		new PandemicGame();
 		
@@ -192,8 +201,9 @@ public class Board {
 	public static void changePlayer() {
 		// Gives a notification that it is the next player's turn.
 		JFrame frame = new JFrame();
+		
 		try {
-			GameBoard.movePlayer(PandemicGame.p1);
+			GameBoard.movePlayer();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -203,6 +213,13 @@ public class Board {
 		String lastPlayer = PandemicGame.playerStorage.get(((PandemicGame.currentPlayer - 1)+PandemicGame.playerStorage.size())% PandemicGame.playerStorage.size()).toString();
 		JOptionPane.showMessageDialog(frame, "The " + lastPlayer + "'s turn has ended. It is now the " + nextPlayer + "'s turn.");
 		GameBoard.redrawCards();
+		
+		try {
+			GameBoard.movePlayer();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -219,7 +236,6 @@ public class Board {
 	public static void cityFlight(CityNode city) {
 		JFrame frame = new JFrame();
 		JOptionPane.showMessageDialog(frame, "Flying to " + city.name + ".");
-		
 	}
 
 	public static void useEventCard() {
