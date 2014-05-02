@@ -11,7 +11,10 @@ import java.util.ArrayList;
  */
 public class CityNode {
 	String name = "";
-	int color;
+	/**
+	 * The color of the city infection disease.
+	 */
+	public int color;
 	int[] bounds;
 	/**
 	 * The infection statuses of each disease color on each city.
