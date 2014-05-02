@@ -47,10 +47,23 @@ public class Board {
 	 * Background is static to allow access from drawing components.
 	 */
 	public static JLabel background;
+	/**
+	 * The main frame in which everything is drawn.
+	 */
 	public static GameBoard frame;
+	/**
+	 * The stored location of the players
+	 */
 	public static Player[] playerLoc = new Player[4];
+	@SuppressWarnings("javadoc")
 	public static int i = 0;
+	/**
+	 * The list of buttons for each city.
+	 */
 	public static ArrayList<CityButton> cityList = new ArrayList<CityButton>();
+	/**
+	 * The list of player ellipses in the game. Unnused as of yet.
+	 */
 	public static ArrayList<Ellipse2D.Double> player;
 	/**
 	 * The main class for the board. Draws the frame and background and
@@ -69,6 +82,9 @@ public class Board {
 
 	}
 		
+	/**
+	 * Runs the main game.
+	 */
 	public static void runGame() {
 		GameBoard.spawnPlayer(PandemicGame.p1);
 		playerLoc[i] = PandemicGame.p1;
@@ -79,7 +95,7 @@ public class Board {
 			CityButton city = new CityButton(j);
 			city.addActionListener(city);
 			background.add(city);
-			city.setBounds(j.bounds[0], j.bounds[1], 20, 20);
+			city.setBounds(j.bounds[0] - 10, j.bounds[1] - 10,40 , 40);
 			cityList.add(city);
 		}
 		for(int i = 0; i < PandemicGame.playerStorage.size();++i){
@@ -120,11 +136,13 @@ public class Board {
 		try {
 			GameBoard.movePlayer();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
+	/**
+	 * The graphic dialogue for choosing each role.
+	 */
 	public static void chooseRoles() {
 		ArrayList<String> chooseRoles = new ArrayList<String>();
 		chooseRoles.add("Contingency Planner");
@@ -180,6 +198,9 @@ public class Board {
 		
 	}
 
+	/**
+	 * Initializes the gameboard.
+	 */
 	public static void init() {
 		Board.frame = new GameBoard();
 		Board.frame.setSize(1200, 849);
@@ -205,7 +226,6 @@ public class Board {
 		try {
 			GameBoard.movePlayer();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		PandemicGame.nextPlayer();
@@ -217,9 +237,12 @@ public class Board {
 		try {
 			GameBoard.movePlayer();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		for (CityButton j : cityList) {
+			j.refreshInfection();
+		}
+		Board.background.repaint();
 	}
 
 	/**
@@ -233,13 +256,19 @@ public class Board {
 		
 	}
 
+	/**
+	 * @param city
+	 */
 	public static void cityFlight(CityNode city) {
 		JFrame frame = new JFrame();
 		JOptionPane.showMessageDialog(frame, "Flying to " + city.name + ".");
 	}
 
+	/**
+	 * Event card
+	 */
 	public static void useEventCard() {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		
 	}
 }

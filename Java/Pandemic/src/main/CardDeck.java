@@ -5,12 +5,12 @@ import java.util.Collections;
 
 /**
  * @author Jonathan Jungck and Greg Bollivar
- * 
- * 
- *
  */
 public class CardDeck extends CardStorage {
 	
+	/**
+	 * The array of cards is initialized.
+	 */
 	public CardDeck(){
 		this.stored = new ArrayList<Card>();
 	}
@@ -18,7 +18,6 @@ public class CardDeck extends CardStorage {
 	@Override
 	public void add(Card x) {
 		this.stored.add(x);
-		
 	}
 	
 	
@@ -61,6 +60,7 @@ public class CardDeck extends CardStorage {
 
 	/**
 	 * Gives a CardHand from the top n cards
+	 * @param i 
 	 * @param int
 	 * @return hand of size int
 	 */

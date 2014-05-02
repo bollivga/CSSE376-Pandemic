@@ -1,4 +1,5 @@
 package main;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -33,7 +34,17 @@ public class CityButton extends JButton implements ActionListener {
 	 */
 	public CityButton(CityNode city) {
 		// Set the city name to the city passed in
-		cityNode = city;
+		this.cityNode = city;
+		this.setFont(new Font("Default", 1, 10));
+		this.setText("" + (this.cityNode.infectionStatus[this.cityNode.color]));
+	}
+	
+	/**
+	 * Show infection
+	 */
+	public void refreshInfection() {
+		this.setText("" + (this.cityNode.infectionStatus[this.cityNode.color]));
+		System.out.println(this.cityNode.getName() + " " + (this.cityNode.infectionStatus[this.cityNode.color]));
 	}
 
 	/**
@@ -42,12 +53,13 @@ public class CityButton extends JButton implements ActionListener {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-
+		
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// Print the name of the city
+		this.setText("" + (this.cityNode.infectionStatus[this.cityNode.color]));
 		if (PandemicGame.p1.isFlying) {
 			if (PandemicGame.p1.tryFlyToCity(cityNode)) {
 				PandemicGame.p1.isFlying = false;

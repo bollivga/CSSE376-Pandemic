@@ -118,6 +118,9 @@ public class PandemicGame {
 		PandemicGame.infectCitiesBasedOnEpidemics();
 	}
 
+	/**
+	 * Infects the cities based on the number of epidemics you have had.
+	 */
 	public static void infectCitiesBasedOnEpidemics() {
 		InfectCityCard infected;
 		int count;
@@ -138,6 +141,9 @@ public class PandemicGame {
 		
 	}
 
+	/**
+	 * The epidemics are triggered.
+	 */
 	public static void epidemicTriggered() {
 		InfectCityCard bottom =((InfectCityCard) PandemicGame.infectDeck.getBottom());
 		bottom.infectThrice();

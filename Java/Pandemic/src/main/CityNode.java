@@ -13,8 +13,17 @@ public class CityNode {
 	String name = "";
 	int color;
 	int[] bounds;
+	/**
+	 * The infection statuses of each disease color on each city.
+	 */
 	public int[] infectionStatus = { 0, 0, 0, 0 };// blue,black,red,yellow
+	/**
+	 * The array of connected cities. It's a graph.
+	 */
 	public ArrayList<CityNode> connectedCities = new ArrayList<CityNode>();
+	/**
+	 * Checks if any of the diseases have outbroken.
+	 */
 	public boolean[] hasOutbroken = { false, false, false, false };
 
 	/**

@@ -25,7 +25,10 @@ public class CardHand extends CardStorage {
 	}
 	/**
 	 * Removes the given card from the hand and returns it.
+	 * @param removal 
 	 * @param CardToBeRemoved
+	 * @return 
+	 * @throws ArrayIndexOutOfBoundsException 
 	 */
 	public Card remove(Card removal) throws ArrayIndexOutOfBoundsException {
 		return this.stored.remove(this.stored.indexOf(removal));

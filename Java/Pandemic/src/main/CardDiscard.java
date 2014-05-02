@@ -24,15 +24,21 @@ public class CardDiscard extends CardStorage {
 	
 	/**
 	 * Removes the passed card from play. Permanently.
+	 * @param x 
 	 * @param CardToBeRemoved
 	 */
     public void removeCardFromGame(Card x){
     	this.stored.remove(this.stored.indexOf(x));
     }
+	/**
+	 * @return the card on the top of the deck
+	 */
 	public Card top() {
-		// TODO Auto-generated method stub
 		return this.stored.get(this.stored.size() - 1);
 	}
+	/**
+	 * Shuffles the deck of cards
+	 */
 	public void shuffle() {
 		Collections.shuffle(this.stored);
 	}

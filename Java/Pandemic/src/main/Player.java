@@ -16,6 +16,9 @@ public class Player {
 	CityNode currentCity;
 	CardHand hand;
 	boolean isFlying;
+	/**
+	 * The color of the player for graphical appearance.
+	 */
 	public Color color;
 	
     /**
@@ -27,28 +30,28 @@ public class Player {
         this.currentCity = PandemicGame.world.citiesSet.get("Atlanta");
         this.hand = new CardHand();
         if (this.role == 1) {
-        	color = color.GREEN;
+        	color = Color.GREEN;
         }
         else if (this.role == 2) {
-        	color = color.BLUE;
+        	color = Color.BLUE;
         }
         else if (this.role == 3) {
-        	color = color.PINK;
+        	color = Color.PINK;
         }
         else if (this.role == 4) {
-        	color = color.ORANGE;
+        	color = Color.ORANGE;
         }
         else if (this.role == 5) {
-        	color = color.CYAN;
+        	color = Color.CYAN;
         }
         else if (this.role == 6) {
-        	color = color.MAGENTA;
+        	color = Color.MAGENTA;
         }
         else if (this.role == 7) {
-        	color = color.YELLOW;
+        	color = Color.YELLOW;
         }
         else if (this.role == 8) {
-        	color = color.WHITE;
+        	color = Color.WHITE;
         }
     }
     /**
@@ -83,6 +86,7 @@ public class Player {
      * Removes the card from the hand, and plays the card's ability.
      * 
      * @param cardToUse
+     * @return whether the card may be used
      */
     public boolean useCard(Card cardToUse) {
     	if (cardToUse.getClass() == PlayerCityCard.class) {

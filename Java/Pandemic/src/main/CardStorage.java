@@ -6,6 +6,9 @@ import java.util.ArrayList;
  *
  */
 public abstract class CardStorage {
+	/**
+	 * The array of stored cards in the deck
+	 */
 	public ArrayList<Card> stored;
 	
 	/**

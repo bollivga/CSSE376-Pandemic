@@ -1,9 +1,7 @@
 package main;
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
-
 import javax.swing.JFrame;
 
 
@@ -13,6 +11,9 @@ import javax.swing.JFrame;
  */
 public class GameBoard extends JFrame {
 
+	/**
+	 * The graphics object for the game board.
+	 */
 	public Graphics g = this.getGraphics();
 	/**
 	 * Serial ID
@@ -22,7 +23,6 @@ public class GameBoard extends JFrame {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		 //Graphics2D g2 = (Graphics2D) Board.background.getGraphics();
 		 //g2.setColor(Color.GREEN);
 		 //g2.fill(new Ellipse2D.Double(PandemicGame.p1.currentCity.bounds[0], PandemicGame.p1.currentCity.bounds[1], 500, 500));

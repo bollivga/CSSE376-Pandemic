@@ -7,6 +7,9 @@ package main;
  */
 public class InfectCityCard extends Card {
 	
+	/**
+	 * The node for the city.
+	 */
 	public CityNode city;
 	
 	/**
