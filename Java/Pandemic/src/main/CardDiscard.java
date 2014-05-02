@@ -1,5 +1,6 @@
 package main;
 import java.util.ArrayList;
+import java.util.Collections;
 
 
 /**
@@ -31,5 +32,8 @@ public class CardDiscard extends CardStorage {
 	public Card top() {
 		// TODO Auto-generated method stub
 		return this.stored.get(this.stored.size() - 1);
+	}
+	public void shuffle() {
+		Collections.shuffle(this.stored);
 	}
 }

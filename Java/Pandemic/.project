@@ -14,11 +14,4 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>src/player.jpg</name>
-			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/jungckjp/CSSE376-Pandemic/Java/Pandemic/src/player.jpg</locationURI>
-		</link>
-	</linkedResources>
 </projectDescription>

@@ -1,4 +1,5 @@
 package main;
+
 import java.util.ArrayList;
 
 /**
@@ -62,9 +63,15 @@ public class PandemicGame {
 	 */
 	public static int currentPlayer;
 	/**
-	 * The list of card buttons for the current player. Changes with each player.
+	 * The list of card buttons for the current player. Changes with each
+	 * player.
 	 */
 	public static ArrayList<CardButton> handList = new ArrayList<CardButton>();
+	
+	/**
+	 * The current epidemic count
+	 */
+	private static int epidemicCount;
 
 	/**
 	 * The main game class initializes the game.
@@ -84,15 +91,23 @@ public class PandemicGame {
 		PandemicGame.outbreakCount = 0;
 		PandemicGame.playerDeck.shuffle();
 		PandemicGame.infectDeck.shuffle();
-		
+		PandemicGame.epidemicCount = 0;
+
 	}
 
 	/**
 	 * Switches control to the next player.
 	 */
 	public static void nextPlayer() {
-		PandemicGame.p1.addToHand(PandemicGame.playerDeck.draw());
-		PandemicGame.p1.addToHand(PandemicGame.playerDeck.draw());
+		for (int i = 0; i < 2; ++i) {
+			Card draw = PandemicGame.playerDeck.draw();
+			if (draw.getClass().equals(EpidemicCard.class)) {
+				PandemicGame.epidemicTriggered();
+				--i;
+			} else {
+				PandemicGame.p1.addToHand(draw);
+			}
+		}
 		++PandemicGame.currentPlayer;
 		if (PandemicGame.currentPlayer == PandemicGame.playerStorage.size()) {
 			PandemicGame.currentPlayer = 0;
@@ -100,8 +115,38 @@ public class PandemicGame {
 		PandemicGame.p1 = PandemicGame.playerStorage
 				.get(PandemicGame.currentPlayer);
 		PandemicGame.currentMoves = 0;
+		PandemicGame.infectCitiesBasedOnEpidemics();
 	}
-	
+
+	public static void infectCitiesBasedOnEpidemics() {
+		InfectCityCard infected;
+		int count;
+		if(PandemicGame.epidemicCount < 3){
+			count = 2;
+			
+		}else if(PandemicGame.epidemicCount < 5){
+			count = 3;
+		}else{
+			count = 4;
+		}
+		for(int i = 0; i < count; ++i){
+			infected = (InfectCityCard) PandemicGame.infectDeck.draw();
+			infected.infect();
+			PandemicGame.infectionDiscard.add(infected);
+			System.out.println(infected.toString()+ " infected.");
+		}
+		
+	}
+
+	public static void epidemicTriggered() {
+		InfectCityCard bottom =((InfectCityCard) PandemicGame.infectDeck.getBottom());
+		bottom.infectThrice();
+		PandemicGame.infectionDiscard.add(bottom);
+		PandemicGame.infectionDiscard.shuffle();
+		PandemicGame.infectDeck.addAll(PandemicGame.infectionDiscard);
+		++PandemicGame.epidemicCount;
+	}
+
 	/**
 	 * 
 	 */
@@ -110,27 +155,30 @@ public class PandemicGame {
 			for (Player i : PandemicGame.playerStorage) {
 				i.hand = playerDeck.getHand(2);
 			}
-		}else if (PandemicGame.playerStorage.size() == 3) {
+		} else if (PandemicGame.playerStorage.size() == 3) {
 			for (Player i : PandemicGame.playerStorage) {
 				i.hand = PandemicGame.playerDeck.getHand(3);
 			}
-		}
-		else {
+		} else {
 			for (Player i : PandemicGame.playerStorage) {
 				i.hand = PandemicGame.playerDeck.getHand(4);
 			}
 		}
-		
+
 		PandemicGame.p1 = PandemicGame.playerStorage.get(0);
+		for (int i = 0; i < 4; ++i) {
+			PandemicGame.playerDeck.add(new EpidemicCard());
+		}
+		PandemicGame.playerDeck.shuffle();
 	}
 
 	/**
 	 * Adds the player passed in by game creation.
 	 * 
 	 * @param x
-	 * @throws Exception 
+	 * @throws Exception
 	 */
-	public static void addPlayer(String x){
+	public static void addPlayer(String x) {
 		int y = 0;
 		if (x == "Contingency Planner") {
 			y = 0;
@@ -147,7 +195,8 @@ public class PandemicGame {
 		} else if (x == "Scientist") {
 			y = 6;
 		} else {
-			//do nothing; illegal pass, but ignoring is easier than throwing an exception for now
+			// do nothing; illegal pass, but ignoring is easier than throwing an
+			// exception for now
 			return;
 		}
 		PandemicGame.playerStorage.add(new Player(y));

@@ -6,5 +6,8 @@ package main;
  *
  */
 public class EpidemicCard extends Card {
-
+	
+	
+	
+	
 }
