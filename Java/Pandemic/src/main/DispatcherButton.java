@@ -7,6 +7,10 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+/**
+ * @author Jonathan Jungck and Greg Bollivar
+ * 
+ */
 public class DispatcherButton extends JButton implements ActionListener {
 
 	/**
@@ -15,6 +19,9 @@ public class DispatcherButton extends JButton implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	private Player player;
 
+	/**
+	 * @param player
+	 */
 	public DispatcherButton(Player player) {
 		this.player = player;
 		this.setFont(new Font("Default", 1, 10));

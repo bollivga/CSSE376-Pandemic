@@ -1,7 +1,9 @@
 package tests;
 
 import static org.junit.Assert.*;
+import main.AirliftCard;
 import main.Board;
+import main.Card;
 import main.CardHand;
 import main.CityNode;
 import main.GameBoard;
@@ -35,6 +37,12 @@ public class HandDeckTests {
 		PandemicGame.handOutCards();
 		Board.runGame();
 		GameBoard.redrawCards();
+	}
+	
+	@Test
+	public void makeAirlift() {
+		Card card = PandemicGame.p1.hand.stored.get(0);
+		AirliftCard alc = new AirliftCard(card, PandemicGame.p1);
 	}
 
 }

@@ -74,6 +74,10 @@ public class CityButton extends JButton implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// Print the name of the city
 		this.setText("" + (this.cityNode.infectionStatus[this.cityNode.color]));
+		if (AirliftCard.isFlying) {
+			PandemicGame.controlledPlayer.currentCity = this.cityNode;
+			AirliftCard.isFlying = false;
+		}
 		if (PandemicGame.p1.isFlying) {
 			if (PandemicGame.controlledPlayer.tryFlyToCity(cityNode)) {
 				PandemicGame.p1.isFlying = false;

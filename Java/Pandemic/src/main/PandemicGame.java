@@ -34,9 +34,10 @@ public class PandemicGame {
 	 * The first player.
 	 */
 	public static Player p1;
-	
+
 	/**
-	 * Controlled player for the Dispatcher, otherwise is the p1, can't cure cities though.
+	 * Controlled player for the Dispatcher, otherwise is the p1, can't cure
+	 * cities though.
 	 */
 	public static Player controlledPlayer;
 	/**
@@ -238,6 +239,9 @@ public class PandemicGame {
 			infected.infect();
 			PandemicGame.infectionDiscard.add(infected);
 			System.out.println(infected.toString() + " infected x1.");
+		}
+		for (CityButton j : Board.cityList) {
+			j.setText("" + (j.cityNode.infectionStatus[j.cityNode.color]));
 		}
 	}
 }

@@ -14,7 +14,7 @@ import java.awt.Color;
 public class Player {
 	private int role;
 	CityNode currentCity;
-	CardHand hand;
+	public CardHand hand;
 	boolean isFlying;
 	/**
 	 * The color of the player for graphical appearance.

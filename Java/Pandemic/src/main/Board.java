@@ -113,11 +113,10 @@ public class Board {
 			x.addActionListener(x);
 			x.setBounds(50, 10 + (PandemicGame.playerStorage.indexOf(p) * 40),
 					150, 40);
-			if(PandemicGame.p1.getRole() == 1){
+			if (PandemicGame.p1.getRole() == 1) {
 				background.add(x);
 			}
 		}
-		GameBoard.redrawCards();
 		// int k = 0;
 		// for (Card j : PandemicGame.p1.hand.stored) {
 		// k++;

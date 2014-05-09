@@ -131,21 +131,33 @@ public class CityGraph {
 		paris.addConnection(milan);
 		essen.addConnection(milan);
 		essen.addConnection(st_petersburg);
+
+		// Bridge between black and blue
+		madrid.addConnection(algiers);
+		algiers.addConnection(paris);
+
+		// Connect all blacks algiers.addConnection(madrid);
+		algiers.addConnection(paris);
+		algiers.addConnection(istanbul);
+		algiers.addConnection(cairo);
+		istanbul.addConnection(milan);
+		istanbul.addConnection(cairo);
+		istanbul.addConnection(baghdad);
+		istanbul.addConnection(moscow);
+		istanbul.addConnection(st_petersburg);
+		cairo.addConnection(baghdad);
+		cairo.addConnection(riyadh);
+		moscow.addConnection(st_petersburg);
+		baghdad.addConnection(riyadh);
+		// baghdad.addConnection(karachi);
+		baghdad.addConnection(tehran);
+		// riyadh.addConnection(karachi);
+		// tehran.addConnection(karachi); tehran.addConnection(delhi);
+		// karachi.addConnection(delhi); karachi.addConnection(mumbai);
+		// delhi.addConnection(kolkata); delhi.addConnection(mumbai);
+		// mumbai.addConnection(chennai);
+		// kolkata.addConnection(chennai);
 		/*
-		 * // Connect all blacks algiers.addConnection(madrid);
-		 * algiers.addConnection(paris); algiers.addConnection(istanbul);
-		 * algiers.addConnection(cairo); istanbul.addConnection(milan);
-		 * istanbul.addConnection(cairo); istanbul.addConnection(baghdad);
-		 * istanbul.addConnection(moscow);
-		 * istanbul.addConnection(st_petersburg); cairo.addConnection(baghdad);
-		 * cairo.addConnection(riyadh); moscow.addConnection(st_petersburg);
-		 * baghdad.addConnection(riyadh); baghdad.addConnection(karachi);
-		 * baghdad.addConnection(tehran); riyadh.addConnection(karachi);
-		 * tehran.addConnection(karachi); tehran.addConnection(delhi);
-		 * karachi.addConnection(delhi); karachi.addConnection(mumbai);
-		 * delhi.addConnection(kolkata); delhi.addConnection(mumbai);
-		 * mumbai.addConnection(chennai); kolkata.addConnection(chennai);
-		 * 
 		 * // Connect all reds jakarta.addConnection(bangkok);
 		 * jakarta.addConnection(ho_chi_minh); jakarta.addConnection(chennai);
 		 * jakarta.addConnection(sydney); sydney.addConnection(manila);
