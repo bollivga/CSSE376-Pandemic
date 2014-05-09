@@ -1,4 +1,6 @@
 package main;
+
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,7 +27,6 @@ public class CityButton extends JButton implements ActionListener {
 	 * This is the node for the city that can be accessed by the board.
 	 */
 	public CityNode cityNode;
-	
 
 	/**
 	 * Sets the city based on the node passed in on initialization.
@@ -37,14 +38,27 @@ public class CityButton extends JButton implements ActionListener {
 		this.cityNode = city;
 		this.setFont(new Font("Default", 1, 10));
 		this.setText("" + (this.cityNode.infectionStatus[this.cityNode.color]));
+
+		if (this.cityNode.color == 0) {
+			this.setForeground(Color.WHITE);
+			this.setBackground(Color.getHSBColor((float) (225.0 / 360.0),
+					(float) 0.8, (float) 0.62));
+		} else if (this.cityNode.color == 1) {
+			this.setForeground(Color.WHITE);
+			this.setBackground(Color.DARK_GRAY);
+		} else if (this.cityNode.color == 2) {
+			this.setForeground(Color.WHITE);
+			this.setBackground(Color.getHSBColor(0, 40, 158));
+		}
 	}
-	
+
 	/**
 	 * Show infection
 	 */
 	public void refreshInfection() {
 		this.setText("" + (this.cityNode.infectionStatus[this.cityNode.color]));
-		System.out.println(this.cityNode.getName() + " " + (this.cityNode.infectionStatus[this.cityNode.color]));
+		System.out.println(this.cityNode.getName() + " "
+				+ (this.cityNode.infectionStatus[this.cityNode.color]));
 	}
 
 	/**
@@ -53,7 +67,7 @@ public class CityButton extends JButton implements ActionListener {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		
+
 	}
 
 	@Override

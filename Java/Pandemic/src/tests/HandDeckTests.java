@@ -1,4 +1,5 @@
 package tests;
+
 import static org.junit.Assert.*;
 import main.Board;
 import main.CardHand;
@@ -12,17 +13,14 @@ import main.PlayerCityCard;
 import org.junit.Before;
 import org.junit.Test;
 
-
 /**
  * @author Jonathan Jungck and Greg Bollivar
- *
- * Test class for the city graph to test functionality.
- *
+ * 
+ *         Test class for the city graph to test functionality.
+ * 
  */
 @SuppressWarnings("unused")
 public class HandDeckTests {
-
-	
 
 	/**
 	 * Test whether a city is connected to another city.
@@ -38,11 +36,5 @@ public class HandDeckTests {
 		Board.runGame();
 		GameBoard.redrawCards();
 	}
-	
-	
-	
-	
-	
-	
-	
+
 }

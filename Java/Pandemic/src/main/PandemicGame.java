@@ -67,7 +67,7 @@ public class PandemicGame {
 	 * player.
 	 */
 	public static ArrayList<CardButton> handList = new ArrayList<CardButton>();
-	
+
 	/**
 	 * The current epidemic count
 	 */
@@ -124,28 +124,29 @@ public class PandemicGame {
 	public static void infectCitiesBasedOnEpidemics() {
 		InfectCityCard infected;
 		int count;
-		if(PandemicGame.epidemicCount < 3){
+		if (PandemicGame.epidemicCount < 3) {
 			count = 2;
-			
-		}else if(PandemicGame.epidemicCount < 5){
+
+		} else if (PandemicGame.epidemicCount < 5) {
 			count = 3;
-		}else{
+		} else {
 			count = 4;
 		}
-		for(int i = 0; i < count; ++i){
+		for (int i = 0; i < count; ++i) {
 			infected = (InfectCityCard) PandemicGame.infectDeck.draw();
 			infected.infect();
 			PandemicGame.infectionDiscard.add(infected);
-			System.out.println(infected.toString()+ " infected.");
+			System.out.println(infected.toString() + " infected.");
 		}
-		
+
 	}
 
 	/**
 	 * The epidemics are triggered.
 	 */
 	public static void epidemicTriggered() {
-		InfectCityCard bottom =((InfectCityCard) PandemicGame.infectDeck.getBottom());
+		InfectCityCard bottom = ((InfectCityCard) PandemicGame.infectDeck
+				.getBottom());
 		bottom.infectThrice();
 		PandemicGame.infectionDiscard.add(bottom);
 		PandemicGame.infectionDiscard.shuffle();

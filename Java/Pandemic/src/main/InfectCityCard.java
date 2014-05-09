@@ -1,17 +1,18 @@
 package main;
+
 /**
  * @author Jonathan Jungck and Greg Bollivar
  * 
- * Infects the city based on the city of the card.
- *
+ *         Infects the city based on the city of the card.
+ * 
  */
 public class InfectCityCard extends Card {
-	
+
 	/**
 	 * The node for the city.
 	 */
 	public CityNode city;
-	
+
 	/**
 	 * Infects the city on the card.
 	 * 
@@ -20,33 +21,36 @@ public class InfectCityCard extends Card {
 	public InfectCityCard(CityNode x) {
 		this.city = x;
 	}
-	
-	
+
 	/**
 	 * Infects this card's city
-	 * @return  outbreak?
+	 * 
+	 * @return outbreak?
 	 */
-	public boolean infect(){
+	public boolean infect() {
 		return this.city.infectOnce();
 	}
+
 	/**
 	 * Infects this card's city twice; used only for setup
+	 * 
 	 * @return outbreak?
 	 */
-	public boolean infectTwice(){
+	public boolean infectTwice() {
 		return this.city.infectTwice();
 	}
+
 	/**
 	 * Infects this card's city three times; used for setup and epidemics.
+	 * 
 	 * @return outbreak?
 	 */
-	public boolean infectThrice(){
+	public boolean infectThrice() {
 		return this.city.infectThrice();
 	}
-	
+
 	@Override
-	public String toString()
-	{
+	public String toString() {
 		return this.city.toString();
 	}
 }

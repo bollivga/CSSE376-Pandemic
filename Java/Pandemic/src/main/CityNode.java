@@ -1,13 +1,15 @@
 package main;
+
 import java.util.ArrayList;
 
 /**
  * @author Jonathan Jungck and Greg Bollivar
  * 
- * The CityNode class for Pandemic. Each City has a node, which contains it's
- * bounds on the board (x and y coordinates) as well as the city's name and disease
- * color and number of diseases. Each city also has an ArrayList of connected cities.
- *
+ *         The CityNode class for Pandemic. Each City has a node, which contains
+ *         it's bounds on the board (x and y coordinates) as well as the city's
+ *         name and disease color and number of diseases. Each city also has an
+ *         ArrayList of connected cities.
+ * 
  */
 public class CityNode {
 	String name = "";
@@ -62,7 +64,8 @@ public class CityNode {
 	}
 
 	/**
-	 * @return true if there is an outbreak. Used every time there is an infection.
+	 * @return true if there is an outbreak. Used every time there is an
+	 *         infection.
 	 */
 	public boolean infectOnce() {
 		// Returns true if there is an outbreak
@@ -102,7 +105,8 @@ public class CityNode {
 	}
 
 	/**
-	 * @return Infects a city twice. Used during startup when cities are set up with infections.
+	 * @return Infects a city twice. Used during startup when cities are set up
+	 *         with infections.
 	 */
 	public boolean infectTwice() {
 		// Double infect
@@ -133,18 +137,17 @@ public class CityNode {
 	}
 
 	/**
-	 * Resets all booleans that state outbreaks. Used at the end of every infection phase.
+	 * Resets all booleans that state outbreaks. Used at the end of every
+	 * infection phase.
 	 */
 	public void resetOutbreaks() {
 		for (int i = 0; i < this.hasOutbroken.length; ++i) {
 			this.hasOutbroken[i] = false;
 		}
 	}
-	
-	
-	
+
 	@Override
-	public String toString(){
+	public String toString() {
 		return this.name;
 	}
 }

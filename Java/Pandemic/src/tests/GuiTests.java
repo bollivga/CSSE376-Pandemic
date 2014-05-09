@@ -9,7 +9,7 @@ import org.junit.Test;
 
 /**
  * @author Jonathan Jungck and Greg Bollivar
- *
+ * 
  */
 public class GuiTests {
 
@@ -17,26 +17,27 @@ public class GuiTests {
 	 * Tests that the board is created.
 	 */
 	@Test
-	public void testBoardShowsUp(){
+	public void testBoardShowsUp() {
 		Board.init();
 		assertFalse(PandemicGame.world.equals(null));
 	}
-	
+
 	/**
 	 * Tests
 	 */
 	@Test
-	public void testButtonShowsCorrectInfections(){
+	public void testButtonShowsCorrectInfections() {
 		for (CityButton j : Board.cityList) {
-			assertEquals("" + j.cityNode.infectionStatus[j.cityNode.color], j.getText());
+			assertEquals("" + j.cityNode.infectionStatus[j.cityNode.color],
+					j.getText());
 		}
 	}
-	
+
 	/**
 	 * Checks what happens when you click on the current city.
 	 */
 	@Test
-	public void testClickCurrentCity(){
+	public void testClickCurrentCity() {
 		new PandemicGame();
 		Board.init();
 		PandemicGame.addPlayer("Medic");
@@ -47,7 +48,7 @@ public class GuiTests {
 		Board.cityList.get(0).doClick();
 		Board.changePlayer();
 	}
-	
+
 	/**
 	 * Checks a charter flight.
 	 */
@@ -56,21 +57,22 @@ public class GuiTests {
 		new PandemicGame();
 		Board.charterFlight(Board.cityList.get(0).cityNode);
 	}
-	
+
 	/**
 	 * Test choosing players
 	 */
 	@Test
-	public void testChoosing(){
+	public void testChoosing() {
 		new PandemicGame();
 		Board.chooseRoles();
 		assertFalse(PandemicGame.playerStorage.isEmpty());
 	}
+
 	/**
 	 * Tests whether everything runs
 	 */
 	@Test
-	public void testRunning(){
+	public void testRunning() {
 		new PandemicGame();
 		Board.init();
 		PandemicGame.addPlayer("Medic");
