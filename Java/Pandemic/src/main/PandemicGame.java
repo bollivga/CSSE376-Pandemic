@@ -119,6 +119,8 @@ public class PandemicGame {
 		}
 		PandemicGame.p1 = PandemicGame.playerStorage
 				.get(PandemicGame.currentPlayer);
+		PandemicGame.controlledPlayer = PandemicGame.playerStorage
+				.get(PandemicGame.currentPlayer);
 		PandemicGame.currentMoves = 0;
 		PandemicGame.infectCitiesBasedOnEpidemics();
 	}
@@ -179,6 +181,7 @@ public class PandemicGame {
 		}
 
 		PandemicGame.p1 = PandemicGame.playerStorage.get(0);
+		PandemicGame.controlledPlayer = PandemicGame.playerStorage.get(0);
 		for (int i = 0; i < 4; ++i) {
 			PandemicGame.playerDeck.add(new EpidemicCard());
 		}

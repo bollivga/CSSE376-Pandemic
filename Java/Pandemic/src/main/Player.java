@@ -29,7 +29,9 @@ public class Player {
 		this.role = roleNumber;
 		this.currentCity = PandemicGame.world.citiesSet.get("Atlanta");
 		this.hand = new CardHand();
-		if (this.role == 1) {
+		if (this.role == 0) {
+			color = Color.black;
+		} else if (this.role == 1) {
 			color = Color.GREEN;
 		} else if (this.role == 2) {
 			color = Color.BLUE;
@@ -47,7 +49,7 @@ public class Player {
 			color = Color.WHITE;
 		}
 	}
-	
+
 	public int getRole() {
 		return this.role;
 	}
@@ -94,7 +96,7 @@ public class Player {
 				this.hand.remove(cardToUse);
 				return false;
 			} else {
-				if (this.tryFlyToCity(city)) {
+				if (PandemicGame.controlledPlayer.tryFlyToCity(city)) {
 					++PandemicGame.currentMoves;
 					if (PandemicGame.currentMoves == 4) {
 						Board.changePlayer();

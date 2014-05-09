@@ -65,9 +65,14 @@ public class Board {
 	 */
 	public static ArrayList<CityButton> cityList = new ArrayList<CityButton>();
 	/**
-	 * The list of player ellipses in the game. Unnused as of yet.
+	 * The list of player ellipses in the game. Unused as of yet.
 	 */
-	public static ArrayList<Ellipse2D.Double> player;
+	public static ArrayList<Ellipse2D.Double> players;
+
+	/**
+	 * The buttons used by the Dispatcher special ability.
+	 */
+	public static ArrayList<DispatcherButton> dispatcherList = new ArrayList<DispatcherButton>();
 
 	/**
 	 * The main class for the board. Draws the frame and background and iterates
@@ -102,8 +107,15 @@ public class Board {
 			city.setBounds(j.bounds[0] - 10, j.bounds[1] - 10, 40, 40);
 			cityList.add(city);
 		}
-		for (int i = 0; i < PandemicGame.playerStorage.size(); ++i) {
-
+		for (Player p : PandemicGame.playerStorage) {
+			DispatcherButton x = new DispatcherButton(p);
+			Board.dispatcherList.add(x);
+			x.addActionListener(x);
+			x.setBounds(50, 10 + (PandemicGame.playerStorage.indexOf(p) * 40),
+					150, 40);
+			if(PandemicGame.p1.getRole() == 1){
+				background.add(x);
+			}
 		}
 		GameBoard.redrawCards();
 		// int k = 0;
@@ -238,7 +250,11 @@ public class Board {
 	public static void changePlayer() {
 		// Gives a notification that it is the next player's turn.
 		JFrame frame = new JFrame();
-
+		if (PandemicGame.p1.getRole() == 1) {
+			for (DispatcherButton x : Board.dispatcherList) {
+				background.remove(x);
+			}
+		}
 		try {
 			GameBoard.movePlayer();
 		} catch (InterruptedException e) {
@@ -256,7 +272,11 @@ public class Board {
 						+ "'s turn has ended. It is now the " + nextPlayer
 						+ "'s turn.");
 		GameBoard.redrawCards();
-
+		if (PandemicGame.p1.getRole() == 1) {
+			for (DispatcherButton x : Board.dispatcherList) {
+				background.add(x);
+			}
+		}
 		try {
 			GameBoard.movePlayer();
 		} catch (InterruptedException e) {
