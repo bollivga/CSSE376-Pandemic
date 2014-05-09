@@ -92,7 +92,7 @@ public class CityButton extends JButton implements ActionListener {
 			if (!PandemicGame.p1.tryMoveToCity(cityNode)) {
 				System.out.println("Move failed, too far away or same city");
 				if (PandemicGame.p1.currentCity == this.cityNode) {
-					if (PandemicGame.p1.getRole() == 1) {
+					if (PandemicGame.p1.getRole() == 2) {
 						this.removeInfections(true);
 					} else {
 						// if has cured true

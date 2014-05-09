@@ -34,6 +34,11 @@ public class PandemicGame {
 	 * The first player.
 	 */
 	public static Player p1;
+	
+	/**
+	 * Controlled player for the Dispatcher, otherwise is the p1, can't cure cities though.
+	 */
+	public static Player controlledPlayer;
 	/**
 	 * The number of outbreaks that have occurred.
 	 */
@@ -92,7 +97,7 @@ public class PandemicGame {
 		PandemicGame.playerDeck.shuffle();
 		PandemicGame.infectDeck.shuffle();
 		PandemicGame.epidemicCount = 0;
-
+		PandemicGame.world.getCity("Atlanta").hasResearchStation = true;
 	}
 
 	/**
@@ -145,6 +150,7 @@ public class PandemicGame {
 	 * The epidemics are triggered.
 	 */
 	public static void epidemicTriggered() {
+		System.out.println("EPIDEMIC");
 		InfectCityCard bottom = ((InfectCityCard) PandemicGame.infectDeck
 				.getBottom());
 		bottom.infectThrice();
@@ -207,5 +213,28 @@ public class PandemicGame {
 			return;
 		}
 		PandemicGame.playerStorage.add(new Player(y));
+	}
+
+	public static void setupInfections() {
+		int count = 3;
+		InfectCityCard infected;
+		for (int i = 0; i < count; ++i) {
+			infected = (InfectCityCard) PandemicGame.infectDeck.draw();
+			infected.infectThrice();
+			PandemicGame.infectionDiscard.add(infected);
+			System.out.println(infected.toString() + " infected x3.");
+		}
+		for (int i = 0; i < count; ++i) {
+			infected = (InfectCityCard) PandemicGame.infectDeck.draw();
+			infected.infectTwice();
+			PandemicGame.infectionDiscard.add(infected);
+			System.out.println(infected.toString() + " infected x2.");
+		}
+		for (int i = 0; i < count; ++i) {
+			infected = (InfectCityCard) PandemicGame.infectDeck.draw();
+			infected.infect();
+			PandemicGame.infectionDiscard.add(infected);
+			System.out.println(infected.toString() + " infected x1.");
+		}
 	}
 }

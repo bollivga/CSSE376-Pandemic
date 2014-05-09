@@ -143,6 +143,7 @@ public class Board {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+		PandemicGame.setupInfections();
 	}
 
 	/**

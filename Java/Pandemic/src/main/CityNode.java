@@ -17,6 +17,7 @@ public class CityNode {
 	 * The color of the city infection disease.
 	 */
 	public int color;
+	public boolean hasResearchStation = false;
 	int[] bounds;
 	/**
 	 * The infection statuses of each disease color on each city.
