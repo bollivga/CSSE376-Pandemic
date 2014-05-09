@@ -84,13 +84,13 @@ public class CityGraph {
 		CityGraph.cities.add(milan);
 
 		// Add all blacks to storage
-		this.cities.add(algiers);
-		this.cities.add(istanbul);
-		this.cities.add(moscow);
-		this.cities.add(cairo);
-		this.cities.add(baghdad);
-		this.cities.add(tehran);
-		this.cities.add(riyadh);
+		CityGraph.cities.add(algiers);
+		CityGraph.cities.add(istanbul);
+		CityGraph.cities.add(moscow);
+		CityGraph.cities.add(cairo);
+		CityGraph.cities.add(baghdad);
+		CityGraph.cities.add(tehran);
+		CityGraph.cities.add(riyadh);
 		// this.cities.add(karachi);
 		// this.cities.add(delhi);
 		// this.cities.add(mumbai);

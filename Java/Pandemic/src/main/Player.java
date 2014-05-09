@@ -47,6 +47,10 @@ public class Player {
 			color = Color.WHITE;
 		}
 	}
+	
+	public int getRole() {
+		return this.role;
+	}
 
 	/**
 	 * @param x

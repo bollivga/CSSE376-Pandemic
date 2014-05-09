@@ -150,4 +150,27 @@ public class CityNode {
 	public String toString() {
 		return this.name;
 	}
+
+	public boolean cureOnce() {
+		// TODO Auto-generated method stub
+		if (this.infectionStatus[this.color] == 0) {
+				System.out.println("This city is already safe");
+				return false;
+			} else {
+				System.out.println("remove");
+				--this.infectionStatus[color];
+			}
+		return true;
+	}
+
+	public boolean cureAll() {
+		if (this.infectionStatus[this.color] == 0) {
+			System.out.println("This city is already safe");
+			return false;
+		} else {
+			System.out.println("remove all");
+			this.infectionStatus[color] = 0;
+		}
+	return true;
+	}
 }

@@ -91,7 +91,14 @@ public class CityButton extends JButton implements ActionListener {
 		} else {
 			if (!PandemicGame.p1.tryMoveToCity(cityNode)) {
 				System.out.println("Move failed, too far away or same city");
-				sameCity();
+				if (PandemicGame.p1.currentCity == this.cityNode) {
+					if (PandemicGame.p1.getRole() == 1) {
+						this.removeInfections(true);
+					} else {
+						// if has cured true
+						this.removeInfections(false);
+					}
+				}
 			} else {
 				++PandemicGame.currentMoves;
 				System.out.println(PandemicGame.p1.toString()
@@ -114,6 +121,46 @@ public class CityButton extends JButton implements ActionListener {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+	}
+
+	private void removeInfections(boolean curedOrMedic) {
+		System.out.println(this.cityNode.toString()+" cured.");
+		if (!curedOrMedic) {
+			if (this.cityNode.cureOnce()) {
+				this.setText("" + (this.cityNode.infectionStatus[this.cityNode.color]));
+				++PandemicGame.currentMoves;
+				System.out.println(PandemicGame.p1.toString()
+						+ " has moved to " + cityNode.getName() + ". "
+						+ (4 - PandemicGame.currentMoves) + " moves left.");
+				if (PandemicGame.currentMoves == 4) {
+					Board.changePlayer();
+					try {
+						GameBoard.movePlayer();
+					} catch (InterruptedException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+			}
+		} else {
+			if (this.cityNode.cureAll()) {
+				this.setText("" + (this.cityNode.infectionStatus[this.cityNode.color]));
+				++PandemicGame.currentMoves;
+				System.out.println(PandemicGame.p1.toString()
+						+ " has moved to " + cityNode.getName() + ". "
+						+ (4 - PandemicGame.currentMoves) + " moves left.");
+				if (PandemicGame.currentMoves == 4) {
+					Board.changePlayer();
+					try {
+						GameBoard.movePlayer();
+					} catch (InterruptedException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+			}
+		}
+
 	}
 
 	private String sameCity() {
