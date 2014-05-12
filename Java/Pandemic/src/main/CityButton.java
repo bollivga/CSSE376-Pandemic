@@ -88,10 +88,15 @@ public class CityButton extends JButton implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// Refreshes the infection rate on the city clicked on.
 		this.setText("" + (this.cityNode.infectionStatus[this.cityNode.color]));
+
+		// If the airlift card is in use, fly the player to that city and end
+		// the card.
 		if (AirliftCard.isFlying) {
 			PandemicGame.controlledPlayer.currentCity = this.cityNode;
 			AirliftCard.isFlying = false;
 		}
+
+		// If the player is flying from that city, try flying to the new city.
 		if (PandemicGame.p1.isFlying) {
 			if (PandemicGame.controlledPlayer.tryFlyToCity(cityNode)) {
 				PandemicGame.p1.isFlying = false;
@@ -102,25 +107,44 @@ public class CityButton extends JButton implements ActionListener {
 				if (PandemicGame.currentMoves == 4) {
 					Board.changePlayer();
 				}
+				// If the player can't fly to that city, tell them you can't
+				// fly.
 			} else {
 				System.out.println("You are already at this city!");
 				sameCity();
 			}
-		} else {
+		}
+
+		// If the player is not flying, try movement or cure
+		else {
+
+			// If the player can't move to that city, try cure.
 			if (!PandemicGame.controlledPlayer.tryMoveToCity(cityNode)) {
 				System.out.printf(
 						"Move failed to %s, too far away or same city\n",
 						this.cityNode.toString());
+
+				// Try curing the city if the city clicked on was the current
+				// city.
 				if (PandemicGame.controlledPlayer.currentCity == this.cityNode
 						&& PandemicGame.p1 == PandemicGame.controlledPlayer) {
+					// if the player is the medic, cure all
 					if (PandemicGame.p1.getRole() == 2) {
 						this.removeInfections(true);
 					} else {
-						// TODO if has cured true
-						this.removeInfections(false);
+						if (PandemicGame.isCured[this.cityNode.color]) {
+							this.removeInfections(true);
+						} else {
+							this.removeInfections(false);
+						}
+
 					}
+
+					// If it was a proper move, move the player to the new city.
 				} else if (PandemicGame.controlledPlayer.currentCity == this.cityNode) {
 					System.out.println("Cannot cause another player to cure");
+
+					// If those are not the case, check dispatcher movement.
 				} else if (PandemicGame.controlledPlayer.currentCity != this.cityNode
 						&& PandemicGame.p1.getRole() == 1) {
 					boolean canGoToAlly = false;
@@ -148,6 +172,8 @@ public class CityButton extends JButton implements ActionListener {
 					}
 
 				}
+
+				// If it worked, move the player and up the number of moves.
 			} else {
 				++PandemicGame.currentMoves;
 				System.out.println(PandemicGame.controlledPlayer.toString()
@@ -200,6 +226,8 @@ public class CityButton extends JButton implements ActionListener {
 				System.out.println(PandemicGame.p1.toString()
 						+ " has moved to " + cityNode.getName() + ". "
 						+ (4 - PandemicGame.currentMoves) + " moves left.");
+
+				// Change players if they are out of moves.
 				if (PandemicGame.currentMoves == 4) {
 					Board.changePlayer();
 					try {
