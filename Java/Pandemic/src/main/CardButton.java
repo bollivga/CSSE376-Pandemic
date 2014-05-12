@@ -1,5 +1,6 @@
 package main;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -37,6 +38,32 @@ public class CardButton extends JButton implements ActionListener {
 		this.card = card;
 		this.setText(card.toString());
 		PandemicGame.handList.add(this);
+
+		// Blue Cities
+		if (((PlayerCityCard) this.card).city.color == 0) {
+			this.setForeground(Color.WHITE);
+			this.setBackground(Color.getHSBColor((float) (225.0 / 360.0),
+					(float) 0.8, (float) 0.62));
+		}
+
+		// Black Cities
+		else if (((PlayerCityCard) this.card).city.color == 1) {
+			this.setForeground(Color.WHITE);
+			this.setBackground(Color.DARK_GRAY);
+		}
+
+		// Red Cities
+		else if (((PlayerCityCard) this.card).city.color == 2) {
+			this.setForeground(Color.WHITE);
+			this.setBackground(Color.getHSBColor(0, 40, 158));
+		}
+
+		// Yellow Cities
+		else {
+			this.setForeground(Color.WHITE);
+			this.setBackground(Color.getHSBColor((float) (60.0 / 360.0),
+					(float) .78, (float) 0.46));
+		}
 	}
 
 	/**
