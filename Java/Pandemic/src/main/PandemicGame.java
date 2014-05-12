@@ -219,6 +219,9 @@ public class PandemicGame {
 		PandemicGame.playerStorage.add(new Player(y));
 	}
 
+	/**
+	 * Sets up the infections at the start of the game.
+	 */
 	public static void setupInfections() {
 		int count = 3;
 		InfectCityCard infected;

@@ -14,6 +14,9 @@ import java.awt.Color;
 public class Player {
 	private int role;
 	CityNode currentCity;
+	/**
+	 * The hand of cards for that player
+	 */
 	public CardHand hand;
 	boolean isFlying;
 	/**
@@ -50,6 +53,9 @@ public class Player {
 		}
 	}
 
+	/**
+	 * @return the role of the player
+	 */
 	public int getRole() {
 		return this.role;
 	}
@@ -151,5 +157,13 @@ public class Player {
 		} else {
 			return "Player";
 		}
+	}
+
+	/**
+	 * To be created. Removes the cards used to create the cure.
+	 */
+	public void removeCureCards() {
+		// TODO Auto-generated method stub
+
 	}
 }

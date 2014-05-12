@@ -32,7 +32,6 @@ public class GameBoard extends JFrame implements MouseListener {
 		// g2.fill(new Ellipse2D.Double(PandemicGame.p1.currentCity.bounds[0],
 		// PandemicGame.p1.currentCity.bounds[1], 500, 500));
 		// Board.background.repaint();
-
 	}
 
 	/**
@@ -41,11 +40,8 @@ public class GameBoard extends JFrame implements MouseListener {
 	 * @param p
 	 * @throws InterruptedException
 	 */
-	public static void movePlayer() throws InterruptedException { // Moves the
-																	// player
-																	// image to
-																	// the new
-																	// city
+	public static void movePlayer() throws InterruptedException {
+		// Moves the player image to the new city
 		Graphics2D g2 = (Graphics2D) Board.background.getGraphics();
 		for (Player x : PandemicGame.playerStorage) {
 			g2.setColor(x.color);

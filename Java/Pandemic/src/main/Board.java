@@ -162,12 +162,19 @@ public class Board {
 	 */
 	public static void chooseRoles() {
 		ArrayList<String> chooseRoles = new ArrayList<String>();
+		// role 0
 		chooseRoles.add("Contingency Planner");
+		// role 1
 		chooseRoles.add("Dispatcher");
+		// role 2
 		chooseRoles.add("Medic");
+		// role 3
 		chooseRoles.add("Operations Expert");
+		// role 4
 		chooseRoles.add("Quarantine Specialist");
+		// role 5
 		chooseRoles.add("Researcher");
+		// role 6
 		chooseRoles.add("Scientist");
 		chooseRoles.add("No More Players");
 

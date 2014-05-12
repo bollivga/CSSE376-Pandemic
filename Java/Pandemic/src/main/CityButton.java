@@ -116,7 +116,7 @@ public class CityButton extends JButton implements ActionListener {
 					if (PandemicGame.p1.getRole() == 2) {
 						this.removeInfections(true);
 					} else {
-						// if has cured true
+						// TODO if has cured true
 						this.removeInfections(false);
 					}
 				} else if (PandemicGame.controlledPlayer.currentCity == this.cityNode) {
@@ -167,7 +167,7 @@ public class CityButton extends JButton implements ActionListener {
 		try {
 			GameBoard.movePlayer();
 		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
+			// Auto-generated catch block
 			e1.printStackTrace();
 		}
 	}
