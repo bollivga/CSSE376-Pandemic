@@ -39,21 +39,35 @@ public class CityButton extends JButton implements ActionListener {
 		this.setFont(new Font("Default", 1, 10));
 		this.setText("" + (this.cityNode.infectionStatus[this.cityNode.color]));
 
+		// Blue Cities
 		if (this.cityNode.color == 0) {
 			this.setForeground(Color.WHITE);
 			this.setBackground(Color.getHSBColor((float) (225.0 / 360.0),
 					(float) 0.8, (float) 0.62));
-		} else if (this.cityNode.color == 1) {
+		}
+
+		// Black Cities
+		else if (this.cityNode.color == 1) {
 			this.setForeground(Color.WHITE);
 			this.setBackground(Color.DARK_GRAY);
-		} else if (this.cityNode.color == 2) {
+		}
+
+		// Red Cities
+		else if (this.cityNode.color == 2) {
 			this.setForeground(Color.WHITE);
 			this.setBackground(Color.getHSBColor(0, 40, 158));
+		}
+
+		// Yellow Cities
+		else {
+			this.setForeground(Color.WHITE);
+			this.setBackground(Color.getHSBColor((float) (60.0 / 360.0),
+					(float) .78, (float) 0.46));
 		}
 	}
 
 	/**
-	 * Show infection
+	 * Show infection rates for each city
 	 */
 	public void refreshInfection() {
 		this.setText("" + (this.cityNode.infectionStatus[this.cityNode.color]));
@@ -72,7 +86,7 @@ public class CityButton extends JButton implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// Print the name of the city
+		// Refreshes the infection rate on the city clicked on.
 		this.setText("" + (this.cityNode.infectionStatus[this.cityNode.color]));
 		if (AirliftCard.isFlying) {
 			PandemicGame.controlledPlayer.currentCity = this.cityNode;
@@ -94,7 +108,9 @@ public class CityButton extends JButton implements ActionListener {
 			}
 		} else {
 			if (!PandemicGame.controlledPlayer.tryMoveToCity(cityNode)) {
-				System.out.println("Move failed, too far away or same city");
+				System.out.printf(
+						"Move failed to %s, too far away or same city\n",
+						this.cityNode.toString());
 				if (PandemicGame.controlledPlayer.currentCity == this.cityNode
 						&& PandemicGame.p1 == PandemicGame.controlledPlayer) {
 					if (PandemicGame.p1.getRole() == 2) {

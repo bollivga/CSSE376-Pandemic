@@ -17,6 +17,9 @@ public class CityNode {
 	 * The color of the city infection disease.
 	 */
 	public int color;
+	/**
+	 * Tells us if the city has a research station.
+	 */
 	public boolean hasResearchStation = false;
 	int[] bounds;
 	/**
@@ -152,6 +155,9 @@ public class CityNode {
 		return this.name;
 	}
 
+	/**
+	 * @return true if the city is cured.
+	 */
 	public boolean cureOnce() {
 		// TODO Auto-generated method stub
 		if (this.infectionStatus[this.color] == 0) {
@@ -164,6 +170,9 @@ public class CityNode {
 		return true;
 	}
 
+	/**
+	 * @return true if an entire city is cured.
+	 */
 	public boolean cureAll() {
 		if (this.infectionStatus[this.color] == 0) {
 			System.out.println("This city is already safe");

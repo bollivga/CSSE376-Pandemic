@@ -1,7 +1,5 @@
 package main;
 
-import java.awt.Color;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -19,6 +17,11 @@ public class AirliftMovement extends JButton implements ActionListener {
 	// private static final long serialVersionUID = 1L;
 	// public Player player;
 	// public boolean isFlying;
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6914025901189952726L;
 
 	/**
 	 * @param player

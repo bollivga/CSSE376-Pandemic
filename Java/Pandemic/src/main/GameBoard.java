@@ -95,6 +95,7 @@ public class GameBoard extends JFrame implements MouseListener {
 			card.setBounds(300 + 140 * k, 650, 140, 300);
 		}
 		Card card = PandemicGame.p1.hand.stored.get(0);
+		@SuppressWarnings("unused")
 		AirliftCard alc = new AirliftCard(card, PandemicGame.p1);
 	}
 

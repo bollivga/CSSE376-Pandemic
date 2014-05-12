@@ -1,8 +1,5 @@
 package main;
 
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -24,17 +21,24 @@ public class AirliftCard extends JButton implements ActionListener {
 	 * Serial ID for CityButton Class
 	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * Airlift card is in use if this boolean is true.
+	 */
 	public static boolean isFlying;
 	/**
 	 * This is the node for the city that can be accessed by the board.
 	 */
 	public Card card;
+	/**
+	 * The player using the airlift card.
+	 */
 	public Player player;
 
 	/**
 	 * Sets the city based on the node passed in on initialization.
 	 * 
 	 * @param card
+	 * @param player 
 	 */
 	public AirliftCard(Card card, Player player) {
 		// // Set the city name to the city passed in

@@ -34,8 +34,8 @@ public class CityGraph {
 		CityNode milan = new CityNode("Milan", 0, 606, 218);
 
 		// Initialize all blacks
-		CityNode algiers = new CityNode("Algiers", 1, 640, 260);
-		CityNode istanbul = new CityNode("Istanbul", 1, 570, 313);
+		CityNode algiers = new CityNode("Algiers", 1, 570, 313);
+		CityNode istanbul = new CityNode("Istanbul", 1, 640, 260);
 		CityNode moscow = new CityNode("Moscow", 1, 708, 221);
 		CityNode cairo = new CityNode("Cairo", 1, 632, 327);
 		CityNode baghdad = new CityNode("Baghdad", 1, 700, 309);
@@ -133,11 +133,11 @@ public class CityGraph {
 		essen.addConnection(st_petersburg);
 
 		// Bridge between black and blue
-		madrid.addConnection(algiers);
-		algiers.addConnection(paris);
 
 		// Connect all blacks algiers.addConnection(madrid);
 		algiers.addConnection(paris);
+		madrid.addConnection(algiers);
+		algiers.addConnection(madrid);
 		algiers.addConnection(istanbul);
 		algiers.addConnection(cairo);
 		istanbul.addConnection(milan);
@@ -151,6 +151,7 @@ public class CityGraph {
 		baghdad.addConnection(riyadh);
 		// baghdad.addConnection(karachi);
 		baghdad.addConnection(tehran);
+		tehran.addConnection(moscow);
 		// riyadh.addConnection(karachi);
 		// tehran.addConnection(karachi); tehran.addConnection(delhi);
 		// karachi.addConnection(delhi); karachi.addConnection(mumbai);
