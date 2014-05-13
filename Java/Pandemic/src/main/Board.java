@@ -73,6 +73,8 @@ public class Board {
 	 * The buttons used by the Dispatcher special ability.
 	 */
 	public static ArrayList<DispatcherButton> dispatcherList = new ArrayList<DispatcherButton>();
+	public static int discardAmount;
+	public static boolean discarding;
 
 	/**
 	 * The main class for the board. Draws the frame and background and iterates
@@ -107,7 +109,8 @@ public class Board {
 			city.setBounds(j.bounds[0] - 10, j.bounds[1] - 10, 40, 40);
 			cityList.add(city);
 		}
-		Board.cityList.get(0).setBackground(Board.cityList.get(0).getBackground().darker());
+		Board.cityList.get(0).setBackground(
+				Board.cityList.get(0).getBackground().darker());
 		for (Player p : PandemicGame.playerStorage) {
 			DispatcherButton x = new DispatcherButton(p);
 			Board.dispatcherList.add(x);
@@ -256,7 +259,8 @@ public class Board {
 				if (PandemicGame.p1.hand.stored.size() > 0) {
 					GameBoard.redrawCards();
 				} else {
-					System.out.println("The " + PandemicGame.p1.toString() + " has no more cards!");
+					System.out.println("The " + PandemicGame.p1.toString()
+							+ " has no more cards!");
 				}
 			}
 		});
@@ -270,44 +274,54 @@ public class Board {
 	 */
 	public static void changePlayer() {
 		// Gives a notification that it is the next player's turn.
-		PandemicGame.p1.checkCure();
-		JFrame frame = new JFrame();
-		if (PandemicGame.p1.getRole() == 1) {
-			for (DispatcherButton x : Board.dispatcherList) {
-				background.remove(x);
+		int handSize = PandemicGame.prevPlayer.getHand().stored.size();
+		discarding = false;
+		if (handSize > 7) {
+			discarding = true;
+			System.out.println("You may only have 7 cards! Please discard.");
+			discardAmount = handSize - 7;
+			JOptionPane.showMessageDialog(frame, "You must discard "
+					+ discardAmount + " cards.");
+			//PandemicGame.currentMoves = 0;
+		} else {
+			PandemicGame.p1.checkCure();
+			JFrame frame = new JFrame();
+			if (PandemicGame.p1.getRole() == 1) {
+				for (DispatcherButton x : Board.dispatcherList) {
+					background.remove(x);
+				}
 			}
-		}
-		try {
-			GameBoard.movePlayer();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		PandemicGame.nextPlayer();
-		String nextPlayer = PandemicGame.playerStorage.get(
-				PandemicGame.currentPlayer).toString();
-		String lastPlayer = PandemicGame.playerStorage.get(
-				((PandemicGame.currentPlayer - 1) + PandemicGame.playerStorage
-						.size()) % PandemicGame.playerStorage.size())
-				.toString();
-		JOptionPane
-				.showMessageDialog(frame, "The " + lastPlayer
-						+ "'s turn has ended. It is now the " + nextPlayer
-						+ "'s turn.");
-		GameBoard.redrawCards();
-		if (PandemicGame.p1.getRole() == 1) {
-			for (DispatcherButton x : Board.dispatcherList) {
-				background.add(x);
+			try {
+				GameBoard.movePlayer();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
 			}
+			PandemicGame.nextPlayer();
+			String nextPlayer = PandemicGame.playerStorage.get(
+					PandemicGame.currentPlayer).toString();
+			String lastPlayer = PandemicGame.playerStorage
+					.get(((PandemicGame.currentPlayer - 1) + PandemicGame.playerStorage
+							.size()) % PandemicGame.playerStorage.size())
+					.toString();
+			JOptionPane.showMessageDialog(frame, "The " + lastPlayer
+					+ "'s turn has ended. It is now the " + nextPlayer
+					+ "'s turn.");
+			GameBoard.redrawCards();
+			if (PandemicGame.p1.getRole() == 1) {
+				for (DispatcherButton x : Board.dispatcherList) {
+					background.add(x);
+				}
+			}
+			try {
+				GameBoard.movePlayer();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			for (CityButton j : cityList) {
+				j.refreshInfection();
+			}
+			Board.background.repaint();
 		}
-		try {
-			GameBoard.movePlayer();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		for (CityButton j : cityList) {
-			j.refreshInfection();
-		}
-		Board.background.repaint();
 	}
 
 	/**

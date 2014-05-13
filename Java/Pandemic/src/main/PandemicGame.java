@@ -56,6 +56,9 @@ public class PandemicGame {
 	 * Tells you if a disease has been cured, similarly.
 	 */
 	public static boolean isCured[] = { false, false, false, false };
+	
+	public static Player prevPlayer = p1;
+	
 	/**
 	 * Stores the players
 	 */
@@ -115,6 +118,8 @@ public class PandemicGame {
 				PandemicGame.p1.addToHand(draw);
 			}
 		}
+		PandemicGame.prevPlayer = PandemicGame.p1;
+		
 		++PandemicGame.currentPlayer;
 		if (PandemicGame.currentPlayer == PandemicGame.playerStorage.size()) {
 			PandemicGame.currentPlayer = 0;
@@ -183,6 +188,7 @@ public class PandemicGame {
 		}
 
 		PandemicGame.p1 = PandemicGame.playerStorage.get(0);
+		PandemicGame.prevPlayer = PandemicGame.p1;
 		PandemicGame.controlledPlayer = PandemicGame.playerStorage.get(0);
 		for (int i = 0; i < 4; ++i) {
 			PandemicGame.playerDeck.add(new EpidemicCard());

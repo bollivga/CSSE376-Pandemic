@@ -80,8 +80,16 @@ public class CardButton extends JButton implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// use the card
-
-		if (PandemicGame.p1.useCard(this.card)) {
+		if (Board.discarding) {
+			PandemicGame.prevPlayer.hand.remove(this.card);
+			Board.discardAmount--;
+			if (Board.discardAmount == 0) {
+				Board.changePlayer();
+			} else {
+				GameBoard.redrawCards();
+			}
+		}
+		else if (PandemicGame.p1.useCard(this.card)) {
 			ArrayList<String> list = new ArrayList<String>();
 			if (((PlayerCityCard) this.card).city == PandemicGame.p1.currentCity) {
 				System.out.println("" + ((PlayerCityCard) this.card).city.toString() + PandemicGame.p1.currentCity.toString());
