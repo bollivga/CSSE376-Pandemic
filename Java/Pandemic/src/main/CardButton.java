@@ -84,6 +84,7 @@ public class CardButton extends JButton implements ActionListener {
 		if (PandemicGame.p1.useCard(this.card)) {
 			ArrayList<String> list = new ArrayList<String>();
 			if (((PlayerCityCard) this.card).city == PandemicGame.p1.currentCity) {
+				System.out.println("" + ((PlayerCityCard) this.card).city.toString() + PandemicGame.p1.currentCity.toString());
 				list.add("Charter Flight");
 				list.add("Research Station");
 				if (PandemicGame.p1.getRole() == 5) {
@@ -97,13 +98,17 @@ public class CardButton extends JButton implements ActionListener {
 						}
 					}
 				} else {
+					int k = 0;
 					for (Player p : (PandemicGame.playerStorage)) {
-						int k = 0;
+
+						System.out.println("Player at " + p.currentCity.toString());
 						if (p.currentCity == ((PlayerCityCard) this.card).city) {
 							k++;
 						}
+						System.out.println(k);
 						if (k > 1) {
 							list.add("Give " + ((PlayerCityCard) this.card).city.toString() + " Away");
+							k = -4;
 						}
 					}
 				}
@@ -123,19 +128,63 @@ public class CardButton extends JButton implements ActionListener {
 					"Card Action", JOptionPane.PLAIN_MESSAGE, null,
 					actionList, "Flight");
 			if (s == "City Flight") {
+				//PandemicGame.p1.isFlying = true;
 				Board.cityFlight(((PlayerCityCard) this.card).city);
+				PandemicGame.p1.hand.remove(this.card);
+				GameBoard.redrawCards();
+				
 			}
 			else if (s == "Charter Flight") {
 				Board.charterFlight(((PlayerCityCard) this.card).city);
+				GameBoard.redrawCards();
 			}
 			else if (s == "Research Station") {
 				if (!((PlayerCityCard) this.card).city.hasResearchStation){
 					((PlayerCityCard) this.card).city.hasResearchStation = true;
 					System.out.println("Added a research station to " + ((PlayerCityCard) this.card).city.toString() + ".");
+					PandemicGame.p1.hand.remove(this.card);
+					++PandemicGame.currentMoves;
+					if (PandemicGame.currentMoves == 4) {
+						Board.changePlayer();
+					}
+					GameBoard.redrawCards();
+					
 				} else {
 					System.out.println(((PlayerCityCard) this.card).city.toString() + " already contained a research station!");
 				}
 
+			}
+			else if (s == "Give " + ((PlayerCityCard) this.card).city.toString() + " Away") {
+				System.out.println("Test?");
+				for (Player p : (PandemicGame.playerStorage)) {
+					System.out.println("Player at " + p.currentCity.toString());
+					System.out.println(p.currentCity.toString() + p.getRole());
+					if (p.currentCity == ((PlayerCityCard) this.card).city && p.getRole() != PandemicGame.p1.getRole()) {
+						p.hand.add(this.card);
+						System.out.println("Gave " + p.toString() + " " + ((PlayerCityCard) this.card).city.toString());
+					}
+				}
+				PandemicGame.p1.hand.remove(this.card);
+				++PandemicGame.currentMoves;
+				if (PandemicGame.currentMoves == 4) {
+					Board.changePlayer();
+				}
+			} else {
+				System.out.println("fail");
+				for (Player p : (PandemicGame.playerStorage)) {
+					System.out.println("Player at " + p.currentCity.toString());
+					System.out.println(p.currentCity.toString() + p.getRole());
+					if (p.currentCity == ((PlayerCityCard) this.card).city && p.getRole() != PandemicGame.p1.getRole()) {
+						p.hand.add(this.card);
+						System.out.println("Gave " + p.toString() + " " + ((PlayerCityCard) this.card).city.toString());
+					}
+				}
+				PandemicGame.p1.hand.remove(this.card);
+				++PandemicGame.currentMoves;
+				if (PandemicGame.currentMoves == 4) {
+					Board.changePlayer();
+				}
+				GameBoard.redrawCards();
 			}
 		} else if (PandemicGame.p1.isFlying) {
 			Board.charterFlight(((PlayerCityCard) this.card).city);

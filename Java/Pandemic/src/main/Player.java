@@ -98,8 +98,6 @@ public class Player {
 		if (cardToUse.getClass() == PlayerCityCard.class) {
 			CityNode city = ((PlayerCityCard) cardToUse).city;
 			if (this.currentCity == city) {
-				this.isFlying = true;
-				this.hand.remove(cardToUse);
 				return true;
 			} else {
 				if (PandemicGame.controlledPlayer.tryFlyToCity(city)) {
@@ -108,7 +106,8 @@ public class Player {
 						Board.changePlayer();
 					}
 					try {
-						this.hand.remove(cardToUse);
+						//this.currentCity = city;
+						//this.hand.remove(cardToUse);
 					} catch (ArrayIndexOutOfBoundsException e) {
 						// should be a test if this happens
 					} finally {
@@ -132,7 +131,6 @@ public class Player {
 	 */
 	public boolean tryFlyToCity(CityNode x) {
 		if (!(this.currentCity.equals(x))) {
-			this.currentCity = x;
 			return true;
 		}
 		return false;

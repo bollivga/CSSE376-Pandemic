@@ -321,7 +321,6 @@ public class Board {
 						"You can use this city card to fly from "
 								+ city.name
 								+ " to any other city. \n Please select another city to which you wish to fly.");
-
 	}
 
 	/**
@@ -330,6 +329,7 @@ public class Board {
 	public static void cityFlight(CityNode city) {
 		JFrame frame = new JFrame();
 		JOptionPane.showMessageDialog(frame, "Flying to " + city.name + ".");
+		PandemicGame.p1.currentCity = city;
 	}
 
 	/**
