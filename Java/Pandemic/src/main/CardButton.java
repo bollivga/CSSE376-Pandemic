@@ -114,6 +114,19 @@ public class CardButton extends JButton implements ActionListener {
 				}
 			} else {
 				list.add("City Flight");
+				
+				if (PandemicGame.p1.getRole() == 5) {
+					int k = 0;
+					for (Player p : (PandemicGame.playerStorage)) {
+						if (p.currentCity == PandemicGame.p1.currentCity) {
+							k++;
+						}
+						if (k > 1) {
+							list.add("Give " + ((PlayerCityCard) this.card).city.toString() + " Away to " + p.toString());
+							k--;
+						}
+					}
+				}
 			}
 			int i = 0;
 			Object[] actionList = new Object[list.size()];
@@ -131,12 +144,20 @@ public class CardButton extends JButton implements ActionListener {
 				//PandemicGame.p1.isFlying = true;
 				Board.cityFlight(((PlayerCityCard) this.card).city);
 				PandemicGame.p1.hand.remove(this.card);
-				GameBoard.redrawCards();
+				if (PandemicGame.p1.getHand().stored.size() > 0) {
+					GameBoard.redrawCards();
+				} else {
+					GameBoard.handFrame.dispose();
+				}
 				
 			}
 			else if (s == "Charter Flight") {
 				Board.charterFlight(((PlayerCityCard) this.card).city);
-				GameBoard.redrawCards();
+				if (PandemicGame.p1.getHand().stored.size() > 0) {
+					GameBoard.redrawCards();
+				} else {
+					GameBoard.handFrame.dispose();
+				}
 			}
 			else if (s == "Research Station") {
 				if (!((PlayerCityCard) this.card).city.hasResearchStation){
@@ -154,6 +175,8 @@ public class CardButton extends JButton implements ActionListener {
 					}
 					if (PandemicGame.p1.getHand().stored.size() > 0) {
 						GameBoard.redrawCards();
+					} else {
+						GameBoard.handFrame.dispose();
 					}
 
 					
@@ -192,7 +215,11 @@ public class CardButton extends JButton implements ActionListener {
 				if (PandemicGame.currentMoves == 4) {
 					Board.changePlayer();
 				}
-				GameBoard.redrawCards();
+				if (PandemicGame.p1.getHand().stored.size() > 0) {
+					GameBoard.redrawCards();
+				} else {
+					GameBoard.handFrame.dispose();
+				}
 			}
 		} else if (PandemicGame.p1.isFlying) {
 			Board.charterFlight(((PlayerCityCard) this.card).city);

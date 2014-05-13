@@ -270,6 +270,7 @@ public class Board {
 	 */
 	public static void changePlayer() {
 		// Gives a notification that it is the next player's turn.
+		PandemicGame.p1.checkCure();
 		JFrame frame = new JFrame();
 		if (PandemicGame.p1.getRole() == 1) {
 			for (DispatcherButton x : Board.dispatcherList) {

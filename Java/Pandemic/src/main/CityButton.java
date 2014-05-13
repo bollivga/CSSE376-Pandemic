@@ -90,7 +90,7 @@ public class CityButton extends JButton implements ActionListener {
 	 */
 	public void refreshResearchStation() {
 		if (this.cityNode.hasResearchStation) {
-			System.out.println("DARKNESS");
+			//System.out.println("DARKNESS");
 			this.setBackground(this.getBackground().darker());
 			
 		}
@@ -203,6 +203,8 @@ public class CityButton extends JButton implements ActionListener {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
+				} else {
+					PandemicGame.p1.checkCure();
 				}
 			}
 		}

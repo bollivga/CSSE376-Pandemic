@@ -31,7 +31,7 @@ public class Player {
 	public Player(int roleNumber) {
 		this.role = roleNumber;
 		this.currentCity = PandemicGame.world.citiesSet.get("Atlanta");
-		this.hand = new CardHand();
+		hand = new CardHand();
 		if (this.role == 0) {
 			color = Color.black;
 		} else if (this.role == 1) {
@@ -76,7 +76,7 @@ public class Player {
 	 * @return the player's hand of cards
 	 */
 	public CardHand getHand() {
-		return this.hand;
+		return hand;
 	}
 
 	/**
@@ -85,7 +85,7 @@ public class Player {
 	 * @param newCard
 	 */
 	public void addToHand(Card newCard) {
-		this.hand.add(newCard);
+		hand.add(newCard);
 	}
 
 	/**
@@ -119,7 +119,7 @@ public class Player {
 			}
 		} else if (cardToUse.getClass() == EventCard.class) {
 			Board.useEventCard();
-			this.hand.remove(cardToUse);
+			hand.remove(cardToUse);
 			return false;
 		}
 		return false;
@@ -162,6 +162,41 @@ public class Player {
 	 */
 	public void removeCureCards() {
 		// TODO Auto-generated method stub
+		
+	}
+
+	/**
+	 * Checks if a cure is viable. Currently prints if viable, will show cure later.
+	 */
+	public void checkCure() {
+		// TODO Auto-generated method stub
+		int blues = 0, blacks = 0, reds = 0, yellows = 0;
+		if (getRole() == 6) {
+			blues++; blacks++; reds++; yellows++;
+		}
+		for (Card city : hand.stored) {
+			if (((PlayerCityCard)city).city.color == 0) {
+				blues++;
+			}
+			else if (((PlayerCityCard)city).city.color == 1) {
+				blacks++;
+			}
+			else if (((PlayerCityCard)city).city.color == 2) {
+				reds++;
+			}
+			else {
+				yellows++;
+			}
+		}
+		if (blues > 4) {
+			System.out.println("Blue Cure Viable");
+		} else if (blacks > 4) {
+			System.out.println("Black Cure Viable");
+		} else if (reds > 4) {
+			System.out.println("Red Cure Viable");
+		} else if (yellows > 4){
+			System.out.println("Yellow Cure Viable");
+		}
 		
 	}
 }
