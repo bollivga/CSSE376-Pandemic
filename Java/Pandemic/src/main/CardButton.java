@@ -81,7 +81,7 @@ public class CardButton extends JButton implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// use the card
 		if (Board.discarding) {
-			PandemicGame.prevPlayer.hand.remove(this.card);
+			PandemicGame.p1.hand.remove(this.card);
 			Board.discardAmount--;
 			if (Board.discardAmount == 0) {
 				Board.changePlayer();

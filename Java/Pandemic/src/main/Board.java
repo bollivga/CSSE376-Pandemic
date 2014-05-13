@@ -274,12 +274,12 @@ public class Board {
 	 */
 	public static void changePlayer() {
 		// Gives a notification that it is the next player's turn.
-		int handSize = PandemicGame.prevPlayer.getHand().stored.size();
+		int handSize = PandemicGame.p1.getHand().stored.size();
 		discarding = false;
-		if (handSize > 7) {
+		if (handSize > 5) {
 			discarding = true;
 			System.out.println("You may only have 7 cards! Please discard.");
-			discardAmount = handSize - 7;
+			discardAmount = handSize - 5;
 			JOptionPane.showMessageDialog(frame, "You must discard "
 					+ discardAmount + " cards.");
 			//PandemicGame.currentMoves = 0;
