@@ -55,14 +55,14 @@ public class CityButton extends JButton implements ActionListener {
 		// Red Cities
 		else if (this.cityNode.color == 2) {
 			this.setForeground(Color.WHITE);
-			this.setBackground(Color.getHSBColor(0, 40, 158));
+			this.setBackground(Color.getHSBColor((float) (11.0 / 360.0),
+					(float) 1.0, (float) 0.65));
 		}
 
 		// Yellow Cities
 		else {
-			this.setForeground(Color.WHITE);
-			this.setBackground(Color.getHSBColor((float) (60.0 / 360.0),
-					(float) .78, (float) 0.46));
+			this.setForeground(Color.BLACK);
+			this.setBackground(Color.getHSBColor(0, 40, (float) .5));
 		}
 	}
 
