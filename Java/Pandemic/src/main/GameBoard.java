@@ -3,14 +3,11 @@ package main;
 import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.geom.Ellipse2D;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
@@ -84,6 +81,7 @@ public class GameBoard extends JFrame implements MouseListener {
 	 * Draws the cards for each player.
 	 */
 	public static void redrawCards() {
+		handFrame.dispose(); 
 		handFrame.removeAll();
 		handFrame = new JFrame("(Player " + (PandemicGame.currentPlayer + 1) + ") " + PandemicGame.p1.toString() + "'s Hand");
 		hand = new JPanel();

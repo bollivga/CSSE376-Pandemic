@@ -90,6 +90,9 @@ public class CardButton extends JButton implements ActionListener {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		GameBoard.handFrame.remove((Component) e.getSource());
+		GameBoard.handFrame.validate();
+		GameBoard.handFrame.repaint();
 		Board.background.remove((Component) e.getSource());
 		Board.background.validate();
 		Board.background.repaint();
