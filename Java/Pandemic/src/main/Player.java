@@ -100,7 +100,7 @@ public class Player {
 			if (this.currentCity == city) {
 				this.isFlying = true;
 				this.hand.remove(cardToUse);
-				return false;
+				return true;
 			} else {
 				if (PandemicGame.controlledPlayer.tryFlyToCity(city)) {
 					++PandemicGame.currentMoves;

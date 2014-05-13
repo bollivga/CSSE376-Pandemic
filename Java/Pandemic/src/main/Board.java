@@ -141,13 +141,12 @@ public class Board {
 				String ObjButtons[] = { "Yes", "No" };
 				int PromptResult = JOptionPane.showOptionDialog(null,
 						"Are you sure you want to exit?", "Quit?",
-						JOptionPane.YES_NO_OPTION,
-						JOptionPane.WARNING_MESSAGE, null, ObjButtons,
-						ObjButtons[1]);
+						JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE,
+						null, ObjButtons, ObjButtons[1]);
 				if (PromptResult == JOptionPane.YES_OPTION) {
 					System.exit(0);
 				} else {
-					
+					// Don't close the program?
 				}
 			}
 		});
@@ -253,7 +252,11 @@ public class Board {
 		showHand.setBounds(10, 750, 100, 50);
 		showHand.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				GameBoard.redrawCards();
+				if (PandemicGame.p1.hand.stored.size() > 0) {
+					GameBoard.redrawCards();
+				} else {
+					System.out.println("The " + PandemicGame.p1.toString() + " has no more cards!");
+				}
 			}
 		});
 

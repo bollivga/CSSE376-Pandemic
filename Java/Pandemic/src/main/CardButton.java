@@ -4,8 +4,10 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 /**
  * @author Jonathan Jungck and Greg Bollivar
@@ -80,21 +82,72 @@ public class CardButton extends JButton implements ActionListener {
 		// use the card
 
 		if (PandemicGame.p1.useCard(this.card)) {
-			Board.cityFlight(((PlayerCityCard) this.card).city);
+			ArrayList<String> list = new ArrayList<String>();
+			if (((PlayerCityCard) this.card).city == PandemicGame.p1.currentCity) {
+				list.add("Charter Flight");
+				list.add("Research Station");
+				if (PandemicGame.p1.getRole() == 5) {
+					for (Player p : (PandemicGame.playerStorage)) {
+						int k = 0;
+						if (p.currentCity == ((PlayerCityCard) this.card).city) {
+							k++;
+						}
+						if (k > 1) {
+							list.add("Pass a Card");
+						}
+					}
+				} else {
+					for (Player p : (PandemicGame.playerStorage)) {
+						int k = 0;
+						if (p.currentCity == ((PlayerCityCard) this.card).city) {
+							k++;
+						}
+						if (k > 1) {
+							list.add("Give " + ((PlayerCityCard) this.card).city.toString() + " Away");
+						}
+					}
+				}
+			} else {
+				list.add("City Flight");
+			}
+			int i = 0;
+			Object[] actionList = new Object[list.size()];
+
+			for (String role : list) {
+				actionList[i] = role;
+				i++;
+			}
+			
+			String s = (String) JOptionPane.showInputDialog(Board.frame,
+					"Choose an Action: ",
+					"Card Action", JOptionPane.PLAIN_MESSAGE, null,
+					actionList, "Flight");
+			if (s == "City Flight") {
+				Board.cityFlight(((PlayerCityCard) this.card).city);
+			}
+			else if (s == "Charter Flight") {
+				Board.charterFlight(((PlayerCityCard) this.card).city);
+			}
+			else if (s == "Research Station") {
+				if (!((PlayerCityCard) this.card).city.hasResearchStation){
+					((PlayerCityCard) this.card).city.hasResearchStation = true;
+					System.out.println("Added a research station to " + ((PlayerCityCard) this.card).city.toString() + ".");
+				} else {
+					System.out.println(((PlayerCityCard) this.card).city.toString() + " already contained a research station!");
+				}
+
+			}
 		} else if (PandemicGame.p1.isFlying) {
 			Board.charterFlight(((PlayerCityCard) this.card).city);
 		}
 		try {
 			GameBoard.movePlayer();
 		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
+			// Auto-generated catch block
 			e1.printStackTrace();
 		}
 		GameBoard.handFrame.remove((Component) e.getSource());
 		GameBoard.handFrame.validate();
 		GameBoard.handFrame.repaint();
-		Board.background.remove((Component) e.getSource());
-		Board.background.validate();
-		Board.background.repaint();
 	}
 }

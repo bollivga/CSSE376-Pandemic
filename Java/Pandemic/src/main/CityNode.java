@@ -74,7 +74,12 @@ public class CityNode {
 	public boolean infectOnce() {
 		// Returns true if there is an outbreak
 		// Used every time there's an infection
-		if (!PandemicGame.isEradicated[this.color]) {
+		if (PandemicGame.QuarantineSpec >= 0 && (PandemicGame.playerStorage.get(PandemicGame.QuarantineSpec).currentCity.connectedCities.contains(this)))
+		{
+			System.out.println("Quarantine Specialist protected " + this.toString() + " from being infected!");
+			return false;
+		}
+		else if (!PandemicGame.isEradicated[this.color]) {
 			if (!this.hasOutbroken[color]) {
 				if (this.infectionStatus[this.color] >= 3) {
 					this.hasOutbroken[this.color] = true;

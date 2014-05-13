@@ -78,6 +78,7 @@ public class PandemicGame {
 	 * The current epidemic count
 	 */
 	private static int epidemicCount;
+	public static int QuarantineSpec = -1;
 
 	/**
 	 * The main game class initializes the game.
@@ -207,6 +208,7 @@ public class PandemicGame {
 		} else if (x == "Operations Expert") {
 			y = 3;
 		} else if (x == "Quarantine Specialist") {
+			PandemicGame.QuarantineSpec = PandemicGame.playerStorage.size();
 			y = 4;
 		} else if (x == "Researcher") {
 			y = 5;
