@@ -147,7 +147,15 @@ public class CardButton extends JButton implements ActionListener {
 					if (PandemicGame.currentMoves == 4) {
 						Board.changePlayer();
 					}
-					GameBoard.redrawCards();
+					for (CityButton city : Board.cityList) {
+						if (city.cityNode == ((PlayerCityCard) this.card).city) {
+							city.refreshResearchStation();
+						}
+					}
+					if (PandemicGame.p1.getHand().stored.size() > 0) {
+						GameBoard.redrawCards();
+					}
+
 					
 				} else {
 					System.out.println(((PlayerCityCard) this.card).city.toString() + " already contained a research station!");

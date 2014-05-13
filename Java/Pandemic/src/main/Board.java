@@ -107,6 +107,7 @@ public class Board {
 			city.setBounds(j.bounds[0] - 10, j.bounds[1] - 10, 40, 40);
 			cityList.add(city);
 		}
+		Board.cityList.get(0).setBackground(Board.cityList.get(0).getBackground().darker());
 		for (Player p : PandemicGame.playerStorage) {
 			DispatcherButton x = new DispatcherButton(p);
 			Board.dispatcherList.add(x);

@@ -83,6 +83,21 @@ public class CityButton extends JButton implements ActionListener {
 	public static void main(String[] args) {
 
 	}
+	
+	
+	/**
+	 * 
+	 */
+	public void refreshResearchStation() {
+		if (this.cityNode.hasResearchStation) {
+			System.out.println("DARKNESS");
+			this.setBackground(this.getBackground().darker());
+			
+		}
+		else {
+			this.setBackground(this.getBackground().brighter());
+		}
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -155,6 +170,7 @@ public class CityButton extends JButton implements ActionListener {
 						if (canGoToAlly) {
 							if (PandemicGame.controlledPlayer
 									.tryFlyToCity(cityNode)) {
+								PandemicGame.controlledPlayer.currentCity = this.cityNode;
 								++PandemicGame.currentMoves;
 								System.out
 										.println(PandemicGame.controlledPlayer

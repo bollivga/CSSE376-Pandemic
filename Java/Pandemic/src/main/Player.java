@@ -162,6 +162,6 @@ public class Player {
 	 */
 	public void removeCureCards() {
 		// TODO Auto-generated method stub
-
+		
 	}
 }
