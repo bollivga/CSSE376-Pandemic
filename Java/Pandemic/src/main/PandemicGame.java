@@ -187,6 +187,7 @@ public class PandemicGame {
 			PandemicGame.playerDeck.add(new EpidemicCard());
 		}
 		PandemicGame.playerDeck.shuffle();
+		GameBoard.redrawCards();
 	}
 
 	/**

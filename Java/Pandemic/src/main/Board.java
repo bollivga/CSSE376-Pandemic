@@ -141,11 +141,13 @@ public class Board {
 				String ObjButtons[] = { "Yes", "No" };
 				int PromptResult = JOptionPane.showOptionDialog(null,
 						"Are you sure you want to exit?", "Quit?",
-						JOptionPane.DEFAULT_OPTION,
+						JOptionPane.YES_NO_OPTION,
 						JOptionPane.WARNING_MESSAGE, null, ObjButtons,
 						ObjButtons[1]);
-				if (PromptResult == 0) {
+				if (PromptResult == JOptionPane.YES_OPTION) {
 					System.exit(0);
+				} else {
+					
 				}
 			}
 		});
@@ -245,9 +247,18 @@ public class Board {
 		Board.frame.add(background, BorderLayout.CENTER);
 		Board.frame.setVisible(true);
 		Board.background.setLayout(null);
+
+		JButton showHand = new JButton("Show Hand");
+		Board.background.add(showHand);
+		showHand.setBounds(10, 750, 100, 50);
+		showHand.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GameBoard.redrawCards();
+			}
+		});
+
 		// Initialize a new game.
 		new PandemicGame();
-
 	}
 
 	/**
