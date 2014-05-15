@@ -71,8 +71,6 @@ public class CityButton extends JButton implements ActionListener {
 	 */
 	public void refreshInfection() {
 		this.setText("" + (this.cityNode.infectionStatus[this.cityNode.color]));
-		System.out.println(this.cityNode.getName() + " "
-				+ (this.cityNode.infectionStatus[this.cityNode.color]));
 	}
 
 	/**

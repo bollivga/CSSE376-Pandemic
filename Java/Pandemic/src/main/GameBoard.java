@@ -1,6 +1,7 @@
 package main;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
@@ -63,8 +64,17 @@ public class GameBoard extends JFrame implements MouseListener {
 	 */
 	public void paint(Graphics g) {
 		super.paint(g);
-		this.addMouseListener(this);
-
+		Graphics2D g2 = (Graphics2D) g;
+		Color oldColor = g2.getColor();
+		for (Player x : PandemicGame.playerStorage) {
+			
+			g2.setColor(x.color);
+			Ellipse2D.Double player = new Ellipse2D.Double(
+					x.currentCity.bounds[0] + 8, x.currentCity.bounds[1], 20,
+					40);
+			g2.fill(player);
+		}
+		g2.setColor(oldColor);
 		// Board.background.repaint();
 	}
 
@@ -74,7 +84,7 @@ public class GameBoard extends JFrame implements MouseListener {
 	 * @param p
 	 */
 	public static void spawnPlayer(Player p) {
-		Board.background.getGraphics();
+		Board.frame.repaint();
 	}
 
 	/**
@@ -142,7 +152,6 @@ public class GameBoard extends JFrame implements MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		System.out.println(e.getX() + ", " + e.getY());
 	}
 
 	@Override

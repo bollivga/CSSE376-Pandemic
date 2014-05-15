@@ -109,17 +109,8 @@ public class PandemicGame {
 	 * Switches control to the next player.
 	 */
 	public static void nextPlayer() {
-		for (int i = 0; i < 2; ++i) {
-			Card draw = PandemicGame.playerDeck.draw();
-			if (draw.getClass().equals(EpidemicCard.class)) {
-				PandemicGame.epidemicTriggered();
-				--i;
-			} else {
-				PandemicGame.p1.addToHand(draw);
-			}
-		}
-		PandemicGame.prevPlayer = PandemicGame.p1;
 		
+		PandemicGame.prevPlayer = PandemicGame.p1;
 		++PandemicGame.currentPlayer;
 		if (PandemicGame.currentPlayer == PandemicGame.playerStorage.size()) {
 			PandemicGame.currentPlayer = 0;
@@ -131,7 +122,17 @@ public class PandemicGame {
 		PandemicGame.currentMoves = 0;
 		PandemicGame.infectCitiesBasedOnEpidemics();
 	}
-
+	public static void drawPlayerCards(){
+	for (int i = 0; i < 2; ++i) {
+		Card draw = PandemicGame.playerDeck.draw();
+		if (draw.getClass().equals(EpidemicCard.class)) {
+			PandemicGame.epidemicTriggered();
+			--i;
+		} else {
+			PandemicGame.p1.addToHand(draw);
+		}
+	}
+	}
 	/**
 	 * Infects the cities based on the number of epidemics you have had.
 	 */
