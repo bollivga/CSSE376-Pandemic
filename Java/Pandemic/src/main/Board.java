@@ -73,8 +73,18 @@ public class Board {
 	 * The buttons used by the Dispatcher special ability.
 	 */
 	public static ArrayList<DispatcherButton> dispatcherList = new ArrayList<DispatcherButton>();
+	/**
+	 * The number of cards you want to discard
+	 */
 	public static int discardAmount;
+	/**
+	 * Tells you if the player is currently discarding
+	 */
 	public static boolean discarding;
+	/**
+	 * Keeps track of the last card discarded for GUI purposes
+	 */
+	public static Card lastDiscard;
 
 	/**
 	 * The main class for the board. Draws the frame and background and iterates
@@ -131,10 +141,10 @@ public class Board {
 		// }
 
 		// Test Player Graphic
-		JLabel player = new JLabel(new ImageIcon("src/player.jpg"));
+		// JLabel player = new JLabel(new ImageIcon("src/player.jpg"));
 		// player.setBounds(280, 297, 20, 50);
 		// player.setLayout(BorderLayout.NORTH);
-		frame.add(player);
+		// frame.add(player);
 
 		// If you try to close the window, it verifies with a yes/no and then
 		// quits if yes.
@@ -273,7 +283,6 @@ public class Board {
 		// Gives a notification that it is the next player's turn.
 
 		discarding = false;
-
 		PandemicGame.p1.checkCure();
 		JFrame frame = new JFrame();
 		if (PandemicGame.p1.getRole() == 1) {
@@ -304,6 +313,9 @@ public class Board {
 
 	}
 
+	/**
+	 * The second phase of player changing.
+	 */
 	public static void changePlayerPhaseTwo() {
 		String nextPlayer = PandemicGame.playerStorage.get(
 				PandemicGame.currentPlayer).toString();
@@ -311,10 +323,16 @@ public class Board {
 				((PandemicGame.currentPlayer - 1) + PandemicGame.playerStorage
 						.size()) % PandemicGame.playerStorage.size())
 				.toString();
-		JOptionPane
-				.showMessageDialog(frame, "The " + lastPlayer
-						+ "'s turn has ended. It is now the " + nextPlayer
-						+ "'s turn.");
+		if (!discarding) {
+			JOptionPane.showMessageDialog(frame, "The " + lastPlayer
+					+ "'s turn has ended. It is now the " + nextPlayer
+					+ "'s turn.");
+		} else {
+			JOptionPane.showMessageDialog(frame, lastPlayer + " discarded the "
+					+ lastDiscard.toString() + " card.\n" + "The " + lastPlayer
+					+ "'s turn has ended. It is now the " + nextPlayer
+					+ "'s turn.");
+		}
 		GameBoard.redrawCards();
 		if (PandemicGame.p1.getRole() == 1) {
 			for (DispatcherButton x : Board.dispatcherList) {

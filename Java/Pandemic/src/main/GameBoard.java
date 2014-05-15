@@ -1,7 +1,6 @@
 package main;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
@@ -17,7 +16,13 @@ import javax.swing.JPanel;
  */
 public class GameBoard extends JFrame implements MouseListener {
 
+	/**
+	 * Shows a visual panel with the hand of cards
+	 */
 	public static JPanel hand;
+	/**
+	 * Also used for the hand GUI
+	 */
 	public static JFrame handFrame = new JFrame();
 	/**
 	 * Serial ID
@@ -96,16 +101,24 @@ public class GameBoard extends JFrame implements MouseListener {
 			CardButton card = new CardButton(j);
 			card.addActionListener(card);
 			handFrame.add(card);
-			card.setBounds(0 + 180 * k, 0, 180, 300);
+			if (k < 7) {
+				card.setBounds(0 + 180 * k, 0, 180, 300);
+			} else {
+				card.setBounds(0 + 180 * (k - 7), 300, 180, 300);
+			}
 			k++;
 		}
 		handFrame.add(hand);
-		handFrame.setSize(180 * PandemicGame.p1.hand.stored.size() + 20, 300);
+		if (k < 8) {
+			handFrame.setSize(180 * PandemicGame.p1.hand.stored.size() + 20, 300);
+		} else {
+			handFrame.setSize(180 * 7 + 20, 600);
+		}
 		handFrame.setVisible(true);
 		hand.setVisible(true);
-		Card card = PandemicGame.p1.hand.stored.get(0);
-		@SuppressWarnings("unused")
-		AirliftCard alc = new AirliftCard(card, PandemicGame.p1);
+//		Card card = PandemicGame.p1.hand.stored.get(0);
+//		@SuppressWarnings("unused")
+//		AirliftCard alc = new AirliftCard(card, PandemicGame.p1);
 	}
 	
 //	public static void redrawCards() {

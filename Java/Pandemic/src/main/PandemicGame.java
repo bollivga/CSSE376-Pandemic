@@ -57,6 +57,9 @@ public class PandemicGame {
 	 */
 	public static boolean isCured[] = { false, false, false, false };
 	
+	/**
+	 * The player which was prior to the current player.
+	 */
 	public static Player prevPlayer = p1;
 	
 	/**
@@ -81,6 +84,10 @@ public class PandemicGame {
 	 * The current epidemic count
 	 */
 	private static int epidemicCount;
+	
+	/**
+	 * An integert used for tracking the status of the Quarantine Specialist.
+	 */
 	public static int QuarantineSpec = -1;
 
 	/**
@@ -122,6 +129,10 @@ public class PandemicGame {
 		PandemicGame.currentMoves = 0;
 		PandemicGame.infectCitiesBasedOnEpidemics();
 	}
+	
+	/**
+	 * Draws the cards for a player.
+	 */
 	public static void drawPlayerCards(){
 	for (int i = 0; i < 2; ++i) {
 		Card draw = PandemicGame.playerDeck.draw();
