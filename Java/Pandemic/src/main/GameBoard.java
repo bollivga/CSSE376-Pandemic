@@ -47,14 +47,7 @@ public class GameBoard extends JFrame implements MouseListener {
 	 */
 	public static void movePlayer() throws InterruptedException {
 		// Moves the player image to the new city
-		Graphics2D g2 = (Graphics2D) Board.background.getGraphics();
-		for (Player x : PandemicGame.playerStorage) {
-			g2.setColor(x.color);
-			Ellipse2D.Double player = new Ellipse2D.Double(
-					x.currentCity.bounds[0], x.currentCity.bounds[1] - 30, 20,
-					40);
-			g2.fill(player);
-		}
+		Board.frame.repaint();
 	}
 
 	/**
@@ -63,14 +56,18 @@ public class GameBoard extends JFrame implements MouseListener {
 	 * @param g
 	 */
 	public void paint(Graphics g) {
+		try{
 		super.paint(g);
+		}catch (NullPointerException x){
+			System.out.println("Exception.");
+		}
 		Graphics2D g2 = (Graphics2D) g;
 		Color oldColor = g2.getColor();
 		for (Player x : PandemicGame.playerStorage) {
 			
 			g2.setColor(x.color);
 			Ellipse2D.Double player = new Ellipse2D.Double(
-					x.currentCity.bounds[0] + 8, x.currentCity.bounds[1], 20,
+					x.currentCity.bounds[0] + 2 + PandemicGame.playerStorage.indexOf(x) * 3, x.currentCity.bounds[1], 20,
 					40);
 			g2.fill(player);
 		}
@@ -84,7 +81,7 @@ public class GameBoard extends JFrame implements MouseListener {
 	 * @param p
 	 */
 	public static void spawnPlayer(Player p) {
-		Board.frame.repaint();
+		Board.frame.paint(Board.frame.g);
 	}
 
 	/**
