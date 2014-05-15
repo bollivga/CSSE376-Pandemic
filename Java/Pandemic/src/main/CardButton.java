@@ -87,6 +87,7 @@ public class CardButton extends JButton implements ActionListener {
 			if (Board.discardAmount == 0) {
 				PandemicGame.nextPlayer();
 				Board.changePlayerPhaseTwo();
+				Board.discarding = false;
 			} else {
 				GameBoard.redrawCards();
 				JOptionPane.showMessageDialog(Board.frame, PandemicGame.p1.toString() + " discarded the " + Board.lastDiscard.toString() + " card.");
