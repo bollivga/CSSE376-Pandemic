@@ -364,6 +364,7 @@ public class Board {
 						"You can use this city card to fly from "
 								+ city.name
 								+ " to any other city. \n Please select another city to which you wish to fly.");
+		PandemicGame.p1.isFlying = true;
 	}
 
 	/**

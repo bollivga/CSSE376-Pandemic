@@ -112,6 +112,8 @@ public class PandemicGame {
 
 	public static InfectCityCard lastEpidemic;
 
+	public static boolean isOperationFlight;
+
 	/**
 	 * The main game class initializes the game.
 	 */

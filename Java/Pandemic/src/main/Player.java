@@ -68,6 +68,13 @@ public class Player {
 		if (this.currentCity.isConnectedTo(x)) {
 			this.currentCity = x;
 			return true;
+		} else if (PandemicGame.p1.isFlying | PandemicGame.isOperationFlight) {
+			this.currentCity = x;
+			PandemicGame.p1.isFlying = false;
+			return false;
+		} else if (PandemicGame.p1.getRole() == 3 && x.hasResearchStation) {
+			this.currentCity = x;
+			return true;
 		}
 		return false;
 	}

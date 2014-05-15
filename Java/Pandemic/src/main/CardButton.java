@@ -127,6 +127,10 @@ public class CardButton extends JButton implements ActionListener {
 			} else {
 				list.add("City Flight");
 				
+				if (PandemicGame.p1.getRole() == 3 && PandemicGame.p1.currentCity.hasResearchStation) {
+					list.add("Fly to Any City");
+				}
+				
 				if (PandemicGame.p1.getRole() == 5) {
 					int k = 0;
 					for (Player p : (PandemicGame.playerStorage)) {
@@ -152,6 +156,16 @@ public class CardButton extends JButton implements ActionListener {
 					"Choose an Action: ",
 					"Card Action", JOptionPane.PLAIN_MESSAGE, null,
 					actionList, "Flight");
+			if (s == "Fly to Any City") {
+				PandemicGame.isOperationFlight = true;
+				Board.charterFlight(((PlayerCityCard) this.card).city);
+				if (PandemicGame.p1.getHand().stored.size() > 0) {
+					GameBoard.redrawCards();
+				} else {
+					GameBoard.handFrame.dispose();
+				}
+				PandemicGame.isOperationFlight = false;
+			}
 			if (s == "City Flight") {
 				//PandemicGame.p1.isFlying = true;
 				Board.cityFlight(((PlayerCityCard) this.card).city);
