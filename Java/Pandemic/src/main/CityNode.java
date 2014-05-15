@@ -2,6 +2,8 @@ package main;
 
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 /**
  * @author Jonathan Jungck and Greg Bollivar
  * 
@@ -90,6 +92,7 @@ public class CityNode {
 					return true;
 				} else {
 					++this.infectionStatus[this.color];
+					Board.displayInfection(this);
 				}
 			}
 		}

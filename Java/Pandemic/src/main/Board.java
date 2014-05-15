@@ -383,4 +383,10 @@ public class Board {
 
 	}
 
+	public static void displayInfection(CityNode city) {
+		if (!PandemicGame.isSetup) {
+			JOptionPane.showMessageDialog(Board.frame, city.toString() + " was infected.");
+		}
+	}
+
 }
