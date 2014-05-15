@@ -154,8 +154,9 @@ public class Board {
 				}
 			}
 		});
-		frame.paint(frame.g);
+		Board.frame.paint(Board.frame.getGraphics());
 		PandemicGame.setupInfections();
+		cityList.get(25).doClick();
 	}
 
 	/**

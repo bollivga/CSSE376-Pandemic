@@ -20,10 +20,6 @@ public class GameBoard extends JFrame implements MouseListener {
 	public static JPanel hand;
 	public static JFrame handFrame = new JFrame();
 	/**
-	 * The graphics object for the game board.
-	 */
-	public Graphics g = this.getGraphics();
-	/**
 	 * Serial ID
 	 */
 	private static final long serialVersionUID = 1L;
@@ -56,13 +52,13 @@ public class GameBoard extends JFrame implements MouseListener {
 	 * @param g
 	 */
 	public void paint(Graphics g) {
+		Graphics2D g2 = (Graphics2D) g;
 		try{
 		super.paint(g);
+		
 		}catch (NullPointerException x){
 			System.out.println("Exception.");
 		}
-		Graphics2D g2 = (Graphics2D) g;
-		Color oldColor = g2.getColor();
 		for (Player x : PandemicGame.playerStorage) {
 			
 			g2.setColor(x.color);
@@ -71,7 +67,7 @@ public class GameBoard extends JFrame implements MouseListener {
 					40);
 			g2.fill(player);
 		}
-		g2.setColor(oldColor);
+		
 		// Board.background.repaint();
 	}
 
@@ -81,7 +77,7 @@ public class GameBoard extends JFrame implements MouseListener {
 	 * @param p
 	 */
 	public static void spawnPlayer(Player p) {
-		Board.frame.paint(Board.frame.g);
+		Board.frame.paint(Board.frame.getGraphics());
 	}
 
 	/**
