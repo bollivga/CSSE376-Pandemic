@@ -2,8 +2,6 @@ package main;
 
 import java.util.ArrayList;
 
-import javax.swing.JOptionPane;
-
 /**
  * @author Jonathan Jungck and Greg Bollivar
  * 
