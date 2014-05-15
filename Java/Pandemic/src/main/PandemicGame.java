@@ -108,6 +108,10 @@ public class PandemicGame {
 	 */
 	public static boolean isSetup = true;
 
+	public static int isEpidemic;
+
+	public static InfectCityCard lastEpidemic;
+
 	/**
 	 * The main game class initializes the game.
 	 */
@@ -190,14 +194,16 @@ public class PandemicGame {
 	 * The epidemics are triggered.
 	 */
 	public static void epidemicTriggered() {
-		System.out.println("EPIDEMIC");
+		isEpidemic = 1;
 		InfectCityCard bottom = ((InfectCityCard) PandemicGame.infectDeck
 				.getBottom());
+		lastEpidemic = bottom;
 		bottom.infectThrice();
 		PandemicGame.infectionDiscard.add(bottom);
 		PandemicGame.infectionDiscard.shuffle();
 		PandemicGame.infectDeck.addAll(PandemicGame.infectionDiscard);
 		++PandemicGame.epidemicCount;
+		isEpidemic = 0;
 	}
 
 	/**
@@ -273,20 +279,17 @@ public class PandemicGame {
 			infected.infectThrice();
 			PandemicGame.infectionDiscard.add(infected);
 			InfectedListThrice.add(infected.toString());
-			System.out.println(infected.toString() + " infected x3.");
 		}
 		for (int i = 0; i < count; ++i) {
 			infected = (InfectCityCard) PandemicGame.infectDeck.draw();
 			infected.infectTwice();
 			PandemicGame.infectionDiscard.add(infected);
-			System.out.println(infected.toString() + " infected x2.");
 			InfectedListTwice.add(infected.toString());
 		}
 		for (int i = 0; i < count; ++i) {
 			infected = (InfectCityCard) PandemicGame.infectDeck.draw();
 			infected.infect();
 			PandemicGame.infectionDiscard.add(infected);
-			System.out.println(infected.toString() + " infected x1.");
 			InfectedList.add(infected.toString());
 		}
 
@@ -302,6 +305,7 @@ public class PandemicGame {
 		JOptionPane.showMessageDialog(Board.frame, thrice
 				+ " infected three times.\n" + twice + " infected two times.\n"
 				+ once + " infected once.");
+		
 		for (CityButton j : Board.cityList) {
 			j.setText("" + (j.cityNode.infectionStatus[j.cityNode.color]));
 		}

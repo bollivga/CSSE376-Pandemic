@@ -58,21 +58,26 @@ public class GameBoard extends JFrame implements MouseListener {
 	 */
 	public void paint(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
-		try{
-		super.paint(g);
-		
-		}catch (NullPointerException x){
+		try {
+			super.paint(g);
+
+		} catch (NullPointerException x) {
 			System.out.println("Exception.");
 		}
-		for (Player x : PandemicGame.playerStorage) {
-			
-			g2.setColor(x.color);
-			Ellipse2D.Double player = new Ellipse2D.Double(
-					x.currentCity.bounds[0] + 2 + PandemicGame.playerStorage.indexOf(x) * 3, x.currentCity.bounds[1], 20,
-					40);
-			g2.fill(player);
+		try {
+			for (Player x : PandemicGame.playerStorage) {
+
+				g2.setColor(x.color);
+				Ellipse2D.Double player = new Ellipse2D.Double(
+						x.currentCity.bounds[0] + 2
+								+ PandemicGame.playerStorage.indexOf(x) * 3,
+						x.currentCity.bounds[1], 20, 40);
+				g2.fill(player);
+			}
+		} catch (NullPointerException x) {
+			System.out.println("Exception.");
 		}
-		
+
 		// Board.background.repaint();
 	}
 
@@ -89,13 +94,14 @@ public class GameBoard extends JFrame implements MouseListener {
 	 * Draws the cards for each player.
 	 */
 	public static void redrawCards() {
-		handFrame.dispose(); 
+		handFrame.dispose();
 		handFrame.removeAll();
-		handFrame = new JFrame("(Player " + (PandemicGame.currentPlayer + 1) + ") " + PandemicGame.p1.toString() + "'s Hand");
+		handFrame = new JFrame("(Player " + (PandemicGame.currentPlayer + 1)
+				+ ") " + PandemicGame.p1.toString() + "'s Hand");
 		hand = new JPanel();
 		hand.setSize(180 * PandemicGame.p1.hand.stored.size(), 300);
 		hand.setLayout(new BorderLayout(180, 300));
-		handFrame.setLayout(new BorderLayout(180,300));
+		handFrame.setLayout(new BorderLayout(180, 300));
 		int k = 0;
 		for (Card j : PandemicGame.p1.hand.stored) {
 			CardButton card = new CardButton(j);
@@ -110,38 +116,39 @@ public class GameBoard extends JFrame implements MouseListener {
 		}
 		handFrame.add(hand);
 		if (k < 8) {
-			handFrame.setSize(180 * PandemicGame.p1.hand.stored.size() + 20, 300);
+			handFrame.setSize(180 * PandemicGame.p1.hand.stored.size() + 20,
+					300);
 		} else {
 			handFrame.setSize(180 * 7 + 20, 600);
 		}
 		handFrame.setVisible(true);
 		hand.setVisible(true);
-//		Card card = PandemicGame.p1.hand.stored.get(0);
-//		@SuppressWarnings("unused")
-//		AirliftCard alc = new AirliftCard(card, PandemicGame.p1);
+		// Card card = PandemicGame.p1.hand.stored.get(0);
+		// @SuppressWarnings("unused")
+		// AirliftCard alc = new AirliftCard(card, PandemicGame.p1);
 	}
-	
-//	public static void redrawCards() {
-//		for (CardButton l : PandemicGame.handList) {
-//			Board.background.remove(l);
-//		}
-//		Board.background.validate();
-//		Board.background.repaint();
-//		hand = new JFrame();
-//		hand.setSize(1200, 849);
-//		hand.setLayout(new BorderLayout());
-//		int k = 0;
-//		for (Card j : PandemicGame.p1.hand.stored) {
-//			k++;
-//			CardButton card = new CardButton(j);
-//			card.addActionListener(card);
-//			Board.background.add(card);
-//			card.setBounds(300 + 140 * k, 650, 140, 300);
-//		}
-//		Card card = PandemicGame.p1.hand.stored.get(0);
-//		@SuppressWarnings("unused")
-//		AirliftCard alc = new AirliftCard(card, PandemicGame.p1);
-//	}
+
+	// public static void redrawCards() {
+	// for (CardButton l : PandemicGame.handList) {
+	// Board.background.remove(l);
+	// }
+	// Board.background.validate();
+	// Board.background.repaint();
+	// hand = new JFrame();
+	// hand.setSize(1200, 849);
+	// hand.setLayout(new BorderLayout());
+	// int k = 0;
+	// for (Card j : PandemicGame.p1.hand.stored) {
+	// k++;
+	// CardButton card = new CardButton(j);
+	// card.addActionListener(card);
+	// Board.background.add(card);
+	// card.setBounds(300 + 140 * k, 650, 140, 300);
+	// }
+	// Card card = PandemicGame.p1.hand.stored.get(0);
+	// @SuppressWarnings("unused")
+	// AirliftCard alc = new AirliftCard(card, PandemicGame.p1);
+	// }
 
 	// /**
 	// * Draws the cards for each player.

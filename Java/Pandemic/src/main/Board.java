@@ -372,9 +372,8 @@ public class Board {
 	public static void cityFlight(CityNode city) {
 		JFrame frame = new JFrame();
 		JOptionPane.showMessageDialog(frame, "Flying to " + city.name + ".");
-		PandemicGame.p1.currentCity = city;
+		PandemicGame.p1.currentCity = city; 
 	}
-
 	/**
 	 * Event card
 	 */
@@ -384,8 +383,11 @@ public class Board {
 	}
 
 	public static void displayInfection(CityNode city) {
-		if (!PandemicGame.isSetup) {
+		if (!PandemicGame.isSetup && (PandemicGame.isEpidemic == 0)) {
 			JOptionPane.showMessageDialog(Board.frame, city.toString() + " was infected.");
+		} else if (!PandemicGame.isSetup && (PandemicGame.isEpidemic == 1)) {
+			JOptionPane.showMessageDialog(Board.frame, "An epidemic has occured. " + PandemicGame.lastEpidemic.toString() + " was infected three times.");
+			PandemicGame.isEpidemic = 2;
 		}
 	}
 
