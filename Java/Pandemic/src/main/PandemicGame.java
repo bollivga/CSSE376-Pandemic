@@ -2,6 +2,8 @@ package main;
 
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 /**
  * @author Jonathan Jungck and Greg Bollivar
  * 
@@ -13,18 +15,22 @@ import java.util.ArrayList;
 public class PandemicGame {
 
 	ArrayList<CardHand> playerHands = new ArrayList<CardHand>();
+
 	/**
 	 * The list infection cards that have been discarded.
 	 */
 	public static CardDiscard infectionDiscard;
+
 	/**
 	 * The list of player cards that have been discarded.
 	 */
 	public CardDiscard playerDiscard;
+
 	/**
 	 * The deck of player cards available to draw.
 	 */
 	public static CardDeck playerDeck;
+
 	/**
 	 * The deck of city infection cards available to draw.
 	 */
@@ -40,40 +46,47 @@ public class PandemicGame {
 	 * cities though.
 	 */
 	public static Player controlledPlayer;
+
 	/**
 	 * The number of outbreaks that have occurred.
 	 */
 	public static int outbreakCount;
+
 	/**
 	 * The world as a city graph initialized.
 	 */
 	public static CityGraph world = new CityGraph();
+
 	/**
 	 * Tells you if a disease has been eradicated. Used to hold all diseases.
 	 */
 	public static boolean isEradicated[] = { false, false, false, false };
+
 	/**
 	 * Tells you if a disease has been cured, similarly.
 	 */
 	public static boolean isCured[] = { false, false, false, false };
-	
+
 	/**
 	 * The player which was prior to the current player.
 	 */
 	public static Player prevPlayer = p1;
-	
+
 	/**
 	 * Stores the players
 	 */
 	public static ArrayList<Player> playerStorage;
+
 	/**
 	 * Keeps track of how many moves a player has taken. Turns change at 4.
 	 */
 	public static int currentMoves;
+
 	/**
 	 * The current player's id.
 	 */
 	public static int currentPlayer;
+
 	/**
 	 * The list of card buttons for the current player. Changes with each
 	 * player.
@@ -84,11 +97,16 @@ public class PandemicGame {
 	 * The current epidemic count
 	 */
 	private static int epidemicCount;
-	
+
 	/**
-	 * An integert used for tracking the status of the Quarantine Specialist.
+	 * An integer used for tracking the status of the Quarantine Specialist.
 	 */
 	public static int QuarantineSpec = -1;
+
+	/**
+	 * Used for Quarantine Specialist so that he can't protect cities on setup.
+	 */
+	public static boolean isSetup = true;
 
 	/**
 	 * The main game class initializes the game.
@@ -116,7 +134,7 @@ public class PandemicGame {
 	 * Switches control to the next player.
 	 */
 	public static void nextPlayer() {
-		
+
 		PandemicGame.prevPlayer = PandemicGame.p1;
 		++PandemicGame.currentPlayer;
 		if (PandemicGame.currentPlayer == PandemicGame.playerStorage.size()) {
@@ -129,21 +147,22 @@ public class PandemicGame {
 		PandemicGame.currentMoves = 0;
 		PandemicGame.infectCitiesBasedOnEpidemics();
 	}
-	
+
 	/**
 	 * Draws the cards for a player.
 	 */
-	public static void drawPlayerCards(){
-	for (int i = 0; i < 2; ++i) {
-		Card draw = PandemicGame.playerDeck.draw();
-		if (draw.getClass().equals(EpidemicCard.class)) {
-			PandemicGame.epidemicTriggered();
-			--i;
-		} else {
-			PandemicGame.p1.addToHand(draw);
+	public static void drawPlayerCards() {
+		for (int i = 0; i < 2; ++i) {
+			Card draw = PandemicGame.playerDeck.draw();
+			if (draw.getClass().equals(EpidemicCard.class)) {
+				PandemicGame.epidemicTriggered();
+				--i;
+			} else {
+				PandemicGame.p1.addToHand(draw);
+			}
 		}
 	}
-	}
+
 	/**
 	 * Infects the cities based on the number of epidemics you have had.
 	 */
@@ -245,11 +264,15 @@ public class PandemicGame {
 	 */
 	public static void setupInfections() {
 		int count = 3;
+		ArrayList<String> InfectedListThrice = new ArrayList<String>();
+		ArrayList<String> InfectedListTwice = new ArrayList<String>();
+		ArrayList<String> InfectedList = new ArrayList<String>();
 		InfectCityCard infected;
 		for (int i = 0; i < count; ++i) {
 			infected = (InfectCityCard) PandemicGame.infectDeck.draw();
 			infected.infectThrice();
 			PandemicGame.infectionDiscard.add(infected);
+			InfectedListThrice.add(infected.toString());
 			System.out.println(infected.toString() + " infected x3.");
 		}
 		for (int i = 0; i < count; ++i) {
@@ -257,15 +280,31 @@ public class PandemicGame {
 			infected.infectTwice();
 			PandemicGame.infectionDiscard.add(infected);
 			System.out.println(infected.toString() + " infected x2.");
+			InfectedListTwice.add(infected.toString());
 		}
 		for (int i = 0; i < count; ++i) {
 			infected = (InfectCityCard) PandemicGame.infectDeck.draw();
 			infected.infect();
 			PandemicGame.infectionDiscard.add(infected);
 			System.out.println(infected.toString() + " infected x1.");
+			InfectedList.add(infected.toString());
 		}
+
+		String thrice = InfectedListThrice.get(0) + ", "
+				+ InfectedListThrice.get(1) + ", and "
+				+ InfectedListThrice.get(2);
+		String twice = InfectedListTwice.get(0) + ", "
+				+ InfectedListTwice.get(1) + ", and "
+				+ InfectedListTwice.get(2);
+		String once = InfectedList.get(0) + ", " + InfectedList.get(1)
+				+ ", and " + InfectedList.get(2);
+
+		JOptionPane.showMessageDialog(Board.frame, thrice
+				+ " infected three times.\n" + twice + " infected two times.\n"
+				+ once + " infected once.");
 		for (CityButton j : Board.cityList) {
 			j.setText("" + (j.cityNode.infectionStatus[j.cityNode.color]));
 		}
+		isSetup = false;
 	}
 }
