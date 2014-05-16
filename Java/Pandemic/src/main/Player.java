@@ -103,27 +103,7 @@ public class Player {
 	 */
 	public boolean useCard(Card cardToUse) {
 		if (cardToUse.getClass() == PlayerCityCard.class) {
-			CityNode city = ((PlayerCityCard) cardToUse).city;
-			if (this.currentCity == city) {
-				return true;
-			} else {
-				if (PandemicGame.controlledPlayer.tryFlyToCity(city)) {
-					++PandemicGame.currentMoves;
-					if (PandemicGame.currentMoves == 4) {
-						Board.changePlayer();
-					}
-					try {
-						//this.currentCity = city;
-						//this.hand.remove(cardToUse);
-					} catch (ArrayIndexOutOfBoundsException e) {
-						// should be a test if this happens
-					} finally {
-
-					}
-					return true;
-				}
-				return false;
-			}
+			return true;
 		} else if (cardToUse.getClass() == EventCard.class) {
 			Board.useEventCard();
 			hand.remove(cardToUse);
