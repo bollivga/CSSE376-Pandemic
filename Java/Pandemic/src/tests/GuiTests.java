@@ -2,7 +2,9 @@ package tests;
 
 import static org.junit.Assert.*;
 import main.Board;
+import main.CardButton;
 import main.CityButton;
+import main.GameBoard;
 import main.PandemicGame;
 
 import org.junit.Test;
@@ -80,6 +82,6 @@ public class GuiTests {
 		PandemicGame.handOutCards();
 		Board.runGame();
 		assertFalse(PandemicGame.playerStorage.isEmpty());
+		GameBoard.handButtons.get(0).doClick();
 	}
-
 }

@@ -6,6 +6,7 @@ import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.geom.Ellipse2D;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -20,6 +21,7 @@ public class GameBoard extends JFrame implements MouseListener {
 	 * Shows a visual panel with the hand of cards
 	 */
 	public static JPanel hand;
+	public static ArrayList<CardButton> handButtons;
 	/**
 	 * Also used for the hand GUI
 	 */
@@ -94,6 +96,7 @@ public class GameBoard extends JFrame implements MouseListener {
 	 * Draws the cards for each player.
 	 */
 	public static void redrawCards() {
+		handButtons = new ArrayList<CardButton>();
 		handFrame.dispose();
 		handFrame.removeAll();
 		handFrame = new JFrame("(Player " + (PandemicGame.currentPlayer + 1)
@@ -106,6 +109,7 @@ public class GameBoard extends JFrame implements MouseListener {
 		for (Card j : PandemicGame.p1.hand.stored) {
 			CardButton card = new CardButton(j);
 			card.addActionListener(card);
+			handButtons.add(card);
 			handFrame.add(card);
 			if (k < 7) {
 				card.setBounds(0 + 180 * k, 0, 180, 300);
