@@ -112,6 +112,7 @@ public class CityButton extends JButton implements ActionListener {
 		// If the player is flying from that city, try flying to the new city.
 		if (PandemicGame.p1.isFlying) {
 			if (PandemicGame.controlledPlayer.tryFlyToCity(cityNode)) {
+				PandemicGame.controlledPlayer.currentCity = cityNode;
 				PandemicGame.p1.isFlying = false;
 				++PandemicGame.currentMoves;
 				System.out.println(PandemicGame.controlledPlayer.toString()
