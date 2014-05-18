@@ -291,6 +291,9 @@ public class Board {
 		// Gives a notification that it is the next player's turn.
 		discarding = false;
 		PandemicGame.p1.checkCure();
+		if (PandemicGame.p1.getRole() == 3) {
+			background.remove(GameBoard.showResearch);
+		}
 		JFrame frame = new JFrame();
 		if (PandemicGame.p1.getRole() == 1) {
 			for (DispatcherButton x : Board.dispatcherList) {
@@ -316,6 +319,30 @@ public class Board {
 		} else {
 			PandemicGame.nextPlayer();
 			Board.changePlayerPhaseTwo();
+//			JButton showResearch = new JButton("Build Research Station");
+//			if (PandemicGame.p1.getRole() == 3
+//					&& !PandemicGame.p1.currentCity.hasResearchStation) {
+//				Board.background.add(showResearch);
+//				showResearch.setBounds(950, 750, 200, 50);
+//				showResearch.addActionListener(new ActionListener() {
+//					public void actionPerformed(ActionEvent e) {
+//						if (!PandemicGame.p1.currentCity.hasResearchStation) {
+//							PandemicGame.p1.currentCity.hasResearchStation = true;
+//							for (CityButton city : Board.cityList) {
+//								if (city.cityNode == PandemicGame.p1.currentCity) {
+//									city.refreshResearchStation();
+//								}
+//							}
+//							++PandemicGame.currentMoves;
+//							if (PandemicGame.currentMoves == 4) {
+//								Board.changePlayer();
+//							}
+//						}
+//					}
+//				});
+//			} else {
+//				Board.background.remove(showResearch);
+//			}
 		}
 
 	}

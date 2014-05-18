@@ -62,6 +62,8 @@ public class GameBoard extends JFrame implements MouseListener {
 		Board.frame.repaint();
 	}
 
+	public static JButton showResearch;
+
 	/**
 	 * Overridden paint method
 	 * 
@@ -88,7 +90,7 @@ public class GameBoard extends JFrame implements MouseListener {
 		} catch (NullPointerException x) {
 			System.out.println("Exception.");
 		}
-		JButton showResearch = new JButton("Build Research Station");
+		showResearch = new JButton("Build Research Station");
 		if (!PandemicGame.isSetup) {
 			if (PandemicGame.p1.getRole() == 3
 					&& !PandemicGame.p1.currentCity.hasResearchStation) {
