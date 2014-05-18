@@ -21,11 +21,17 @@ public class GameBoard extends JFrame implements MouseListener {
 	 * Shows a visual panel with the hand of cards
 	 */
 	public static JPanel hand;
+	
+	/**
+	 * The list of gui elements for the hand.
+	 */
 	public static ArrayList<CardButton> handButtons;
+	
 	/**
 	 * Also used for the hand GUI
 	 */
 	public static JFrame handFrame = new JFrame();
+	
 	/**
 	 * Serial ID
 	 */

@@ -50,37 +50,45 @@ public class Board {
 	 * Background is static to allow access from drawing components.
 	 */
 	public static JLabel background;
+	
 	/**
 	 * The main frame in which everything is drawn.
 	 */
 	public static GameBoard frame;
+	
 	/**
 	 * The stored location of the players
 	 */
 	public static Player[] playerLoc = new Player[4];
+	
 	@SuppressWarnings("javadoc")
 	public static int i = 0;
+	
 	/**
 	 * The list of buttons for each city.
 	 */
 	public static ArrayList<CityButton> cityList = new ArrayList<CityButton>();
+	
 	/**
 	 * The list of player ellipses in the game. Unused as of yet.
 	 */
 	public static ArrayList<Ellipse2D.Double> players;
-
+	
 	/**
 	 * The buttons used by the Dispatcher special ability.
 	 */
 	public static ArrayList<DispatcherButton> dispatcherList = new ArrayList<DispatcherButton>();
+	
 	/**
 	 * The number of cards you want to discard
 	 */
 	public static int discardAmount;
+	
 	/**
 	 * Tells you if the player is currently discarding
 	 */
 	public static boolean discarding;
+	
 	/**
 	 * Keeps track of the last card discarded for GUI purposes
 	 */
@@ -380,9 +388,12 @@ public class Board {
 	 */
 	public static void useEventCard() {
 		// Auto-generated method stub
-
+		
 	}
 
+	/**
+	 * @param city
+	 */
 	public static void displayInfection(CityNode city) {
 		if (!PandemicGame.isSetup && (PandemicGame.isEpidemic == 0)) {
 			JOptionPane.showMessageDialog(Board.frame, city.toString() + " was infected.");

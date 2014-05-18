@@ -108,10 +108,19 @@ public class PandemicGame {
 	 */
 	public static boolean isSetup = true;
 
+	/**
+	 * Tells us if there is an epidemic
+	 */
 	public static int isEpidemic;
 
+	/**
+	 * Tells us what the last epidemic card was.
+	 */
 	public static InfectCityCard lastEpidemic;
 
+	/**
+	 * Tells us if the Operations Expert is using a flight
+	 */
 	public static boolean isOperationFlight;
 
 	/**
