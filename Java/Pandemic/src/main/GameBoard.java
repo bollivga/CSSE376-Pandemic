@@ -3,11 +3,14 @@ package main;
 import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -21,17 +24,17 @@ public class GameBoard extends JFrame implements MouseListener {
 	 * Shows a visual panel with the hand of cards
 	 */
 	public static JPanel hand;
-	
+
 	/**
 	 * The list of gui elements for the hand.
 	 */
 	public static ArrayList<CardButton> handButtons;
-	
+
 	/**
 	 * Also used for the hand GUI
 	 */
 	public static JFrame handFrame = new JFrame();
-	
+
 	/**
 	 * Serial ID
 	 */
@@ -84,6 +87,32 @@ public class GameBoard extends JFrame implements MouseListener {
 			}
 		} catch (NullPointerException x) {
 			System.out.println("Exception.");
+		}
+		JButton showResearch = new JButton("Build Research Station");
+		if (!PandemicGame.isSetup) {
+			if (PandemicGame.p1.getRole() == 3
+					&& !PandemicGame.p1.currentCity.hasResearchStation) {
+				Board.background.add(showResearch);
+				showResearch.setBounds(950, 750, 200, 50);
+				showResearch.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						if (!PandemicGame.p1.currentCity.hasResearchStation) {
+							PandemicGame.p1.currentCity.hasResearchStation = true;
+							for (CityButton city : Board.cityList) {
+								if (city.cityNode == PandemicGame.p1.currentCity) {
+									city.refreshResearchStation();
+								}
+							}
+							++PandemicGame.currentMoves;
+							if (PandemicGame.currentMoves == 4) {
+								Board.changePlayer();
+							}
+						}
+					}
+				});
+			} else {
+				Board.background.remove(showResearch);
+			}
 		}
 
 		// Board.background.repaint();

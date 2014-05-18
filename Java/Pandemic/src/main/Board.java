@@ -289,7 +289,6 @@ public class Board {
 	 */
 	public static void changePlayer() {
 		// Gives a notification that it is the next player's turn.
-
 		discarding = false;
 		PandemicGame.p1.checkCure();
 		JFrame frame = new JFrame();

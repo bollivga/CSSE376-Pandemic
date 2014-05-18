@@ -75,6 +75,9 @@ public class Player {
 		} else if (PandemicGame.p1.getRole() == 3 && x.hasResearchStation) {
 			this.currentCity = x;
 			return true;
+		} else if (PandemicGame.p1.currentCity.hasResearchStation && x.hasResearchStation) {
+			this.currentCity = x;
+			return true;
 		}
 		return false;
 	}
