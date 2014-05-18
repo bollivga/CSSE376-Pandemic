@@ -169,11 +169,12 @@ public class Player {
 
 	/**
 	 * Checks if a cure is viable. Currently prints if viable, will show cure later.
+	 * @return the cure that is viable, or 4 if none are.
 	 */
-	public void checkCure() {
+	public int checkCure() {
 		// TODO Auto-generated method stub
 		int blues = 0, blacks = 0, reds = 0, yellows = 0;
-		if (getRole() == 6) {
+		if (this.role == 6) {
 			blues++; blacks++; reds++; yellows++;
 		}
 		for (Card city : hand.stored) {
@@ -192,13 +193,17 @@ public class Player {
 		}
 		if (blues > 4) {
 			System.out.println("Blue Cure Viable");
+			return 0;
 		} else if (blacks > 4) {
 			System.out.println("Black Cure Viable");
+			return 1;
 		} else if (reds > 4) {
 			System.out.println("Red Cure Viable");
+			return 2;
 		} else if (yellows > 4){
 			System.out.println("Yellow Cure Viable");
+			return 3;
 		}
-		
+		else return 4;
 	}
 }

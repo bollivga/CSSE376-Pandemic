@@ -80,7 +80,19 @@ public class CardButton extends JButton implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// use the card
-		if (Board.discarding) {
+		if (CureButton.isSelecting) {
+			if (((PlayerCityCard) this.card).city.color == CureButton.me.colorCuring) {
+				PandemicGame.p1.hand.stored.remove(this.card);
+				GameBoard.redrawCards();
+				CureButton.cardsLeft--;
+			}
+			if (CureButton.cardsLeft == 0) {
+				CureButton.isSelecting = false;
+				PandemicGame.isCured[CureButton.me.colorCuring] = true;
+				Board.background.remove(CureButton.me);
+			}
+		}
+		else if (Board.discarding) {
 			PandemicGame.p1.hand.remove(this.card);
 			Board.lastDiscard = this.card;
 			Board.discardAmount--;
@@ -303,5 +315,6 @@ public class CardButton extends JButton implements ActionListener {
 		GameBoard.handFrame.remove((Component) e.getSource());
 		GameBoard.handFrame.validate();
 		GameBoard.handFrame.repaint();
+		
 	}
 }

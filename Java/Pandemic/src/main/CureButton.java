@@ -26,11 +26,13 @@ public class CureButton extends JButton implements ActionListener {
 	/**
 	 * The player is selecting cards to cure.
 	 */
-	public boolean isSelecting;
+	public static boolean isSelecting;
 	/**
 	 * The number of cards needed to cure the disease. Differs based on class.
 	 */
-	public int cardsLeft;
+	public static int cardsLeft;
+	public static int colorCuring;
+	public static CureButton me;
 
 	/**
 	 * Creates the button for the cure.
@@ -43,12 +45,15 @@ public class CureButton extends JButton implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-		this.isSelecting = true;
-		if (PandemicGame.p1.getRole() == 5) {
-			this.cardsLeft = 4;
+		CureButton.isSelecting = true;
+		if (PandemicGame.p1.getRole() == 6) {
+			CureButton.cardsLeft = 4;
 		} else {
-			this.cardsLeft = 5;
+			CureButton.cardsLeft = 5;
 		}
+		CureButton.colorCuring = PandemicGame.p1.checkCure();
+		me = this;
+		
 	}
 
 	/**

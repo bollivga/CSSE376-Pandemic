@@ -93,6 +93,7 @@ public class CityNode {
 					return true;
 				} else {
 					++this.infectionStatus[this.color];
+					--PandemicGame.cubesLeft[this.color];
 					Board.displayInfection(this);
 				}
 			}
@@ -111,6 +112,7 @@ public class CityNode {
 				return true;
 			} else {
 				++this.infectionStatus[color];
+				--PandemicGame.cubesLeft[this.color];
 			}
 		}
 		return false;
@@ -175,6 +177,7 @@ public class CityNode {
 		} else {
 			System.out.println("remove");
 			--this.infectionStatus[color];
+			++PandemicGame.cubesLeft[this.color];
 		}
 		return true;
 	}
@@ -188,7 +191,9 @@ public class CityNode {
 			return false;
 		} else {
 			System.out.println("remove all");
+			PandemicGame.cubesLeft[this.color] = PandemicGame.cubesLeft[this.color] + this.infectionStatus[color];
 			this.infectionStatus[color] = 0;
+			
 		}
 		return true;
 	}

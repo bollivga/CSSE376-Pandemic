@@ -93,6 +93,7 @@ public class Board {
 	 * Keeps track of the last card discarded for GUI purposes
 	 */
 	public static Card lastDiscard;
+	static CureButton cureButton;
 
 	/**
 	 * The main class for the board. Draws the frame and background and iterates
@@ -118,7 +119,7 @@ public class Board {
 		Board.frame.repaint();
 		playerLoc[i] = PandemicGame.p1;
 		// GameBoard.redrawPlayers();
-
+		Board.cureButton = new CureButton();
 		// Initialize all city buttons on the map from CityGraph
 		for (CityNode j : CityGraph.cities) {
 			CityButton city = new CityButton(j);
@@ -289,6 +290,9 @@ public class Board {
 	 */
 	public static void changePlayer() {
 		// Gives a notification that it is the next player's turn.
+		if (PandemicGame.playerDeck.stored.size() == 0) {
+			System.out.println("GAME OVER");
+		}
 		discarding = false;
 		PandemicGame.p1.checkCure();
 		if (PandemicGame.p1.getRole() == 3) {
@@ -382,7 +386,16 @@ public class Board {
 			j.refreshInfection();
 		}
 		Board.frame.repaint();
-
+		if((PandemicGame.p1.checkCure() < 4) && (PandemicGame.p1.currentCity.hasResearchStation)){
+			Board.cureButton = new CureButton();
+			Board.background.add(Board.cureButton);
+			Board.cureButton.addActionListener(Board.cureButton);
+			//background.add(Board.cureButton);
+			Board.cureButton.setBounds(500, 500, 100, 50);
+			
+		}else{
+			//Board.background.remove
+		}
 	}
 
 	/**

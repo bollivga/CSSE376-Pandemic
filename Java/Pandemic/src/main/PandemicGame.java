@@ -61,6 +61,11 @@ public class PandemicGame {
 	 * Tells you if a disease has been eradicated. Used to hold all diseases.
 	 */
 	public static boolean isEradicated[] = { false, false, false, false };
+	
+	/**
+	 * Tells you if a disease has been eradicated. Used to hold all diseases.
+	 */
+	public static int cubesLeft[] = {24, 24, 24, 24};
 
 	/**
 	 * Tells you if a disease has been cured, similarly.
@@ -161,6 +166,20 @@ public class PandemicGame {
 				.get(PandemicGame.currentPlayer);
 		PandemicGame.currentMoves = 0;
 		PandemicGame.infectCitiesBasedOnEpidemics();
+		for(int x : cubesLeft){
+			if (x <= 0){
+				System.out.println("YOU LOSE");
+				System.exit(0);
+			}
+		}
+		if(PandemicGame.outbreakCount >= 8){
+			System.out.println("YOU LOSE");
+			System.exit(0);
+		}else if(PandemicGame.playerDeck.stored.size() == 0){
+			System.out.println("YOU LOSE");
+			System.exit(0);
+		}
+		
 	}
 
 	/**

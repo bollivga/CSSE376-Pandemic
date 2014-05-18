@@ -60,6 +60,16 @@ public class GameBoard extends JFrame implements MouseListener {
 	public static void movePlayer() throws InterruptedException {
 		// Moves the player image to the new city
 		Board.frame.repaint();
+		if((PandemicGame.p1.checkCure() < 4) && (PandemicGame.p1.currentCity.hasResearchStation)){
+			Board.cureButton = new CureButton();
+			Board.background.add(Board.cureButton);
+			Board.cureButton.addActionListener(Board.cureButton);
+			//background.add(Board.cureButton);
+			Board.cureButton.setBounds(500, 500, 100, 50);
+			
+		}else{
+			Board.background.remove(Board.cureButton);
+		}
 	}
 
 	/**
