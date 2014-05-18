@@ -106,6 +106,9 @@ public class CityButton extends JButton implements ActionListener {
 		// the card.
 		if (AirliftCard.isFlying) {
 			PandemicGame.controlledPlayer.currentCity = this.cityNode;
+			if (PandemicGame.controlledPlayer.toString().equals("Medic") && PandemicGame.isCured[this.cityNode.color]) {
+				this.cityNode.infectionStatus[this.cityNode.color] = 0;
+			}
 			AirliftCard.isFlying = false;
 		}
 
@@ -113,6 +116,9 @@ public class CityButton extends JButton implements ActionListener {
 		if (PandemicGame.p1.isFlying) {
 			if (PandemicGame.controlledPlayer.tryFlyToCity(cityNode)) {
 				PandemicGame.controlledPlayer.currentCity = cityNode;
+				if (PandemicGame.controlledPlayer.toString().equals("Medic") && PandemicGame.isCured[this.cityNode.color]) {
+					this.cityNode.infectionStatus[this.cityNode.color] = 0;
+				}
 				PandemicGame.p1.isFlying = false;
 				++PandemicGame.currentMoves;
 				System.out.println(PandemicGame.controlledPlayer.toString()
@@ -170,6 +176,9 @@ public class CityButton extends JButton implements ActionListener {
 							if (PandemicGame.controlledPlayer
 									.tryFlyToCity(cityNode)) {
 								PandemicGame.controlledPlayer.currentCity = this.cityNode;
+								if (PandemicGame.controlledPlayer.toString().equals("Medic") && PandemicGame.isCured[this.cityNode.color]) {
+									this.cityNode.infectionStatus[this.cityNode.color] = 0;
+								}
 								++PandemicGame.currentMoves;
 								System.out
 										.println(PandemicGame.controlledPlayer

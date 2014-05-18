@@ -67,16 +67,28 @@ public class Player {
 	public boolean tryMoveToCity(CityNode x) {
 		if (this.currentCity.isConnectedTo(x)) {
 			this.currentCity = x;
+			if (PandemicGame.controlledPlayer.toString().equals("Medic") && PandemicGame.isCured[this.currentCity.color]) {
+				this.currentCity.infectionStatus[this.currentCity.color] = 0;
+			}
 			return true;
 		} else if (PandemicGame.p1.isFlying | PandemicGame.isOperationFlight) {
 			this.currentCity = x;
+			if (PandemicGame.controlledPlayer.toString().equals("Medic") && PandemicGame.isCured[this.currentCity.color]) {
+				this.currentCity.infectionStatus[this.currentCity.color] = 0;
+			}
 			PandemicGame.p1.isFlying = false;
 			return false;
 		} else if (PandemicGame.p1.getRole() == 3 && x.hasResearchStation) {
 			this.currentCity = x;
+			if (PandemicGame.controlledPlayer.toString().equals("Medic") && PandemicGame.isCured[this.currentCity.color]) {
+				this.currentCity.infectionStatus[this.currentCity.color] = 0;
+			}
 			return true;
 		} else if (PandemicGame.p1.currentCity.hasResearchStation && x.hasResearchStation) {
 			this.currentCity = x;
+			if (PandemicGame.controlledPlayer.toString().equals("Medic") && PandemicGame.isCured[this.currentCity.color]) {
+				this.currentCity.infectionStatus[this.currentCity.color] = 0;
+			}
 			return true;
 		}
 		return false;

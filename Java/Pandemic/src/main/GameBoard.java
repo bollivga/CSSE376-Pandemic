@@ -62,6 +62,9 @@ public class GameBoard extends JFrame implements MouseListener {
 		Board.frame.repaint();
 	}
 
+	/**
+	 * Research Button
+	 */
 	public static JButton showResearch;
 
 	/**
