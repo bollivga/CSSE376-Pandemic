@@ -299,7 +299,6 @@ public class Board {
 			if (GameBoard.showResearch != null && GameBoard.showResearch.isDisplayable()) {
 				background.remove(GameBoard.showResearch);
 			}
-
 		}
 		JFrame frame = new JFrame();
 		if (PandemicGame.p1.getRole() == 1) {
