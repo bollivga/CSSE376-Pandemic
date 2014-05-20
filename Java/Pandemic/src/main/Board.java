@@ -296,7 +296,10 @@ public class Board {
 		discarding = false;
 		PandemicGame.p1.checkCure();
 		if (PandemicGame.p1.getRole() == 3) {
-			background.remove(GameBoard.showResearch);
+			if (GameBoard.showResearch != null && GameBoard.showResearch.isDisplayable()) {
+				background.remove(GameBoard.showResearch);
+			}
+
 		}
 		JFrame frame = new JFrame();
 		if (PandemicGame.p1.getRole() == 1) {
