@@ -40,31 +40,35 @@ public class CardButton extends JButton implements ActionListener {
 		this.card = card;
 		this.setText(card.toString());
 		PandemicGame.handList.add(this);
+		if (this.card.getClass().equals(PlayerCityCard.class)) {
+			// Blue Cities
+			if (((PlayerCityCard) this.card).city.color == 0) {
+				this.setForeground(Color.WHITE);
+				this.setBackground(Color.getHSBColor((float) (225.0 / 360.0),
+						(float) 0.8, (float) 0.62));
+			}
 
-		// Blue Cities
-		if (((PlayerCityCard) this.card).city.color == 0) {
-			this.setForeground(Color.WHITE);
-			this.setBackground(Color.getHSBColor((float) (225.0 / 360.0),
-					(float) 0.8, (float) 0.62));
-		}
+			// Black Cities
+			else if (((PlayerCityCard) this.card).city.color == 1) {
+				this.setForeground(Color.WHITE);
+				this.setBackground(Color.DARK_GRAY);
+			}
 
-		// Black Cities
-		else if (((PlayerCityCard) this.card).city.color == 1) {
-			this.setForeground(Color.WHITE);
-			this.setBackground(Color.DARK_GRAY);
-		}
+			// Red Cities
+			else if (((PlayerCityCard) this.card).city.color == 2) {
+				this.setForeground(Color.WHITE);
+				this.setBackground(Color.getHSBColor((float) (11.0 / 360.0),
+						(float) 1.0, (float) 0.65));
+			}
 
-		// Red Cities
-		else if (((PlayerCityCard) this.card).city.color == 2) {
-			this.setForeground(Color.WHITE);
-			this.setBackground(Color.getHSBColor((float) (11.0 / 360.0),
-					(float) 1.0, (float) 0.65));
-		}
-
-		// Yellow Cities
-		else {
-			this.setForeground(Color.BLACK);
-			this.setBackground(Color.getHSBColor(0, 40, (float) .5));
+			// Yellow Cities
+			else {
+				this.setForeground(Color.BLACK);
+				this.setBackground(Color.getHSBColor(0, 40, (float) .5));
+			}
+		} else {
+			this.setForeground(Color.black);
+			this.setBackground(Color.green);
 		}
 	}
 
@@ -80,7 +84,11 @@ public class CardButton extends JButton implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// use the card
-		if (CureButton.isSelecting) {
+		if (!(this.card.getClass().equals(PlayerCityCard.class))) {
+			((EventCard) this.card).trigger();
+			PandemicGame.p1.hand.stored.remove(this.card);
+			GameBoard.redrawCards();
+		} else if (CureButton.isSelecting) {
 			if (((PlayerCityCard) this.card).city.color == CureButton.me.colorCuring) {
 				PandemicGame.p1.hand.stored.remove(this.card);
 				GameBoard.redrawCards();
@@ -91,8 +99,7 @@ public class CardButton extends JButton implements ActionListener {
 				PandemicGame.isCured[CureButton.me.colorCuring] = true;
 				Board.background.remove(CureButton.me);
 			}
-		}
-		else if (Board.discarding) {
+		} else if (Board.discarding) {
 			PandemicGame.p1.hand.remove(this.card);
 			Board.lastDiscard = this.card;
 			Board.discardAmount--;
@@ -121,7 +128,10 @@ public class CardButton extends JButton implements ActionListener {
 							k++;
 						}
 						if (k > 0) {
-							list.add("Give " + ((PlayerCityCard) this.card).city.toString() + " Away to " + p.toString());
+							list.add("Give "
+									+ ((PlayerCityCard) this.card).city
+											.toString() + " Away to "
+									+ p.toString());
 							k--;
 						}
 					}
@@ -142,7 +152,10 @@ public class CardButton extends JButton implements ActionListener {
 								k++;
 							}
 							if (k > 0) {
-								list.add("Give " + ((PlayerCityCard) this.card).city.toString() + " Away to " + p.toString());
+								list.add("Give "
+										+ ((PlayerCityCard) this.card).city
+												.toString() + " Away to "
+										+ p.toString());
 								k--;
 							}
 						}
@@ -237,34 +250,40 @@ public class CardButton extends JButton implements ActionListener {
 				if (PandemicGame.currentMoves == 4) {
 					Board.changePlayer();
 				}
-			} else if  (s.indexOf("Away") != -1 && s.indexOf("to") != -1){
+			} else if (s.indexOf("Away") != -1 && s.indexOf("to") != -1) {
 				String arr[] = s.split(" ");
 				if (arr.length >= 6) {
 					for (Player p : (PandemicGame.playerStorage)) {
 						if (arr[4].equals("to")) {
 							if (arr.length > 7) {
-							if (p.toString().equals(arr[5] + " " + arr[6])) {
-								p.hand.add(this.card);
-								System.out.println(p.hand.stored.get(p.hand.stored.size() - 1).toString());
-								
-							}} else {
+								if (p.toString().equals(arr[5] + " " + arr[6])) {
+									p.hand.add(this.card);
+									System.out.println(p.hand.stored.get(
+											p.hand.stored.size() - 1)
+											.toString());
+
+								}
+							} else {
 								if (p.toString().equals(arr[5])) {
 									p.hand.add(this.card);
-									System.out.println(p.hand.stored.get(p.hand.stored.size() - 1).toString());
-									
+									System.out.println(p.hand.stored.get(
+											p.hand.stored.size() - 1)
+											.toString());
+
 								}
 							}
-						}
-						else if (p.toString().equals(arr[4] + " " + arr[5])) {
+						} else if (p.toString().equals(arr[4] + " " + arr[5])) {
 							p.hand.add(this.card);
-							System.out.println(p.hand.stored.get(p.hand.stored.size() - 1).toString());
+							System.out.println(p.hand.stored.get(
+									p.hand.stored.size() - 1).toString());
 						}
 					}
 				} else {
 					for (Player p : (PandemicGame.playerStorage)) {
 						if (p.toString().equals(arr[4])) {
 							p.hand.add(this.card);
-							System.out.println(p.hand.stored.get(p.hand.stored.size() - 1).toString());
+							System.out.println(p.hand.stored.get(
+									p.hand.stored.size() - 1).toString());
 						}
 					}
 				}
@@ -278,7 +297,7 @@ public class CardButton extends JButton implements ActionListener {
 				} else {
 					GameBoard.handFrame.dispose();
 				}
-				
+
 			} else {
 				System.out.println("fail");
 				for (Player p : (PandemicGame.playerStorage)) {
@@ -304,7 +323,7 @@ public class CardButton extends JButton implements ActionListener {
 			}
 		} else if (PandemicGame.p1.isFlying) {
 			Board.charterFlight(((PlayerCityCard) this.card).city);
-			
+
 		}
 		try {
 			GameBoard.movePlayer();
@@ -315,6 +334,6 @@ public class CardButton extends JButton implements ActionListener {
 		GameBoard.handFrame.remove((Component) e.getSource());
 		GameBoard.handFrame.validate();
 		GameBoard.handFrame.repaint();
-		
+
 	}
 }

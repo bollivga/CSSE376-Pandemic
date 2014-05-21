@@ -15,12 +15,8 @@ import javax.swing.JButton;
  *         as well as remove infections.
  * 
  */
-public class AirliftCard extends JButton implements ActionListener {
+public class AirliftCard implements EventCard {
 
-	/**
-	 * Serial ID for CityButton Class
-	 */
-	private static final long serialVersionUID = 1L;
 	/**
 	 * Airlift card is in use if this boolean is true.
 	 */
@@ -36,11 +32,8 @@ public class AirliftCard extends JButton implements ActionListener {
 
 	/**
 	 * Sets the city based on the node passed in on initialization.
-	 * 
-	 * @param card
-	 * @param player 
 	 */
-	public AirliftCard(Card card, Player player) {
+	public AirliftCard() {
 		// // Set the city name to the city passed in
 		// this.player = player;
 		// this.setFont(new Font("Default", 1, 10));
@@ -60,13 +53,12 @@ public class AirliftCard extends JButton implements ActionListener {
 	public static void main(String[] args) {
 
 	}
-
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		// if (PandemicGame.p1.getRole() == 1) {
-		// PandemicGame.controlledPlayer = this.player;
-		// System.out.println("Current player = " + this.player.toString());
-		// }
+	public String toString(){
+		return "Airlift";
+	}
+	@Override
+	public void trigger() {
 		AirliftCard.isFlying = true;
 	}
 }

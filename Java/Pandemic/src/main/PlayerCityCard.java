@@ -6,7 +6,7 @@ package main;
  *         This is the city card for players.
  * 
  */
-public class PlayerCityCard extends Card {
+public class PlayerCityCard implements Card {
 	/**
 	 * The node for each city.
 	 */

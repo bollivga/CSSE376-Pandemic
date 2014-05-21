@@ -396,7 +396,11 @@ public class Board {
 			Board.cureButton.setBounds(500, 500, 100, 50);
 			
 		}else{
-			//Board.background.remove
+			try{
+				Board.background.remove(Board.cureButton);
+			}finally{
+				
+			}
 		}
 	}
 

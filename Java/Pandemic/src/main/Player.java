@@ -67,26 +67,31 @@ public class Player {
 	public boolean tryMoveToCity(CityNode x) {
 		if (this.currentCity.isConnectedTo(x)) {
 			this.currentCity = x;
-			if (PandemicGame.controlledPlayer.toString().equals("Medic") && PandemicGame.isCured[this.currentCity.color]) {
+			if (PandemicGame.controlledPlayer.toString().equals("Medic")
+					&& PandemicGame.isCured[this.currentCity.color]) {
 				this.currentCity.infectionStatus[this.currentCity.color] = 0;
 			}
 			return true;
 		} else if (PandemicGame.p1.isFlying | PandemicGame.isOperationFlight) {
 			this.currentCity = x;
-			if (PandemicGame.controlledPlayer.toString().equals("Medic") && PandemicGame.isCured[this.currentCity.color]) {
+			if (PandemicGame.controlledPlayer.toString().equals("Medic")
+					&& PandemicGame.isCured[this.currentCity.color]) {
 				this.currentCity.infectionStatus[this.currentCity.color] = 0;
 			}
 			PandemicGame.p1.isFlying = false;
 			return false;
 		} else if (PandemicGame.p1.getRole() == 3 && x.hasResearchStation) {
 			this.currentCity = x;
-			if (PandemicGame.controlledPlayer.toString().equals("Medic") && PandemicGame.isCured[this.currentCity.color]) {
+			if (PandemicGame.controlledPlayer.toString().equals("Medic")
+					&& PandemicGame.isCured[this.currentCity.color]) {
 				this.currentCity.infectionStatus[this.currentCity.color] = 0;
 			}
 			return true;
-		} else if (PandemicGame.p1.currentCity.hasResearchStation && x.hasResearchStation) {
+		} else if (PandemicGame.p1.currentCity.hasResearchStation
+				&& x.hasResearchStation) {
 			this.currentCity = x;
-			if (PandemicGame.controlledPlayer.toString().equals("Medic") && PandemicGame.isCured[this.currentCity.color]) {
+			if (PandemicGame.controlledPlayer.toString().equals("Medic")
+					&& PandemicGame.isCured[this.currentCity.color]) {
 				this.currentCity.infectionStatus[this.currentCity.color] = 0;
 			}
 			return true;
@@ -164,31 +169,37 @@ public class Player {
 	 */
 	public void removeCureCards() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	/**
-	 * Checks if a cure is viable. Currently prints if viable, will show cure later.
+	 * Checks if a cure is viable. Currently prints if viable, will show cure
+	 * later.
+	 * 
 	 * @return the cure that is viable, or 4 if none are.
 	 */
 	public int checkCure() {
 		// TODO Auto-generated method stub
 		int blues = 0, blacks = 0, reds = 0, yellows = 0;
 		if (this.role == 6) {
-			blues++; blacks++; reds++; yellows++;
+			blues++;
+			blacks++;
+			reds++;
+			yellows++;
 		}
+
 		for (Card city : hand.stored) {
-			if (((PlayerCityCard)city).city.color == 0) {
-				blues++;
-			}
-			else if (((PlayerCityCard)city).city.color == 1) {
-				blacks++;
-			}
-			else if (((PlayerCityCard)city).city.color == 2) {
-				reds++;
-			}
-			else {
-				yellows++;
+			if (!(city.getClass().equals(PlayerCityCard.class))) {
+
+				if (((PlayerCityCard) city).city.color == 0) {
+					blues++;
+				} else if (((PlayerCityCard) city).city.color == 1) {
+					blacks++;
+				} else if (((PlayerCityCard) city).city.color == 2) {
+					reds++;
+				} else {
+					yellows++;
+				}
 			}
 		}
 		if (blues > 4) {
@@ -200,10 +211,10 @@ public class Player {
 		} else if (reds > 4) {
 			System.out.println("Red Cure Viable");
 			return 2;
-		} else if (yellows > 4){
+		} else if (yellows > 4) {
 			System.out.println("Yellow Cure Viable");
 			return 3;
-		}
-		else return 4;
+		} else
+			return 4;
 	}
 }

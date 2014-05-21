@@ -6,7 +6,7 @@ package main;
  *         Infects the city based on the city of the card.
  * 
  */
-public class InfectCityCard extends Card {
+public class InfectCityCard implements Card {
 
 	/**
 	 * The node for the city.

@@ -42,7 +42,7 @@ public class HandDeckTests {
 	@Test
 	public void makeAirlift() {
 		Card card = PandemicGame.p1.hand.stored.get(0);
-		AirliftCard alc = new AirliftCard(card, PandemicGame.p1);
+		AirliftCard alc = new AirliftCard();
 	}
 
 }

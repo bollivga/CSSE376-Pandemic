@@ -6,6 +6,7 @@ package main;
  *         Performs the functions of each event card.
  * 
  */
-public class EventCard extends Card {
+public interface EventCard extends Card {
 
+	public abstract void trigger();
 }

@@ -6,6 +6,6 @@ package main;
  *         Performs the functions of an epidemic card.
  * 
  */
-public class EpidemicCard extends Card {
+public class EpidemicCard implements Card {
 
 }

@@ -6,5 +6,5 @@ package main;
  *         Abstract class for cards.
  * 
  */
-public abstract class Card {
+public interface Card {
 }

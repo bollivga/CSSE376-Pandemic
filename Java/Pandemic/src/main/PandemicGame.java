@@ -15,7 +15,12 @@ import javax.swing.JOptionPane;
 public class PandemicGame {
 
 	ArrayList<CardHand> playerHands = new ArrayList<CardHand>();
-
+	
+	public static boolean oneQuietNight = false;
+	
+	public static boolean govtGrant = false;
+	
+	
 	/**
 	 * The list infection cards that have been discarded.
 	 */
@@ -143,6 +148,9 @@ public class PandemicGame {
 			PandemicGame.playerDeck.add(new PlayerCityCard(x));
 			PandemicGame.infectDeck.add(new InfectCityCard(x));
 		}
+		PandemicGame.playerDeck.add(new AirliftCard());
+		PandemicGame.playerDeck.add(new GovernmentGrantCard());
+		PandemicGame.playerDeck.add(new SilentNightCard());
 		PandemicGame.outbreakCount = 0;
 		PandemicGame.playerDeck.shuffle();
 		PandemicGame.infectDeck.shuffle();
@@ -165,7 +173,11 @@ public class PandemicGame {
 		PandemicGame.controlledPlayer = PandemicGame.playerStorage
 				.get(PandemicGame.currentPlayer);
 		PandemicGame.currentMoves = 0;
+		if(!oneQuietNight){
 		PandemicGame.infectCitiesBasedOnEpidemics();
+		}else{
+			oneQuietNight = false;
+		}
 		for(int x : cubesLeft){
 			if (x <= 0){
 				System.out.println("YOU LOSE");

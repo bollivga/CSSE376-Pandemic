@@ -110,6 +110,9 @@ public class CityButton extends JButton implements ActionListener {
 				this.cityNode.infectionStatus[this.cityNode.color] = 0;
 			}
 			AirliftCard.isFlying = false;
+		}else if(PandemicGame.govtGrant && !this.cityNode.hasResearchStation){
+			this.cityNode.hasResearchStation = true;
+			PandemicGame.govtGrant = false;
 		}
 
 		// If the player is flying from that city, try flying to the new city.
