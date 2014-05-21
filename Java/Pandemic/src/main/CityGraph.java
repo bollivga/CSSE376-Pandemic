@@ -151,9 +151,8 @@ public class CityGraph {
 
 		// Bridge between black and blue
 
-		// Connect all blacks algiers.addConnection(madrid);
+		// Connect all blacks
 		algiers.addConnection(paris);
-		madrid.addConnection(algiers);
 		algiers.addConnection(madrid);
 		algiers.addConnection(istanbul);
 		algiers.addConnection(cairo);
@@ -178,7 +177,8 @@ public class CityGraph {
 		delhi.addConnection(mumbai);
 		mumbai.addConnection(chennai);
 		kolkata.addConnection(chennai);
-		// Connect all reds jakarta.addConnection(bangkok);
+		// Connect all reds 
+		jakarta.addConnection(bangkok);
 		jakarta.addConnection(ho_chi_minh);
 		jakarta.addConnection(chennai);
 		jakarta.addConnection(sydney);

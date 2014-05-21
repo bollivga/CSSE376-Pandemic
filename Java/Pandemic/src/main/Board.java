@@ -176,6 +176,7 @@ public class Board {
 		Board.frame.paint(Board.frame.getGraphics());
 		PandemicGame.setupInfections();
 		cityList.get(25).doClick();
+		Board.cureButton = new CureButton();
 	}
 
 	/**
@@ -389,11 +390,10 @@ public class Board {
 		}
 		Board.frame.repaint();
 		if((PandemicGame.p1.checkCure() < 4) && (PandemicGame.p1.currentCity.hasResearchStation)){
-			Board.cureButton = new CureButton();
 			Board.background.add(Board.cureButton);
 			Board.cureButton.addActionListener(Board.cureButton);
 			//background.add(Board.cureButton);
-			Board.cureButton.setBounds(500, 500, 100, 50);
+			Board.cureButton.setBounds(700, 700, 100, 50);
 			
 		}else{
 			try{
