@@ -185,7 +185,8 @@ public class Board {
 	public static void chooseRoles() {
 		ArrayList<String> chooseRoles = new ArrayList<String>();
 		// role 0
-		chooseRoles.add("Contingency Planner");
+		// WIP
+		// chooseRoles.add("Contingency Planner");
 		// role 1
 		chooseRoles.add("Dispatcher");
 		// role 2
@@ -402,6 +403,7 @@ public class Board {
 				
 			}
 		}
+		System.out.println("Outbreak count is: " + PandemicGame.outbreakCount);
 	}
 
 	/**

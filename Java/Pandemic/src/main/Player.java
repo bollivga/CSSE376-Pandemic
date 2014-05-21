@@ -82,13 +82,9 @@ public class Player {
 			return false;
 		} else if (PandemicGame.p1.getRole() == 3 && x.hasResearchStation) {
 			this.currentCity = x;
-			if (PandemicGame.controlledPlayer.toString().equals("Medic")
-					&& PandemicGame.isCured[this.currentCity.color]) {
-				this.currentCity.infectionStatus[this.currentCity.color] = 0;
-			}
 			return true;
-		} else if (PandemicGame.p1.currentCity.hasResearchStation
-				&& x.hasResearchStation) {
+		} else if (PandemicGame.controlledPlayer.currentCity.hasResearchStation
+				&& x.hasResearchStation && !(x.equals(PandemicGame.controlledPlayer.currentCity))) {
 			this.currentCity = x;
 			if (PandemicGame.controlledPlayer.toString().equals("Medic")
 					&& PandemicGame.isCured[this.currentCity.color]) {
@@ -189,7 +185,7 @@ public class Player {
 		}
 
 		for (Card city : hand.stored) {
-			if (!(city.getClass().equals(PlayerCityCard.class))) {
+			if ((city.getClass().equals(PlayerCityCard.class))) {
 
 				if (((PlayerCityCard) city).city.color == 0) {
 					blues++;

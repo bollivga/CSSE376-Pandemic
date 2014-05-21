@@ -1,6 +1,7 @@
 package main;
 
 import java.awt.BorderLayout;
+import java.awt.Container;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
@@ -89,6 +90,12 @@ public class GameBoard extends JFrame implements MouseListener {
 	 */
 	public static JButton showResearch;
 
+	public static JFrame resilFrame;
+
+	public static JPanel resil;
+
+	public static ArrayList<InfectCardButton> resilButtons;
+
 	/**
 	 * Overridden paint method
 	 * 
@@ -167,7 +174,36 @@ public class GameBoard extends JFrame implements MouseListener {
 		// @SuppressWarnings("unused")
 		// AirliftCard alc = new AirliftCard(card, PandemicGame.p1);
 	}
-
+	
+	public static void showResilPop(){
+		resilFrame = new JFrame("Resilient Population");
+		resil = new JPanel();
+		resil.setSize(180 * PandemicGame.infectionDiscard.stored.size(), 300);
+		resil.setLayout(new BorderLayout(180, 300));
+		resilFrame.setLayout(new BorderLayout(180, 300));
+		resilButtons = new ArrayList<InfectCardButton>();
+		int k = 0;
+		for (Card j : PandemicGame.infectionDiscard.stored) {
+			InfectCardButton card = new InfectCardButton(j);
+			card.addActionListener(card);
+			resilButtons.add(card);
+			resilFrame.add(card);
+			if (k < 7) {
+				card.setBounds(0 + 180 * k, 0, 180, 300);
+			} else {
+				card.setBounds(0 + 180 * (k % 7), 300, 180, 300);
+			}
+			k++;
+		}
+		resilFrame.add(resil);
+		if (k < 8) {
+			resilFrame.setSize(180 * k + 20, 300);
+		} else {
+			resilFrame.setSize(180 * 7 + 20, (1+(k / 7))*300);
+		}
+		resilFrame.setVisible(true);
+		resil.setVisible(true);
+	}
 	// public static void redrawCards() {
 	// for (CardButton l : PandemicGame.handList) {
 	// Board.background.remove(l);

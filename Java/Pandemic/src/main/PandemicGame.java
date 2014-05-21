@@ -151,6 +151,7 @@ public class PandemicGame {
 		PandemicGame.playerDeck.add(new AirliftCard());
 		PandemicGame.playerDeck.add(new GovernmentGrantCard());
 		PandemicGame.playerDeck.add(new SilentNightCard());
+		PandemicGame.playerDeck.add(new ResilPopCard());
 		PandemicGame.outbreakCount = 0;
 		PandemicGame.playerDeck.shuffle();
 		PandemicGame.infectDeck.shuffle();

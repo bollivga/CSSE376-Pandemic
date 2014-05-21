@@ -113,7 +113,7 @@ public class CityButton extends JButton implements ActionListener {
 		}else if(PandemicGame.govtGrant && !this.cityNode.hasResearchStation){
 			this.cityNode.hasResearchStation = true;
 			PandemicGame.govtGrant = false;
-		}
+		}else
 
 		// If the player is flying from that city, try flying to the new city.
 		if (PandemicGame.p1.isFlying) {
