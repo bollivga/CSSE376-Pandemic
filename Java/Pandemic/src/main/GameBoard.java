@@ -89,6 +89,7 @@ public class GameBoard extends JFrame implements MouseListener {
 			} else if (PandemicGame.p1.getRole() == 0
 					&& (PandemicGame.discardedEventCount > 0 || ContinPlannerButton.hasEventCard == true)) {
 				Board.background.add(plannerButton);
+				plannerButton.refreshCard();
 				try {
 
 					Board.background.remove(stationButton);
@@ -102,6 +103,8 @@ public class GameBoard extends JFrame implements MouseListener {
 				} finally {
 				}
 			}
+		}else{
+			
 		}
 	}
 
@@ -278,9 +281,10 @@ public class GameBoard extends JFrame implements MouseListener {
 		eventP.setLayout(new BorderLayout(180, 300));
 		eventFrame.setLayout(new BorderLayout(180, 300));
 		eventButtons = new ArrayList<PlannerButton>();
+		
 		int k = 0;
 		for (Card j : PandemicGame.playerDiscard.stored) {
-			if (!(PlayerCityCard.class.equals(j.getClass()))) {
+			if (!(j instanceof PlayerCityCard)) {
 				PlannerButton card = new PlannerButton((EventCard) j);
 				card.addActionListener(card);
 				eventButtons.add(card);

@@ -49,7 +49,7 @@ public class ContinPlannerButton extends JButton implements ActionListener {
 
 	}
 
-	private void refreshCard() {
+	public void refreshCard() {
 		if (PandemicGame.discardedEventCount > 0) {
 			if (!PandemicGame.isGerman) {
 				if (hasEventCard) {
@@ -68,7 +68,8 @@ public class ContinPlannerButton extends JButton implements ActionListener {
 		}else{
 			try{
 			Board.background.remove(this);
-			}finally{
+			}catch 
+			finally{
 				
 			}
 		}
