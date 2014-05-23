@@ -31,7 +31,13 @@ public class CureButton extends JButton implements ActionListener {
 	 * The number of cards needed to cure the disease. Differs based on class.
 	 */
 	public static int cardsLeft;
+	/**
+	 * The color that is currently having a cure developed
+	 */
 	public static int colorCuring;
+	/**
+	 * This specific cure button
+	 */
 	public static CureButton me;
 
 	/**

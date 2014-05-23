@@ -186,9 +186,9 @@ public class Board {
 		ArrayList<String> chooseRoles = new ArrayList<String>();
 		// role 0
 		// WIP
-		// chooseRoles.add("Contingency Planner");
 		// role 1
 		if (!PandemicGame.isGerman) {
+			chooseRoles.add("Contingency Planner");
 			chooseRoles.add("Dispatcher");
 			// role 2
 			chooseRoles.add("Medic");
@@ -202,7 +202,7 @@ public class Board {
 			chooseRoles.add("Scientist");
 			chooseRoles.add("No More Players");
 		} else {
-			// chooseRoles.add("Notfallplaner");
+			chooseRoles.add("Notfallplaner");
 			chooseRoles.add("Dispatcher");
 			// role 2
 			chooseRoles.add("Mediziner");
@@ -396,9 +396,8 @@ public class Board {
 
 				JOptionPane.showMessageDialog(frame, "You must discard "
 						+ discardAmount + " cards.");
-			}else{
-				System.out
-				.println("Sie können nur 7 Karten! Bitte entsorgen.");
+			} else {
+				System.out.println("Sie können nur 7 Karten! Bitte entsorgen.");
 				JOptionPane.showMessageDialog(frame, "Sie müssen "
 						+ discardAmount + " Karten ablegen.");
 			}
@@ -421,26 +420,28 @@ public class Board {
 						.size()) % PandemicGame.playerStorage.size())
 				.toString();
 		if (!discarding) {
-			if(!PandemicGame.isGerman){
+			if (!PandemicGame.isGerman) {
 				JOptionPane.showMessageDialog(frame, "The " + lastPlayer
 						+ "'s turn has ended. It is now the " + nextPlayer
 						+ "'s turn.");
-			}else{
+			} else {
 				JOptionPane.showMessageDialog(frame, "Der " + lastPlayer
-						+ " an der Reihe ist zu Ende. Es ist nun die " + nextPlayer
-						+ "-Reihe");
+						+ " an der Reihe ist zu Ende. Es ist nun die "
+						+ nextPlayer + "-Reihe");
 			}
 		} else {
-			if(!PandemicGame.isGerman){
-			JOptionPane.showMessageDialog(frame, lastPlayer + " discarded the "
-					+ lastDiscard.toString() + " card.\n" + "The " + lastPlayer
-					+ "'s turn has ended. It is now the " + nextPlayer
-					+ "'s turn.");
-			}else{
-				JOptionPane.showMessageDialog(frame, lastPlayer + " verwarf die "
-						+ lastDiscard.toString() + " karte.\n" +"Der " + lastPlayer
-				+ " an der Reihe ist zu Ende. Es ist nun die " + nextPlayer
-				+ "-Reihe");
+			if (!PandemicGame.isGerman) {
+				JOptionPane.showMessageDialog(frame, lastPlayer
+						+ " discarded the " + lastDiscard.toString()
+						+ " card.\n" + "The " + lastPlayer
+						+ "'s turn has ended. It is now the " + nextPlayer
+						+ "'s turn.");
+			} else {
+				JOptionPane.showMessageDialog(frame, lastPlayer
+						+ " verwarf die " + lastDiscard.toString()
+						+ " karte.\n" + "Der " + lastPlayer
+						+ " an der Reihe ist zu Ende. Es ist nun die "
+						+ nextPlayer + "-Reihe");
 			}
 		}
 		GameBoard.redrawCards();
@@ -472,10 +473,12 @@ public class Board {
 
 			}
 		}
-		if(!PandemicGame.isGerman){
-		System.out.println("Outbreak count is: " + PandemicGame.outbreakCount);
-		}else{
-			System.out.println("Outbreak Zahl ist: "+ PandemicGame.outbreakCount);
+		if (!PandemicGame.isGerman) {
+			System.out.println("Outbreak count is: "
+					+ PandemicGame.outbreakCount);
+		} else {
+			System.out.println("Outbreak Zahl ist: "
+					+ PandemicGame.outbreakCount);
 		}
 	}
 
@@ -486,20 +489,20 @@ public class Board {
 	 */
 	public static void charterFlight(CityNode city) {
 		JFrame frame = new JFrame();
-		if(!PandemicGame.isGerman){
-		JOptionPane
-				.showMessageDialog(
-						frame,
-						"You can use this city card to fly from "
-								+ city.name
-								+ " to any other city. \n Please select another city to which you wish to fly.");
-		}else{
+		if (!PandemicGame.isGerman) {
 			JOptionPane
-			.showMessageDialog(
-					frame,
-					"Sie können diese Stadt Karte verwenden, um von "
-							+ city.name
-							+ " nach jeder anderen Stadt zu fliegen. \n Bitte wählen Sie eine andere Stadt, zu dem Sie fliegen möchten.");
+					.showMessageDialog(
+							frame,
+							"You can use this city card to fly from "
+									+ city.name
+									+ " to any other city. \n Please select another city to which you wish to fly.");
+		} else {
+			JOptionPane
+					.showMessageDialog(
+							frame,
+							"Sie können diese Stadt Karte verwenden, um von "
+									+ city.name
+									+ " nach jeder anderen Stadt zu fliegen. \n Bitte wählen Sie eine andere Stadt, zu dem Sie fliegen möchten.");
 		}
 		PandemicGame.p1.isFlying = true;
 	}
@@ -526,24 +529,22 @@ public class Board {
 	 */
 	public static void displayInfection(CityNode city) {
 		if (!PandemicGame.isSetup && (PandemicGame.isEpidemic == 0)) {
-			if(!PandemicGame.isGerman){
-			JOptionPane.showMessageDialog(Board.frame, city.toString()
-					+ " was infected.");
+			if (!PandemicGame.isGerman) {
+				JOptionPane.showMessageDialog(Board.frame, city.toString()
+						+ " was infected.");
+			} else {
+				JOptionPane.showMessageDialog(Board.frame, city.toString()
+						+ "infiziert wurde.");
 			}
-			else{
-				JOptionPane.showMessageDialog(Board.frame, city.toString() + "infiziert wurde.");
-			}
-		} else if (!PandemicGame.isSetup && (PandemicGame.isEpidemic == 1))
-		{
-			if(!PandemicGame.isGerman){
-			JOptionPane.showMessageDialog(
-					Board.frame,
-					"An epidemic has occured. "
-							+ PandemicGame.lastEpidemic.toString()
-							+ " was infected three times.");
-			}else{
+		} else if (!PandemicGame.isSetup && (PandemicGame.isEpidemic == 1)) {
+			if (!PandemicGame.isGerman) {
 				JOptionPane.showMessageDialog(
 						Board.frame,
+						"An epidemic has occured. "
+								+ PandemicGame.lastEpidemic.toString()
+								+ " was infected three times.");
+			} else {
+				JOptionPane.showMessageDialog(Board.frame,
 						"Eine Epidemie ist aufgetreten. "
 								+ PandemicGame.lastEpidemic.toString()
 								+ " wurde dreimal infiziert.");
