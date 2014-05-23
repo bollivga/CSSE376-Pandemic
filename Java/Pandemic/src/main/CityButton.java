@@ -81,17 +81,15 @@ public class CityButton extends JButton implements ActionListener {
 	public static void main(String[] args) {
 
 	}
-	
-	
+
 	/**
 	 * 
 	 */
 	public void refreshResearchStation() {
 		if (this.cityNode.hasResearchStation) {
 			this.setBackground(this.getBackground().darker());
-			
-		}
-		else {
+
+		} else {
 			this.setBackground(this.getBackground().brighter());
 		}
 	}
@@ -105,30 +103,33 @@ public class CityButton extends JButton implements ActionListener {
 		// the card.
 		if (AirliftCard.isFlying) {
 			PandemicGame.controlledPlayer.currentCity = this.cityNode;
-			if (PandemicGame.controlledPlayer.getRole() == 2 && PandemicGame.isCured[this.cityNode.color]) {
+			if (PandemicGame.controlledPlayer.getRole() == 2
+					&& PandemicGame.isCured[this.cityNode.color]) {
 				this.cityNode.infectionStatus[this.cityNode.color] = 0;
 			}
 			AirliftCard.isFlying = false;
-		}else if(PandemicGame.govtGrant && !this.cityNode.hasResearchStation){
+		} else if (PandemicGame.govtGrant && !this.cityNode.hasResearchStation) {
 			this.cityNode.hasResearchStation = true;
 			PandemicGame.govtGrant = false;
-		}else
+			this.refreshResearchStation();
+		} else
 
 		// If the player is flying from that city, try flying to the new city.
 		if (PandemicGame.p1.isFlying) {
 			if (PandemicGame.controlledPlayer.tryFlyToCity(cityNode)) {
 				PandemicGame.controlledPlayer.currentCity = cityNode;
-				if (PandemicGame.controlledPlayer.getRole() == 2 && PandemicGame.isCured[this.cityNode.color]) {
+				if (PandemicGame.controlledPlayer.getRole() == 2
+						&& PandemicGame.isCured[this.cityNode.color]) {
 					this.cityNode.infectionStatus[this.cityNode.color] = 0;
 				}
 				PandemicGame.p1.isFlying = false;
 				++PandemicGame.currentMoves;
-				if(!PandemicGame.isGerman){
-				System.out.println(""
-						+ (4 - PandemicGame.currentMoves) + " moves left.");
-				}else{
-					System.out.println(""
-							+ (4 - PandemicGame.currentMoves) + " bewegt sich bleiben.");
+				if (!PandemicGame.isGerman) {
+					System.out.println("" + (4 - PandemicGame.currentMoves)
+							+ " moves left.");
+				} else {
+					System.out.println("" + (4 - PandemicGame.currentMoves)
+							+ " bewegt sich bleiben.");
 				}
 				if (PandemicGame.currentMoves == 4) {
 					Board.changePlayer();
@@ -182,7 +183,8 @@ public class CityButton extends JButton implements ActionListener {
 							if (PandemicGame.controlledPlayer
 									.tryFlyToCity(cityNode)) {
 								PandemicGame.controlledPlayer.currentCity = this.cityNode;
-								if (PandemicGame.controlledPlayer.getRole() == 2 && PandemicGame.isCured[this.cityNode.color]) {
+								if (PandemicGame.controlledPlayer.getRole() == 2
+										&& PandemicGame.isCured[this.cityNode.color]) {
 									this.cityNode.infectionStatus[this.cityNode.color] = 0;
 								}
 								++PandemicGame.currentMoves;

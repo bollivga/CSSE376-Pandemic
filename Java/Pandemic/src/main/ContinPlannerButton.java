@@ -11,7 +11,13 @@ import javax.swing.JButton;
  */
 public class ContinPlannerButton extends JButton implements ActionListener {
 
+	/**
+	 * 
+	 */
 	public static boolean hasEventCard = false;
+	/**
+	 * 
+	 */
 	public static EventCard currentCard;
 	/**
 	 * 
@@ -65,12 +71,14 @@ public class ContinPlannerButton extends JButton implements ActionListener {
 				}
 			}
 			Board.background.add(this);
-		}else{
-			try{
-			Board.background.remove(this);
-			}catch 
-			finally{
-				
+
+		} else {
+			if (Board.background != null) {
+				try {
+					Board.background.remove(this);
+				} finally {
+
+				}
 			}
 		}
 	}

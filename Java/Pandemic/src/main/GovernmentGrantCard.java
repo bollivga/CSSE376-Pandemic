@@ -8,11 +8,12 @@ public class GovernmentGrantCard implements EventCard {
 
 		PandemicGame.discardedEventCount++;
 	}
+
 	@Override
-	public String toString(){
-		if(!PandemicGame.isGerman){
-		return "Government Grant";
-		}else{
+	public String toString() {
+		if (!PandemicGame.isGerman) {
+			return "Government Grant";
+		} else {
 			return "Zuwendung";
 		}
 	}
