@@ -7,6 +7,7 @@ public class SilentNightCard implements EventCard {
 		PandemicGame.oneQuietNight = true;
 
 		PandemicGame.discardedEventCount++;
+		PandemicGame.playerDiscard.add(this);
 	}
 
 	@Override

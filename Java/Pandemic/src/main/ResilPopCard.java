@@ -7,6 +7,7 @@ public class ResilPopCard implements EventCard {
 		GameBoard.showResilPop();
 
 		PandemicGame.discardedEventCount++;
+		PandemicGame.playerDiscard.add(this);
 	}
 	@Override
 	public String toString(){

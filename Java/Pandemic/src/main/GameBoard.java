@@ -119,7 +119,7 @@ public class GameBoard extends JFrame implements MouseListener {
 
 	public static ArrayList<InfectCardButton> resilButtons;
 
-	private static JFrame eventFrame;
+	public static JFrame eventFrame;
 
 	private static JPanel eventP;
 
@@ -271,6 +271,9 @@ public class GameBoard extends JFrame implements MouseListener {
 	}
 
 	public static void plannerGet() {
+		if(!(eventFrame == null)){
+			eventFrame.dispose();
+		}
 		if (!PandemicGame.isGerman) {
 			eventFrame = new JFrame("Event Cards");
 		} else {
@@ -284,12 +287,12 @@ public class GameBoard extends JFrame implements MouseListener {
 		
 		int k = 0;
 		for (Card j : PandemicGame.playerDiscard.stored) {
-			if (!(j instanceof PlayerCityCard)) {
+			if ((j instanceof GovernmentGrantCard) || (j instanceof AirliftCard) || (j instanceof SilentNightCard) || (j instanceof ResilPopCard)) {
 				PlannerButton card = new PlannerButton((EventCard) j);
 				card.addActionListener(card);
 				eventButtons.add(card);
 				eventFrame.add(card);
-
+				System.out.println("Should add "+j.toString());
 				card.setBounds(0 + 180 * k, 0, 180, 300);
 				k++;
 			}
@@ -299,6 +302,7 @@ public class GameBoard extends JFrame implements MouseListener {
 
 		eventFrame.setVisible(true);
 		eventP.setVisible(true);
+		eventFrame.repaint();
 
 	}
 

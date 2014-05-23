@@ -7,6 +7,7 @@ public class GovernmentGrantCard implements EventCard {
 		PandemicGame.govtGrant = true;
 
 		PandemicGame.discardedEventCount++;
+		PandemicGame.playerDiscard.add(this);
 	}
 
 	@Override
