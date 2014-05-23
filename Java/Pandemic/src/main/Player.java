@@ -13,12 +13,12 @@ import java.awt.Color;
  */
 public class Player {
 	private int role;
-	CityNode currentCity;
+	public CityNode currentCity;
 	/**
 	 * The hand of cards for that player
 	 */
 	public CardHand hand;
-	boolean isFlying;
+	public boolean isFlying;
 	/**
 	 * The color of the player for graphical appearance.
 	 */
@@ -67,14 +67,14 @@ public class Player {
 	public boolean tryMoveToCity(CityNode x) {
 		if (this.currentCity.isConnectedTo(x)) {
 			this.currentCity = x;
-			if (PandemicGame.controlledPlayer.toString().equals("Medic")
+			if (PandemicGame.controlledPlayer.getRole() == 2
 					&& PandemicGame.isCured[this.currentCity.color]) {
 				this.currentCity.infectionStatus[this.currentCity.color] = 0;
 			}
 			return true;
 		} else if (PandemicGame.p1.isFlying | PandemicGame.isOperationFlight) {
 			this.currentCity = x;
-			if (PandemicGame.controlledPlayer.toString().equals("Medic")
+			if (PandemicGame.controlledPlayer.getRole() == 2
 					&& PandemicGame.isCured[this.currentCity.color]) {
 				this.currentCity.infectionStatus[this.currentCity.color] = 0;
 			}
@@ -84,9 +84,10 @@ public class Player {
 			this.currentCity = x;
 			return true;
 		} else if (PandemicGame.controlledPlayer.currentCity.hasResearchStation
-				&& x.hasResearchStation && !(x.equals(PandemicGame.controlledPlayer.currentCity))) {
+				&& x.hasResearchStation
+				&& !(x.equals(PandemicGame.controlledPlayer.currentCity))) {
 			this.currentCity = x;
-			if (PandemicGame.controlledPlayer.toString().equals("Medic")
+			if (PandemicGame.controlledPlayer.getRole() == 2
 					&& PandemicGame.isCured[this.currentCity.color]) {
 				this.currentCity.infectionStatus[this.currentCity.color] = 0;
 			}
@@ -141,22 +142,42 @@ public class Player {
 
 	@Override
 	public String toString() {
-		if (this.role == 0) {
-			return "Contingency Planner";
-		} else if (this.role == 1) {
-			return "Dispatcher";
-		} else if (this.role == 2) {
-			return "Medic";
-		} else if (this.role == 3) {
-			return "Operations Expert";
-		} else if (this.role == 4) {
-			return "Quarantine Specialist";
-		} else if (this.role == 5) {
-			return "Researcher";
-		} else if (this.role == 6) {
-			return "Scientist";
+		if (!PandemicGame.isGerman) {
+			if (this.role == 0) {
+				return "Contingency Planner";
+			} else if (this.role == 1) {
+				return "Dispatcher";
+			} else if (this.role == 2) {
+				return "Medic";
+			} else if (this.role == 3) {
+				return "Operations Expert";
+			} else if (this.role == 4) {
+				return "Quarantine Specialist";
+			} else if (this.role == 5) {
+				return "Researcher";
+			} else if (this.role == 6) {
+				return "Scientist";
+			} else {
+				return "Player";
+			}
 		} else {
-			return "Player";
+			if (this.role == 0) {
+				return "Notfallplaner";
+			} else if (this.role == 1) {
+				return "Dispatcher";
+			} else if (this.role == 2) {
+				return "Mediziner";
+			} else if (this.role == 3) {
+				return "Operationen Expert";
+			} else if (this.role == 4) {
+				return "Quarantäne-Spezialist";
+			} else if (this.role == 5) {
+				return "Forscher";
+			} else if (this.role == 6) {
+				return "Wissenschaftler";
+			} else {
+				return "Spieler";
+			}
 		}
 	}
 

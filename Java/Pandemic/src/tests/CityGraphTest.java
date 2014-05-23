@@ -42,7 +42,7 @@ public class CityGraphTest {
 	@Test
 	public void testInfection() {
 		PandemicGame testGame = new PandemicGame();
-
+		PandemicGame.controlledPlayer = new Player(0);
 		InfectCityCard ny = new InfectCityCard(
 				PandemicGame.world.getCity("New York"));
 		assertFalse(ny.infectThrice());

@@ -34,7 +34,13 @@ public class DispatcherButton extends JButton implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		if (PandemicGame.p1.getRole() == 1) {
 			PandemicGame.controlledPlayer = this.player;
-			System.out.println("Current player = " + this.player.toString());
+			if (!PandemicGame.isGerman) {
+				System.out
+						.println("Current player = " + this.player.toString());
+			} else {
+				System.out.println("Aktuelle Spieler = "
+						+ this.player.toString());
+			}
 		}
 	}
 

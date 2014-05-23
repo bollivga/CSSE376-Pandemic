@@ -15,12 +15,11 @@ import javax.swing.JOptionPane;
 public class PandemicGame {
 
 	ArrayList<CardHand> playerHands = new ArrayList<CardHand>();
-	
+
 	public static boolean oneQuietNight = false;
-	
+
 	public static boolean govtGrant = false;
-	
-	
+
 	/**
 	 * The list infection cards that have been discarded.
 	 */
@@ -52,11 +51,12 @@ public class PandemicGame {
 	 */
 	public static Player controlledPlayer;
 
+	public static int discardedEventCount = 0;
 	/**
 	 * The number of outbreaks that have occurred.
 	 */
 	public static int outbreakCount;
-
+	public static boolean isGerman;
 	/**
 	 * The world as a city graph initialized.
 	 */
@@ -66,11 +66,11 @@ public class PandemicGame {
 	 * Tells you if a disease has been eradicated. Used to hold all diseases.
 	 */
 	public static boolean isEradicated[] = { false, false, false, false };
-	
+
 	/**
 	 * Tells you if a disease has been eradicated. Used to hold all diseases.
 	 */
-	public static int cubesLeft[] = {24, 24, 24, 24};
+	public static int cubesLeft[] = { 24, 24, 24, 24 };
 
 	/**
 	 * Tells you if a disease has been cured, similarly.
@@ -174,25 +174,25 @@ public class PandemicGame {
 		PandemicGame.controlledPlayer = PandemicGame.playerStorage
 				.get(PandemicGame.currentPlayer);
 		PandemicGame.currentMoves = 0;
-		if(!oneQuietNight){
-		PandemicGame.infectCitiesBasedOnEpidemics();
-		}else{
+		if (!oneQuietNight) {
+			PandemicGame.infectCitiesBasedOnEpidemics();
+		} else {
 			oneQuietNight = false;
 		}
-		for(int x : cubesLeft){
-			if (x <= 0){
+		for (int x : cubesLeft) {
+			if (x <= 0) {
 				System.out.println("YOU LOSE");
 				System.exit(0);
 			}
 		}
-		if(PandemicGame.outbreakCount >= 8){
+		if (PandemicGame.outbreakCount >= 8) {
 			System.out.println("YOU LOSE");
 			System.exit(0);
-		}else if(PandemicGame.playerDeck.stored.size() == 0){
+		} else if (PandemicGame.playerDeck.stored.size() == 0) {
 			System.out.println("YOU LOSE");
 			System.exit(0);
 		}
-		
+
 	}
 
 	/**
@@ -228,7 +228,11 @@ public class PandemicGame {
 			infected = (InfectCityCard) PandemicGame.infectDeck.draw();
 			infected.infect();
 			PandemicGame.infectionDiscard.add(infected);
-			System.out.println(infected.toString() + " infected.");
+			if (!isGerman) {
+				System.out.println(infected.toString() + " infected.");
+			} else {
+				System.out.println(infected.toString() + " infiziert.");
+			}
 		}
 
 	}
@@ -285,25 +289,47 @@ public class PandemicGame {
 	 */
 	public static void addPlayer(String x) {
 		int y = 0;
-		if (x == "Contingency Planner") {
-			y = 0;
-		} else if (x == "Dispatcher") {
-			y = 1;
-		} else if (x == "Medic") {
-			y = 2;
-		} else if (x == "Operations Expert") {
-			y = 3;
-		} else if (x == "Quarantine Specialist") {
-			PandemicGame.QuarantineSpec = PandemicGame.playerStorage.size();
-			y = 4;
-		} else if (x == "Researcher") {
-			y = 5;
-		} else if (x == "Scientist") {
-			y = 6;
-		} else {
-			// do nothing; illegal pass, but ignoring is easier than throwing an
-			// exception for now
-			return;
+		if (!isGerman) {
+			if (x == "Contingency Planner") {
+				y = 0;
+			} else if (x == "Dispatcher") {
+				y = 1;
+			} else if (x == "Medic") {
+				y = 2;
+			} else if (x == "Operations Expert") {
+				y = 3;
+			} else if (x == "Quarantine Specialist") {
+				PandemicGame.QuarantineSpec = PandemicGame.playerStorage.size();
+				y = 4;
+			} else if (x == "Researcher") {
+				y = 5;
+			} else if (x == "Scientist") {
+				y = 6;
+			} else {
+				// do nothing; illegal pass, but ignoring is easier than
+				// throwing an
+				// exception for now
+				return;
+			}
+		}else{
+			if (x == "Notfallplaner") {
+				y = 0;
+			} else if (x == "Dispatcher") {
+				y = 1;
+			} else if (x == "Mediziner") {
+				y = 2;
+			} else if (x == "Operationen Expert") {
+				y = 3;
+			} else if (x == "Quarantäne-Spezialist") {
+				PandemicGame.QuarantineSpec = PandemicGame.playerStorage.size();
+				y = 4;
+			} else if (x == "Forscher") {
+				y = 5;
+			} else if (x == "Wissenschaftler") {
+				y = 6;
+			} else {
+				return;
+			}
 		}
 		PandemicGame.playerStorage.add(new Player(y));
 	}
@@ -335,20 +361,34 @@ public class PandemicGame {
 			PandemicGame.infectionDiscard.add(infected);
 			InfectedList.add(infected.toString());
 		}
-
-		String thrice = InfectedListThrice.get(0) + ", "
+		String thrice;
+		String twice;
+		String once;
+		if(!isGerman){
+		thrice = InfectedListThrice.get(0) + ", "
 				+ InfectedListThrice.get(1) + ", and "
 				+ InfectedListThrice.get(2);
-		String twice = InfectedListTwice.get(0) + ", "
+		twice = InfectedListTwice.get(0) + ", "
 				+ InfectedListTwice.get(1) + ", and "
 				+ InfectedListTwice.get(2);
-		String once = InfectedList.get(0) + ", " + InfectedList.get(1)
+		once = InfectedList.get(0) + ", " + InfectedList.get(1)
 				+ ", and " + InfectedList.get(2);
-
 		JOptionPane.showMessageDialog(Board.frame, thrice
 				+ " infected three times.\n" + twice + " infected two times.\n"
 				+ once + " infected once.");
-		
+		}else{
+			thrice = InfectedListThrice.get(0) + ", "
+					+ InfectedListThrice.get(1) + ", und "
+					+ InfectedListThrice.get(2);
+			twice = InfectedListTwice.get(0) + ", "
+					+ InfectedListTwice.get(1) + ", und "
+					+ InfectedListTwice.get(2);
+			once = InfectedList.get(0) + ", " + InfectedList.get(1)
+					+ ", und " + InfectedList.get(2);
+			JOptionPane.showMessageDialog(Board.frame, thrice
+					+ " infiziert dreimal.\n" + twice + " infiziert zweimal.\n"
+					+ once + " infiziert einmal.");
+		}
 		for (CityButton j : Board.cityList) {
 			j.setText("" + (j.cityNode.infectionStatus[j.cityNode.color]));
 		}

@@ -1,4 +1,5 @@
 package main;
+
 //Test
 import java.awt.*;
 import java.awt.event.WindowAdapter;
@@ -50,45 +51,45 @@ public class Board {
 	 * Background is static to allow access from drawing components.
 	 */
 	public static JLabel background;
-	
+
 	/**
 	 * The main frame in which everything is drawn.
 	 */
 	public static GameBoard frame;
-	
+
 	/**
 	 * The stored location of the players
 	 */
 	public static Player[] playerLoc = new Player[4];
-	
+
 	@SuppressWarnings("javadoc")
 	public static int i = 0;
-	
+
 	/**
 	 * The list of buttons for each city.
 	 */
 	public static ArrayList<CityButton> cityList = new ArrayList<CityButton>();
-	
+
 	/**
 	 * The list of player ellipses in the game. Unused as of yet.
 	 */
 	public static ArrayList<Ellipse2D.Double> players;
-	
+
 	/**
 	 * The buttons used by the Dispatcher special ability.
 	 */
 	public static ArrayList<DispatcherButton> dispatcherList = new ArrayList<DispatcherButton>();
-	
+
 	/**
 	 * The number of cards you want to discard
 	 */
 	public static int discardAmount;
-	
+
 	/**
 	 * Tells you if the player is currently discarding
 	 */
 	public static boolean discarding;
-	
+
 	/**
 	 * Keeps track of the last card discarded for GUI purposes
 	 */
@@ -103,6 +104,7 @@ public class Board {
 	 */
 	public static void main(String[] args) {
 		// JFrame frame = new JFrame();
+		PandemicGame.isGerman = false;
 		Board.init();
 		Board.chooseRoles();
 		PandemicGame.handOutCards();
@@ -140,32 +142,30 @@ public class Board {
 				background.add(x);
 			}
 		}
-		// int k = 0;
-		// for (Card j : PandemicGame.p1.hand.stored) {
-		// k++;
-		// CardButton card = new CardButton(j);
-		// card.addActionListener(card);
-		// background.add(card);
-		// card.setBounds(300 + 140*k, 650, 140, 300);
-		// }
-
-		// Test Player Graphic
-		// JLabel player = new JLabel(new ImageIcon("src/player.jpg"));
-		// player.setBounds(280, 297, 20, 50);
-		// player.setLayout(BorderLayout.NORTH);
-		// frame.add(player);
-
-		// If you try to close the window, it verifies with a yes/no and then
-		// quits if yes.
 		frame.addWindowListener(new WindowAdapter() {
 
 			@Override
 			public void windowClosing(WindowEvent we) {
-				String ObjButtons[] = { "Yes", "No" };
-				int PromptResult = JOptionPane.showOptionDialog(null,
-						"Are you sure you want to exit?", "Quit?",
-						JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE,
-						null, ObjButtons, ObjButtons[1]);
+				String ObjButtons[] = { "", "" };
+				if (!PandemicGame.isGerman) {
+					ObjButtons[0] = "Yes";
+					ObjButtons[1] = "No";
+				} else {
+					ObjButtons[0] = "Ja";
+					ObjButtons[1] = "Nein";
+				}
+				String query[] = { "", "" };
+				if (!PandemicGame.isGerman) {
+					query[0] = "Are you sure you want to exit?";
+					query[1] = "Quit?";
+				} else {
+					query[0] = "Sind Sie sicher, dass Sie beenden?";
+					query[1] = "Aufzuhören?";
+				}
+				int PromptResult = JOptionPane.showOptionDialog(null, query[0],
+						query[1], JOptionPane.YES_NO_OPTION,
+						JOptionPane.WARNING_MESSAGE, null, ObjButtons,
+						ObjButtons[1]);
 				if (PromptResult == JOptionPane.YES_OPTION) {
 					System.exit(0);
 				} else {
@@ -188,19 +188,34 @@ public class Board {
 		// WIP
 		// chooseRoles.add("Contingency Planner");
 		// role 1
-		chooseRoles.add("Dispatcher");
-		// role 2
-		chooseRoles.add("Medic");
-		// role 3
-		chooseRoles.add("Operations Expert");
-		// role 4
-		chooseRoles.add("Quarantine Specialist");
-		// role 5
-		chooseRoles.add("Researcher");
-		// role 6
-		chooseRoles.add("Scientist");
-		chooseRoles.add("No More Players");
-
+		if (!PandemicGame.isGerman) {
+			chooseRoles.add("Dispatcher");
+			// role 2
+			chooseRoles.add("Medic");
+			// role 3
+			chooseRoles.add("Operations Expert");
+			// role 4
+			chooseRoles.add("Quarantine Specialist");
+			// role 5
+			chooseRoles.add("Researcher");
+			// role 6
+			chooseRoles.add("Scientist");
+			chooseRoles.add("No More Players");
+		} else {
+			// chooseRoles.add("Notfallplaner");
+			chooseRoles.add("Dispatcher");
+			// role 2
+			chooseRoles.add("Mediziner");
+			// role 3
+			chooseRoles.add("Operationen Expert");
+			// role 4
+			chooseRoles.add("Quarantäne-Spezialist");
+			// role 5
+			chooseRoles.add("Forscher");
+			// role 6
+			chooseRoles.add("Wissenschaftler");
+			chooseRoles.add("Nicht mehr Spielern");
+		}
 		int i = 0;
 		Object[] list = new Object[8];
 
@@ -211,45 +226,90 @@ public class Board {
 
 		i = 1;
 		while (i < 5) {
-			String s = (String) JOptionPane
-					.showInputDialog(
-							frame,
-							"Please select  the role for Player "
-									+ i
-									+ ".\n"
-									+ "To finish and choose less than four players, select No More Players.",
-							"Role Selection", JOptionPane.PLAIN_MESSAGE, null,
-							list, "Contingency Planner");
-			if (s == "No More Players") {
-				if (i > 2) {
-					JFrame finish = new JFrame();
-					String nextPlayer = PandemicGame.playerStorage.get(
-							PandemicGame.currentPlayer).toString();
-					JOptionPane.showMessageDialog(finish,
-							"All players have been selected. There are "
-									+ (i - 1) + " players in the game.\n"
-									+ "It is now Player 1, the " + nextPlayer
-									+ "'s turn.");
-					i = 5;
+			String s;
+			if (!PandemicGame.isGerman) {
+				s = (String) JOptionPane
+						.showInputDialog(
+								frame,
+								"Please select  the role for Player "
+										+ i
+										+ ".\n"
+										+ "To finish and choose less than four players, select No More Players.",
+								"Role Selection", JOptionPane.PLAIN_MESSAGE,
+								null, list, "Contingency Planner");
+
+				if (s == "No More Players") {
+					if (i > 2) {
+						JFrame finish = new JFrame();
+						String nextPlayer = PandemicGame.playerStorage.get(
+								PandemicGame.currentPlayer).toString();
+						JOptionPane.showMessageDialog(finish,
+								"All players have been selected. There are "
+										+ (i - 1) + " players in the game.\n"
+										+ "It is now Player 1, the "
+										+ nextPlayer + "'s turn.");
+						i = 5;
+					} else {
+						JFrame finish = new JFrame();
+						JOptionPane.showMessageDialog(finish,
+								"You must have at least two players!");
+					}
 				} else {
-					JFrame finish = new JFrame();
-					JOptionPane.showMessageDialog(finish,
-							"You must have at least two players!");
+					int oldLength = list.length;
+					Object[] newList = new Object[oldLength - 1];
+					int k = 0;
+					for (Object obj : list) {
+						if (obj != s) {
+							newList[k] = obj;
+							k++;
+						}
+					}
+					//
+					PandemicGame.addPlayer(s);
+					i++;
+					list = newList;
 				}
 			} else {
-				int oldLength = list.length;
-				Object[] newList = new Object[oldLength - 1];
-				int k = 0;
-				for (Object obj : list) {
-					if (obj != s) {
-						newList[k] = obj;
-						k++;
+				s = (String) JOptionPane
+						.showInputDialog(
+								frame,
+								"Bitte wählen Sie die Rolle von Spieler "
+										+ i
+										+ ".\n"
+										+ "Um zu beenden, und wählen Sie weniger als vier Spieler, wählen Sie Nicht mehr Spielern.",
+								"Rollenauswahl", JOptionPane.PLAIN_MESSAGE,
+								null, list, "Notfallplaner");
+				if (s == "Nicht Mehr Spielern") {
+					if (i > 2) {
+						JFrame finish = new JFrame();
+						String nextPlayer = PandemicGame.playerStorage.get(
+								PandemicGame.currentPlayer).toString();
+						JOptionPane.showMessageDialog(finish,
+								"Alle Spieler wurden ausgewählt. Es sind "
+										+ (i - 1) + " Spieler im Spiel.\n"
+										+ "Es ist jetzt ein Spieler, "
+										+ nextPlayer + " an der Reihe");
+						i = 5;
+					} else {
+						JFrame finish = new JFrame();
+						JOptionPane.showMessageDialog(finish,
+								"Sie müssen mindestens zwei Spieler!");
 					}
+				} else {
+					int oldLength = list.length;
+					Object[] newList = new Object[oldLength - 1];
+					int k = 0;
+					for (Object obj : list) {
+						if (obj != s) {
+							newList[k] = obj;
+							k++;
+						}
+					}
+					//
+					PandemicGame.addPlayer(s);
+					i++;
+					list = newList;
 				}
-				//
-				PandemicGame.addPlayer(s);
-				i++;
-				list = newList;
 			}
 		}
 
@@ -269,7 +329,12 @@ public class Board {
 		Board.frame.setVisible(true);
 		Board.background.setLayout(null);
 
-		JButton showHand = new JButton("Show Hand");
+		JButton showHand;
+		if (!PandemicGame.isGerman) {
+			showHand = new JButton("Show Hand");
+		} else {
+			showHand = new JButton("Hand anzeigen");
+		}
 		Board.background.add(showHand);
 		showHand.setBounds(10, 750, 100, 50);
 		showHand.addActionListener(new ActionListener() {
@@ -277,8 +342,13 @@ public class Board {
 				if (PandemicGame.p1.hand.stored.size() > 0) {
 					GameBoard.redrawCards();
 				} else {
-					System.out.println("The " + PandemicGame.p1.toString()
-							+ " has no more cards!");
+					if (!PandemicGame.isGerman) {
+						System.out.println("The " + PandemicGame.p1.toString()
+								+ " has no more cards!");
+					} else {
+						System.out.println("Die " + PandemicGame.p1.toString()
+								+ " hat keine Karten mehr!");
+					}
 				}
 			}
 		});
@@ -298,7 +368,8 @@ public class Board {
 		discarding = false;
 		PandemicGame.p1.checkCure();
 		if (PandemicGame.p1.getRole() == 3) {
-			if (GameBoard.showResearch != null && GameBoard.showResearch.isDisplayable()) {
+			if (GameBoard.showResearch != null
+					&& GameBoard.showResearch.isDisplayable()) {
 				background.remove(GameBoard.showResearch);
 			}
 		}
@@ -318,39 +389,23 @@ public class Board {
 		int handSize = PandemicGame.p1.getHand().stored.size();
 		if (handSize > 7) {
 			discarding = true;
-			System.out.println("You may only have 7 cards! Please discard.");
 			discardAmount = handSize - 7;
-			JOptionPane.showMessageDialog(frame, "You must discard "
-					+ discardAmount + " cards.");
+			if (!PandemicGame.isGerman) {
+				System.out
+						.println("You may only have 7 cards! Please discard.");
+
+				JOptionPane.showMessageDialog(frame, "You must discard "
+						+ discardAmount + " cards.");
+			}else{
+				System.out
+				.println("Sie können nur 7 Karten! Bitte entsorgen.");
+				JOptionPane.showMessageDialog(frame, "Sie müssen "
+						+ discardAmount + " Karten ablegen.");
+			}
 			GameBoard.redrawCards();
-			// PandemicGame.currentMoves = 0;
 		} else {
 			PandemicGame.nextPlayer();
 			Board.changePlayerPhaseTwo();
-//			JButton showResearch = new JButton("Build Research Station");
-//			if (PandemicGame.p1.getRole() == 3
-//					&& !PandemicGame.p1.currentCity.hasResearchStation) {
-//				Board.background.add(showResearch);
-//				showResearch.setBounds(950, 750, 200, 50);
-//				showResearch.addActionListener(new ActionListener() {
-//					public void actionPerformed(ActionEvent e) {
-//						if (!PandemicGame.p1.currentCity.hasResearchStation) {
-//							PandemicGame.p1.currentCity.hasResearchStation = true;
-//							for (CityButton city : Board.cityList) {
-//								if (city.cityNode == PandemicGame.p1.currentCity) {
-//									city.refreshResearchStation();
-//								}
-//							}
-//							++PandemicGame.currentMoves;
-//							if (PandemicGame.currentMoves == 4) {
-//								Board.changePlayer();
-//							}
-//						}
-//					}
-//				});
-//			} else {
-//				Board.background.remove(showResearch);
-//			}
 		}
 
 	}
@@ -366,14 +421,27 @@ public class Board {
 						.size()) % PandemicGame.playerStorage.size())
 				.toString();
 		if (!discarding) {
-			JOptionPane.showMessageDialog(frame, "The " + lastPlayer
-					+ "'s turn has ended. It is now the " + nextPlayer
-					+ "'s turn.");
+			if(!PandemicGame.isGerman){
+				JOptionPane.showMessageDialog(frame, "The " + lastPlayer
+						+ "'s turn has ended. It is now the " + nextPlayer
+						+ "'s turn.");
+			}else{
+				JOptionPane.showMessageDialog(frame, "Der " + lastPlayer
+						+ " an der Reihe ist zu Ende. Es ist nun die " + nextPlayer
+						+ "-Reihe");
+			}
 		} else {
+			if(!PandemicGame.isGerman){
 			JOptionPane.showMessageDialog(frame, lastPlayer + " discarded the "
 					+ lastDiscard.toString() + " card.\n" + "The " + lastPlayer
 					+ "'s turn has ended. It is now the " + nextPlayer
 					+ "'s turn.");
+			}else{
+				JOptionPane.showMessageDialog(frame, lastPlayer + " verwarf die "
+						+ lastDiscard.toString() + " karte.\n" +"Der " + lastPlayer
+				+ " an der Reihe ist zu Ende. Es ist nun die " + nextPlayer
+				+ "-Reihe");
+			}
 		}
 		GameBoard.redrawCards();
 		if (PandemicGame.p1.getRole() == 1) {
@@ -390,20 +458,25 @@ public class Board {
 			j.refreshInfection();
 		}
 		Board.frame.repaint();
-		if((PandemicGame.p1.checkCure() < 4) && (PandemicGame.p1.currentCity.hasResearchStation)){
+		if ((PandemicGame.p1.checkCure() < 4)
+				&& (PandemicGame.p1.currentCity.hasResearchStation)) {
 			Board.background.add(Board.cureButton);
 			Board.cureButton.addActionListener(Board.cureButton);
-			//background.add(Board.cureButton);
+			// background.add(Board.cureButton);
 			Board.cureButton.setBounds(700, 700, 100, 50);
-			
-		}else{
-			try{
+
+		} else {
+			try {
 				Board.background.remove(Board.cureButton);
-			}finally{
-				
+			} finally {
+
 			}
 		}
+		if(!PandemicGame.isGerman){
 		System.out.println("Outbreak count is: " + PandemicGame.outbreakCount);
+		}else{
+			System.out.println("Outbreak Zahl ist: "+ PandemicGame.outbreakCount);
+		}
 	}
 
 	/**
@@ -413,12 +486,21 @@ public class Board {
 	 */
 	public static void charterFlight(CityNode city) {
 		JFrame frame = new JFrame();
+		if(!PandemicGame.isGerman){
 		JOptionPane
 				.showMessageDialog(
 						frame,
 						"You can use this city card to fly from "
 								+ city.name
 								+ " to any other city. \n Please select another city to which you wish to fly.");
+		}else{
+			JOptionPane
+			.showMessageDialog(
+					frame,
+					"Sie können diese Stadt Karte verwenden, um von "
+							+ city.name
+							+ " nach jeder anderen Stadt zu fliegen. \n Bitte wählen Sie eine andere Stadt, zu dem Sie fliegen möchten.");
+		}
 		PandemicGame.p1.isFlying = true;
 	}
 
@@ -428,14 +510,15 @@ public class Board {
 	public static void cityFlight(CityNode city) {
 		JFrame frame = new JFrame();
 		JOptionPane.showMessageDialog(frame, "Flying to " + city.name + ".");
-		PandemicGame.p1.currentCity = city; 
+		PandemicGame.p1.currentCity = city;
 	}
+
 	/**
 	 * Event card
 	 */
 	public static void useEventCard() {
 		// Auto-generated method stub
-		
+
 	}
 
 	/**
@@ -443,9 +526,28 @@ public class Board {
 	 */
 	public static void displayInfection(CityNode city) {
 		if (!PandemicGame.isSetup && (PandemicGame.isEpidemic == 0)) {
-			JOptionPane.showMessageDialog(Board.frame, city.toString() + " was infected.");
-		} else if (!PandemicGame.isSetup && (PandemicGame.isEpidemic == 1)) {
-			JOptionPane.showMessageDialog(Board.frame, "An epidemic has occured. " + PandemicGame.lastEpidemic.toString() + " was infected three times.");
+			if(!PandemicGame.isGerman){
+			JOptionPane.showMessageDialog(Board.frame, city.toString()
+					+ " was infected.");
+			}
+			else{
+				JOptionPane.showMessageDialog(Board.frame, city.toString() + "infiziert wurde.");
+			}
+		} else if (!PandemicGame.isSetup && (PandemicGame.isEpidemic == 1))
+		{
+			if(!PandemicGame.isGerman){
+			JOptionPane.showMessageDialog(
+					Board.frame,
+					"An epidemic has occured. "
+							+ PandemicGame.lastEpidemic.toString()
+							+ " was infected three times.");
+			}else{
+				JOptionPane.showMessageDialog(
+						Board.frame,
+						"Eine Epidemie ist aufgetreten. "
+								+ PandemicGame.lastEpidemic.toString()
+								+ " wurde dreimal infiziert.");
+			}
 			PandemicGame.isEpidemic = 2;
 		}
 	}

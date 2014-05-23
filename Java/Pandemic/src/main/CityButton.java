@@ -88,7 +88,6 @@ public class CityButton extends JButton implements ActionListener {
 	 */
 	public void refreshResearchStation() {
 		if (this.cityNode.hasResearchStation) {
-			//System.out.println("DARKNESS");
 			this.setBackground(this.getBackground().darker());
 			
 		}
@@ -106,7 +105,7 @@ public class CityButton extends JButton implements ActionListener {
 		// the card.
 		if (AirliftCard.isFlying) {
 			PandemicGame.controlledPlayer.currentCity = this.cityNode;
-			if (PandemicGame.controlledPlayer.toString().equals("Medic") && PandemicGame.isCured[this.cityNode.color]) {
+			if (PandemicGame.controlledPlayer.getRole() == 2 && PandemicGame.isCured[this.cityNode.color]) {
 				this.cityNode.infectionStatus[this.cityNode.color] = 0;
 			}
 			AirliftCard.isFlying = false;
@@ -119,14 +118,18 @@ public class CityButton extends JButton implements ActionListener {
 		if (PandemicGame.p1.isFlying) {
 			if (PandemicGame.controlledPlayer.tryFlyToCity(cityNode)) {
 				PandemicGame.controlledPlayer.currentCity = cityNode;
-				if (PandemicGame.controlledPlayer.toString().equals("Medic") && PandemicGame.isCured[this.cityNode.color]) {
+				if (PandemicGame.controlledPlayer.getRole() == 2 && PandemicGame.isCured[this.cityNode.color]) {
 					this.cityNode.infectionStatus[this.cityNode.color] = 0;
 				}
 				PandemicGame.p1.isFlying = false;
 				++PandemicGame.currentMoves;
-				System.out.println(PandemicGame.controlledPlayer.toString()
-						+ " has moved to " + cityNode.getName() + ". "
+				if(!PandemicGame.isGerman){
+				System.out.println(""
 						+ (4 - PandemicGame.currentMoves) + " moves left.");
+				}else{
+					System.out.println(""
+							+ (4 - PandemicGame.currentMoves) + " bewegt sich bleiben.");
+				}
 				if (PandemicGame.currentMoves == 4) {
 					Board.changePlayer();
 				}
@@ -179,7 +182,7 @@ public class CityButton extends JButton implements ActionListener {
 							if (PandemicGame.controlledPlayer
 									.tryFlyToCity(cityNode)) {
 								PandemicGame.controlledPlayer.currentCity = this.cityNode;
-								if (PandemicGame.controlledPlayer.toString().equals("Medic") && PandemicGame.isCured[this.cityNode.color]) {
+								if (PandemicGame.controlledPlayer.getRole() == 2 && PandemicGame.isCured[this.cityNode.color]) {
 									this.cityNode.infectionStatus[this.cityNode.color] = 0;
 								}
 								++PandemicGame.currentMoves;

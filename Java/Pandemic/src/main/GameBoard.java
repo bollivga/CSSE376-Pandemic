@@ -1,7 +1,6 @@
 package main;
 
 import java.awt.BorderLayout;
-import java.awt.Container;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
@@ -23,12 +22,12 @@ public class GameBoard extends JFrame implements MouseListener {
 	 * Shows a visual panel with the hand of cards
 	 */
 	public static JPanel hand;
-	
+
 	/**
 	 * 
 	 */
 	public static OpExpertStationButton stationButton = new OpExpertStationButton();
-	
+
 	/**
 	 * The list of gui elements for the hand.
 	 */
@@ -64,14 +63,15 @@ public class GameBoard extends JFrame implements MouseListener {
 	public static void movePlayer() throws InterruptedException {
 		// Moves the player image to the new city
 		Board.frame.repaint();
-		if((PandemicGame.p1.checkCure() < 4) && (PandemicGame.p1.currentCity.hasResearchStation)){
+		if ((PandemicGame.p1.checkCure() < 4)
+				&& (PandemicGame.p1.currentCity.hasResearchStation)) {
 			Board.cureButton = new CureButton();
 			Board.background.add(Board.cureButton);
 			Board.cureButton.addActionListener(Board.cureButton);
-			//background.add(Board.cureButton);
+			// background.add(Board.cureButton);
 			Board.cureButton.setBounds(500, 500, 100, 50);
-			
-		}else{
+
+		} else {
 			Board.background.remove(Board.cureButton);
 		}
 		if (!PandemicGame.isSetup) {
@@ -142,8 +142,15 @@ public class GameBoard extends JFrame implements MouseListener {
 		handButtons = new ArrayList<CardButton>();
 		handFrame.dispose();
 		handFrame.removeAll();
-		handFrame = new JFrame("(Player " + (PandemicGame.currentPlayer + 1)
-				+ ") " + PandemicGame.p1.toString() + "'s Hand");
+		if (!PandemicGame.isGerman) {
+			handFrame = new JFrame("(Player "
+					+ (PandemicGame.currentPlayer + 1) + ") "
+					+ PandemicGame.p1.toString() + "'s Hand");
+		} else {
+			handFrame = new JFrame("(Spieler-"
+					+ (PandemicGame.currentPlayer + 1) + ") "
+					+ PandemicGame.p1.toString() + " Hand");
+		}
 		hand = new JPanel();
 		hand.setSize(180 * PandemicGame.p1.hand.stored.size(), 300);
 		hand.setLayout(new BorderLayout(180, 300));
@@ -170,13 +177,14 @@ public class GameBoard extends JFrame implements MouseListener {
 		}
 		handFrame.setVisible(true);
 		hand.setVisible(true);
-		// Card card = PandemicGame.p1.hand.stored.get(0);
-		// @SuppressWarnings("unused")
-		// AirliftCard alc = new AirliftCard(card, PandemicGame.p1);
 	}
-	
-	public static void showResilPop(){
+
+	public static void showResilPop() {
+		if(!PandemicGame.isGerman){
 		resilFrame = new JFrame("Resilient Population");
+		}else{
+			resilFrame = new JFrame("Elastische Bevölkerung");
+		}
 		resil = new JPanel();
 		resil.setSize(180 * PandemicGame.infectionDiscard.stored.size(), 300);
 		resil.setLayout(new BorderLayout(180, 300));
@@ -199,44 +207,12 @@ public class GameBoard extends JFrame implements MouseListener {
 		if (k < 8) {
 			resilFrame.setSize(180 * k + 20, 300);
 		} else {
-			resilFrame.setSize(180 * 7 + 20, (1+(k / 7))*300);
+			resilFrame.setSize(180 * 7 + 20, (1 + (k / 7)) * 300);
 		}
 		resilFrame.setVisible(true);
 		resil.setVisible(true);
 	}
-	// public static void redrawCards() {
-	// for (CardButton l : PandemicGame.handList) {
-	// Board.background.remove(l);
-	// }
-	// Board.background.validate();
-	// Board.background.repaint();
-	// hand = new JFrame();
-	// hand.setSize(1200, 849);
-	// hand.setLayout(new BorderLayout());
-	// int k = 0;
-	// for (Card j : PandemicGame.p1.hand.stored) {
-	// k++;
-	// CardButton card = new CardButton(j);
-	// card.addActionListener(card);
-	// Board.background.add(card);
-	// card.setBounds(300 + 140 * k, 650, 140, 300);
-	// }
-	// Card card = PandemicGame.p1.hand.stored.get(0);
-	// @SuppressWarnings("unused")
-	// AirliftCard alc = new AirliftCard(card, PandemicGame.p1);
-	// }
 
-	// /**
-	// * Draws the cards for each player.
-	// */
-	// public static void redrawPlayers() {
-	// for (Ellipse2D.Double l : Board.playerList) {
-	// Board.background.remove(9);
-	// }
-	// Board.background.validate();
-	// Board.background.repaint();
-	// GameBoard.spawnPlayer(PandemicGame.p1);
-	// }
 
 	@Override
 	public void mouseClicked(MouseEvent e) {

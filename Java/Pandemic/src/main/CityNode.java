@@ -77,9 +77,13 @@ public class CityNode {
 		if (PandemicGame.controlledPlayer.toString().equals("Medic") && PandemicGame.isCured[this.color]) {
 			return false;
 		}
-		if (!PandemicGame.isSetup && PandemicGame.QuarantineSpec >= 0 && (PandemicGame.playerStorage.get(PandemicGame.QuarantineSpec).currentCity.connectedCities.contains(this)))
+		if (!PandemicGame.isSetup && PandemicGame.QuarantineSpec >= 0 && PandemicGame.QuarantineSpec < PandemicGame.playerStorage.size() && (PandemicGame.playerStorage.get(PandemicGame.QuarantineSpec).currentCity.connectedCities.contains(this)))
 		{
+			if(!PandemicGame.isGerman){
 			System.out.println("Quarantine Specialist protected " + this.toString() + " from being infected!");
+			}else{
+				System.out.println("Quarantäne-Spezialist geschützt " + this.toString() + " vor einer Infektion!");
+			}
 			return false;
 		}
 		else if (!PandemicGame.isEradicated[this.color]) {

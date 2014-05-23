@@ -1,10 +1,5 @@
 package main;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
-
 /**
  * @author Jonathan Jungck and Greg Bollivar
  * 
@@ -34,15 +29,6 @@ public class AirliftCard implements EventCard {
 	 * Sets the city based on the node passed in on initialization.
 	 */
 	public AirliftCard() {
-		// // Set the city name to the city passed in
-		// this.player = player;
-		// this.setFont(new Font("Default", 1, 10));
-		// this.setText(this.player.toString());
-		// this.setForeground(Color.WHITE);
-		// this.setBackground(this.player.color);
-		// this.card = card;
-		// this.setText(card.toString());
-		// //PandemicGame.handList.add(this);
 	}
 
 	/**
@@ -53,10 +39,16 @@ public class AirliftCard implements EventCard {
 	public static void main(String[] args) {
 
 	}
+
 	@Override
-	public String toString(){
-		return "Airlift";
+	public String toString() {
+		if (!PandemicGame.isGerman) {
+			return "Airlift";
+		} else {
+			return "Luftbrücke";
+		}
 	}
+
 	@Override
 	public void trigger() {
 		AirliftCard.isFlying = true;

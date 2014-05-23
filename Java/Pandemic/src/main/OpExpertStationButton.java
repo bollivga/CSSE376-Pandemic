@@ -23,7 +23,8 @@ public class OpExpertStationButton extends JButton implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		if (!PandemicGame.p1.currentCity.hasResearchStation) {
 			PandemicGame.p1.currentCity.hasResearchStation = true;
-			if (GameBoard.showResearch != null && GameBoard.showResearch.isDisplayable()) {
+			if (GameBoard.showResearch != null
+					&& GameBoard.showResearch.isDisplayable()) {
 				Board.background.remove(GameBoard.showResearch);
 			}
 			for (CityButton city : Board.cityList) {
@@ -44,8 +45,12 @@ public class OpExpertStationButton extends JButton implements ActionListener {
 	 */
 	public OpExpertStationButton() {
 		this.setBounds(950, 750, 200, 50);
-		this.setText("Add Research Station");
+		if (!PandemicGame.isGerman) {
+			this.setText("Add Research Station");
+		} else {
+			this.setText("In Forschungsstation");
+		}
 		this.addActionListener(this);
-		
+
 	}
 }

@@ -89,14 +89,14 @@ public class CardButton extends JButton implements ActionListener {
 			PandemicGame.p1.hand.stored.remove(this.card);
 			GameBoard.redrawCards();
 		} else if (CureButton.isSelecting) {
-			if (((PlayerCityCard) this.card).city.color == CureButton.me.colorCuring) {
+			if (((PlayerCityCard) this.card).city.color == CureButton.colorCuring) {
 				PandemicGame.p1.hand.stored.remove(this.card);
 				GameBoard.redrawCards();
 				CureButton.cardsLeft--;
 			}
 			if (CureButton.cardsLeft == 0) {
 				CureButton.isSelecting = false;
-				PandemicGame.isCured[CureButton.me.colorCuring] = true;
+				PandemicGame.isCured[CureButton.colorCuring] = true;
 				Board.background.remove(CureButton.me);
 			}
 		} else if (Board.discarding) {
@@ -109,9 +109,15 @@ public class CardButton extends JButton implements ActionListener {
 				Board.discarding = false;
 			} else {
 				GameBoard.redrawCards();
+				if(!PandemicGame.isGerman){
 				JOptionPane.showMessageDialog(Board.frame,
 						PandemicGame.p1.toString() + " discarded the "
 								+ Board.lastDiscard.toString() + " card.");
+				}else{
+					JOptionPane.showMessageDialog(Board.frame,
+							PandemicGame.p1.toString() + " verworfen die "
+									+ Board.lastDiscard.toString() + " Karte.");
+				}
 			}
 		} else if (PandemicGame.p1.useCard(this.card)) {
 			ArrayList<String> list = new ArrayList<String>();
@@ -119,8 +125,13 @@ public class CardButton extends JButton implements ActionListener {
 				System.out.println(""
 						+ ((PlayerCityCard) this.card).city.toString()
 						+ PandemicGame.p1.currentCity.toString());
+				if(!PandemicGame.isGerman){
 				list.add("Charter Flight");
 				list.add("Research Station");
+				}else{
+					list.add("Charter-Flug");
+					list.add("Forschungsstation");
+				}
 				int k = 0;
 				for (Player p : (PandemicGame.playerStorage)) {
 					if (p != PandemicGame.p1) {
@@ -128,10 +139,17 @@ public class CardButton extends JButton implements ActionListener {
 							k++;
 						}
 						if (k > 0) {
+							if(!PandemicGame.isGerman){
 							list.add("Give "
 									+ ((PlayerCityCard) this.card).city
 											.toString() + " Away to "
 									+ p.toString());
+							}else{
+								list.add("Geben Sie "
+										+ ((PlayerCityCard) this.card).city
+												.toString() + " entfernt, um "
+										+ p.toString());
+							}
 							k--;
 						}
 					}
@@ -139,9 +157,17 @@ public class CardButton extends JButton implements ActionListener {
 			} else {
 				if (PandemicGame.p1.getRole() == 3
 						&& PandemicGame.p1.currentCity.hasResearchStation) {
+					if(!PandemicGame.isGerman){
 					list.add("Fly to Any City");
+					}else{
+						list.add("Fliegen Sie nach Irgendwo");
+					}
 				} else {
+					if(!PandemicGame.isGerman){
 					list.add("City Flight");
+					}else{
+						list.add("Flug Stadt");
+					}
 				}
 
 				if (PandemicGame.p1.getRole() == 5) {
@@ -152,10 +178,17 @@ public class CardButton extends JButton implements ActionListener {
 								k++;
 							}
 							if (k > 0) {
-								list.add("Give "
-										+ ((PlayerCityCard) this.card).city
-												.toString() + " Away to "
-										+ p.toString());
+								if(!PandemicGame.isGerman){
+									list.add("Give "
+											+ ((PlayerCityCard) this.card).city
+													.toString() + " Away to "
+											+ p.toString());
+									}else{
+										list.add("Geben Sie "
+												+ ((PlayerCityCard) this.card).city
+														.toString() + " entfernt, um "
+												+ p.toString());
+									}
 								k--;
 							}
 						}
@@ -170,10 +203,17 @@ public class CardButton extends JButton implements ActionListener {
 				i++;
 			}
 
-			String s = (String) JOptionPane.showInputDialog(Board.frame,
+			String s;
+			if(!PandemicGame.isGerman){
+			s = (String) JOptionPane.showInputDialog(Board.frame,
 					"Choose an Action: ", "Card Action",
 					JOptionPane.PLAIN_MESSAGE, null, actionList, "Flight");
-			if (s == "Fly to Any City") {
+			}else{
+				s = (String) JOptionPane.showInputDialog(Board.frame,
+						"Wählen Sie eine Aktion: ", "Aktionskarte",
+						JOptionPane.PLAIN_MESSAGE, null, actionList, "Flug");
+			}
+			if ((s == "Fliegen Sie nach Irgendwo") || (s == "Fly to Any City")) {
 				PandemicGame.isOperationFlight = true;
 				Board.charterFlight(((PlayerCityCard) this.card).city);
 				PandemicGame.p1.hand.remove(this.card);
@@ -183,7 +223,7 @@ public class CardButton extends JButton implements ActionListener {
 					GameBoard.handFrame.dispose();
 				}
 				PandemicGame.isOperationFlight = false;
-			} else if (s == "City Flight") {
+			} else if ((s == "Flug Stadt") || (s == "City Flight")) {
 				// PandemicGame.p1.isFlying = true;
 				Board.cityFlight(((PlayerCityCard) this.card).city);
 				PandemicGame.p1.hand.remove(this.card);
@@ -197,19 +237,25 @@ public class CardButton extends JButton implements ActionListener {
 					GameBoard.handFrame.dispose();
 				}
 
-			} else if (s == "Charter Flight") {
+			} else if((s == "Charter-Flug") || (s == "Charter Flight")) {
 				Board.charterFlight(((PlayerCityCard) this.card).city);
 				if (PandemicGame.p1.getHand().stored.size() > 0) {
 					GameBoard.redrawCards();
 				} else {
 					GameBoard.handFrame.dispose();
 				}
-			} else if (s == "Research Station") {
+			} else if ((s == "Forschungsstation") ||(s == "Research Station")) {
 				if (!((PlayerCityCard) this.card).city.hasResearchStation) {
 					((PlayerCityCard) this.card).city.hasResearchStation = true;
+					if(!PandemicGame.isGerman){
 					System.out.println("Added a research station to "
 							+ ((PlayerCityCard) this.card).city.toString()
 							+ ".");
+					}else{
+						System.out.println("Fügte eine Forschungsstation nach  "
+								+ ((PlayerCityCard) this.card).city.toString()
+								+ ".");
+					}
 					PandemicGame.p1.hand.remove(this.card);
 					++PandemicGame.currentMoves;
 					if (PandemicGame.currentMoves == 4) {
@@ -227,30 +273,18 @@ public class CardButton extends JButton implements ActionListener {
 					}
 
 				} else {
+					if(!PandemicGame.isGerman){
 					System.out.println(((PlayerCityCard) this.card).city
 							.toString()
 							+ " already contained a research station!");
-				}
-
-			} else if (s == "Give "
-					+ ((PlayerCityCard) this.card).city.toString() + " Away") {
-				System.out.println("Test?");
-				for (Player p : (PandemicGame.playerStorage)) {
-					System.out.println("Player at " + p.currentCity.toString());
-					System.out.println(p.currentCity.toString() + p.getRole());
-					if (p.currentCity == ((PlayerCityCard) this.card).city
-							&& p.getRole() != PandemicGame.p1.getRole()) {
-						p.hand.add(this.card);
-						System.out.println("Gave " + p.toString() + " "
-								+ ((PlayerCityCard) this.card).city.toString());
+					}else{
+						System.out.println(((PlayerCityCard) this.card).city
+								.toString()
+								+ " bereits eine Forschungsstation enthalten!");
 					}
 				}
-				PandemicGame.p1.hand.remove(this.card);
-				++PandemicGame.currentMoves;
-				if (PandemicGame.currentMoves == 4) {
-					Board.changePlayer();
-				}
-			} else if (s.indexOf("Away") != -1 && s.indexOf("to") != -1) {
+
+			} else if ((s.indexOf("entfernt") != -1) || (s.indexOf("Away") != -1 && s.indexOf("to") != -1)) {
 				String arr[] = s.split(" ");
 				if (arr.length >= 6) {
 					for (Player p : (PandemicGame.playerStorage)) {

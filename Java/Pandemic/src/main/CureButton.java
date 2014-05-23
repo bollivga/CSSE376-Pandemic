@@ -39,12 +39,15 @@ public class CureButton extends JButton implements ActionListener {
 	 */
 	public CureButton() {
 		this.setFont(new Font("Default", 1, 10));
+		if(!PandemicGame.isGerman){
 		this.setText("Cure Disease");
+		}else{
+			this.setText("Krankheit heilen");
+		}
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
 		CureButton.isSelecting = true;
 		if (PandemicGame.p1.getRole() == 6) {
 			CureButton.cardsLeft = 4;

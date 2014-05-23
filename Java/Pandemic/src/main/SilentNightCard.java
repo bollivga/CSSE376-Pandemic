@@ -8,6 +8,10 @@ public class SilentNightCard implements EventCard {
 	}
 	@Override
 	public String toString(){
+		if(!PandemicGame.isGerman){
 		return "One Quiet Night";
+		}else{
+			return "Eine ruhige Nacht";
+		}
 	}
 }
