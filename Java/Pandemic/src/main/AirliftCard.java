@@ -52,5 +52,6 @@ public class AirliftCard implements EventCard {
 	@Override
 	public void trigger() {
 		AirliftCard.isFlying = true;
+		PandemicGame.discardedEventCount++;
 	}
 }

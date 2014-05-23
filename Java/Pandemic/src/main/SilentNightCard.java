@@ -5,12 +5,15 @@ public class SilentNightCard implements EventCard {
 	@Override
 	public void trigger() {
 		PandemicGame.oneQuietNight = true;
+
+		PandemicGame.discardedEventCount++;
 	}
+
 	@Override
-	public String toString(){
-		if(!PandemicGame.isGerman){
-		return "One Quiet Night";
-		}else{
+	public String toString() {
+		if (!PandemicGame.isGerman) {
+			return "One Quiet Night";
+		} else {
 			return "Eine ruhige Nacht";
 		}
 	}

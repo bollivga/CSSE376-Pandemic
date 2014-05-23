@@ -28,7 +28,7 @@ public class PandemicGame {
 	/**
 	 * The list of player cards that have been discarded.
 	 */
-	public CardDiscard playerDiscard;
+	public static CardDiscard playerDiscard;
 
 	/**
 	 * The deck of player cards available to draw.

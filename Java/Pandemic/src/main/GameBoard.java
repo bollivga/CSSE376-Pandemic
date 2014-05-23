@@ -1,6 +1,7 @@
 package main;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
@@ -37,6 +38,8 @@ public class GameBoard extends JFrame implements MouseListener {
 	 * Also used for the hand GUI
 	 */
 	public static JFrame handFrame = new JFrame();
+
+	private static ContinPlannerButton plannerButton = new ContinPlannerButton();
 
 	/**
 	 * Serial ID
@@ -78,9 +81,26 @@ public class GameBoard extends JFrame implements MouseListener {
 			if (PandemicGame.p1.getRole() == 3
 					&& !PandemicGame.p1.currentCity.hasResearchStation) {
 				Board.background.add(stationButton);
+				try {
+					Board.background.remove(plannerButton);
+				} finally {
 
+				}
+			} else if (PandemicGame.p1.getRole() == 0
+					&& (PandemicGame.discardedEventCount > 0 || ContinPlannerButton.hasEventCard == true)) {
+				Board.background.add(plannerButton);
+				try {
+
+					Board.background.remove(stationButton);
+				} finally {
+
+				}
 			} else {
-				Board.background.remove(stationButton);
+				try {
+					Board.background.remove(plannerButton);
+					Board.background.remove(stationButton);
+				} finally {
+				}
 			}
 		}
 	}
@@ -95,6 +115,12 @@ public class GameBoard extends JFrame implements MouseListener {
 	public static JPanel resil;
 
 	public static ArrayList<InfectCardButton> resilButtons;
+
+	private static JFrame eventFrame;
+
+	private static JPanel eventP;
+
+	private static ArrayList<PlannerButton> eventButtons;
 
 	/**
 	 * Overridden paint method
@@ -180,9 +206,9 @@ public class GameBoard extends JFrame implements MouseListener {
 	}
 
 	public static void showResilPop() {
-		if(!PandemicGame.isGerman){
-		resilFrame = new JFrame("Resilient Population");
-		}else{
+		if (!PandemicGame.isGerman) {
+			resilFrame = new JFrame("Resilient Population");
+		} else {
 			resilFrame = new JFrame("Elastische Bevölkerung");
 		}
 		resil = new JPanel();
@@ -213,7 +239,6 @@ public class GameBoard extends JFrame implements MouseListener {
 		resil.setVisible(true);
 	}
 
-
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
@@ -239,6 +264,37 @@ public class GameBoard extends JFrame implements MouseListener {
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
+
+	}
+
+	public static void plannerGet() {
+		if (!PandemicGame.isGerman) {
+			eventFrame = new JFrame("Event Cards");
+		} else {
+			eventFrame = new JFrame("Ereigniskarten");
+		}
+		eventP = new JPanel();
+		eventP.setSize(180 * PandemicGame.discardedEventCount, 300);
+		eventP.setLayout(new BorderLayout(180, 300));
+		eventFrame.setLayout(new BorderLayout(180, 300));
+		eventButtons = new ArrayList<PlannerButton>();
+		int k = 0;
+		for (Card j : PandemicGame.playerDiscard.stored) {
+			if (!(PlayerCityCard.class.equals(j.getClass()))) {
+				PlannerButton card = new PlannerButton((EventCard) j);
+				card.addActionListener(card);
+				eventButtons.add(card);
+				eventFrame.add(card);
+
+				card.setBounds(0 + 180 * k, 0, 180, 300);
+				k++;
+			}
+		}
+		eventFrame.add(eventP);
+		eventFrame.setSize(180 * k + 20, 300);
+
+		eventFrame.setVisible(true);
+		eventP.setVisible(true);
 
 	}
 

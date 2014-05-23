@@ -6,6 +6,7 @@ public class GovernmentGrantCard implements EventCard {
 	public void trigger() {
 		PandemicGame.govtGrant = true;
 
+		PandemicGame.discardedEventCount++;
 	}
 	@Override
 	public String toString(){
